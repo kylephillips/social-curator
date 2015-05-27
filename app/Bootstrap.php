@@ -19,6 +19,7 @@ class Bootstrap {
 	{
 		new Entities\PostType\SocialPost\RegisterSocialPost;
 		new Entities\PostType\SocialPost\SocialPostMeta;
+		new Curate\RegisterCuratePage;
 		new Config\RegisterSettings;
 		new Config\Settings;
 		new Activation\Dependencies\AdminDependencies;
