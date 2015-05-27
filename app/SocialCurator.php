@@ -7,12 +7,9 @@ class SocialCurator {
 
 	public static function init()
 	{
-		// dev/live
-		global $cs_env;
-		$cs_env = 'live';
 
-		global $cs_version;
-		$cs_version = '0.0.1';
+		global $social_curator_version;
+		$social_curator_version = '0.0.1';
 
 		$app = new SocialCurator\Bootstrap;
 	}
