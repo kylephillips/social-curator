@@ -17,7 +17,12 @@ class Bootstrap {
 	*/
 	private function pluginInit()
 	{
-		
+		new Entities\PostType\SocialPost\RegisterSocialPost;
+		new Entities\PostType\SocialPost\SocialPostMeta;
+		new Config\RegisterSettings;
+		new Config\Settings;
+		new Activation\Dependencies\AdminDependencies;
+		new Activation\Dependencies\PublicDependencies;
 	}
 
 
