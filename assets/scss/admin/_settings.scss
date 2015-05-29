@@ -1,0 +1,51 @@
+//
+// Plugin Settings
+// --------------------------------------------------
+
+.social-curator-site-settings-instructions {
+	background-color: darken($white, 12%);
+	padding: 10px;
+	margin-bottom: 30px;
+	input[type="text"]{
+		width: 100%;
+	}
+}
+
+// Site Fields
+.social-curator-site-settings {
+	@include wptable;
+	background-color: $white;
+	display: block;
+	max-width: 400px;
+	padding: 20px;
+	label {
+		display: block;
+	}
+	.fields {
+		@include unstyled;
+	}
+	.fields li {
+		margin-top: 10px;
+		&:first-child {
+			margin: 0;
+		}
+	}
+	input[type="text"]{
+		width: 100%;
+	}
+}
+
+// Status Indication
+.social-curator-loading-small {
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	background: url('../../images/loading-admin.gif');
+	margin-right: 10px;
+}
+.social-curator-indicator-status {
+	display: inline-block;
+	font-size: 15px;
+	position: relative;
+	top: -10px;
+}

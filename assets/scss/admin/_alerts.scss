@@ -1,0 +1,11 @@
+//
+// Alerts
+// --------------------------------------------------
+.social-curator-alert-error {
+	@include wptable;
+	background-color: $white;
+	padding: 8px;
+	margin-bottom: 20px;
+	color: $red;
+	border-left: 4px solid $red;
+}

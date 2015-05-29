@@ -7,9 +7,8 @@ class SocialCurator {
 
 	public static function init()
 	{
-
 		global $social_curator_version;
-		$social_curator_version = '0.0.1';
+		$social_curator_version = '1.0';
 
 		$app = new SocialCurator\Bootstrap;
 	}

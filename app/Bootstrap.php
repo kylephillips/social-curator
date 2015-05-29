@@ -18,12 +18,14 @@ class Bootstrap {
 	private function pluginInit()
 	{
 		new Entities\PostType\SocialPost\RegisterSocialPost;
+		new Config\RegisterSettings;
 		new Entities\PostType\SocialPost\SocialPostMeta;
 		new Curate\RegisterCuratePage;
-		new Config\RegisterSettings;
 		new Config\Settings;
+		new Activation\DefaultSettings\SupportedSites;
 		new Activation\Dependencies\AdminDependencies;
 		new Activation\Dependencies\PublicDependencies;
+		new Activation\RegisterSites\RegisterSites;
 	}
 
 
