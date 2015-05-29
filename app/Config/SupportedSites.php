@@ -2,6 +2,8 @@
 
 /**
 * Configuration for Supported Sites
+* Each method sets array of keys required for site.
+* Required keys include name, api_endpoint, and settings fields
 */
 class SupportedSites {
 
@@ -24,7 +26,7 @@ class SupportedSites {
 	{
 		$this->sites['twitter'] = array(
 			'name' => 'Twitter',
-			'api_endpoint' => 'https://twitter.com',
+			'api_endpoint' => 'https://api.twitter.com/1.1/',
 			'settings_fields' => array(
 				'api_key' => __('API Key', 'socialcurator'), 
 				'api_secret' => __('API Secret', 'socialcurator'), 
@@ -42,7 +44,7 @@ class SupportedSites {
 	{
 		$this->sites['instagram'] = array(
 			'name' => 'Instagram',
-			'api_endpoint' => 'https://instagram.com',
+			'api_endpoint' => 'https://api.instagram.com/v1/',
 			'required_for_auth' => array(
 				'client_id', 'client_secret'
 			),
@@ -75,6 +77,17 @@ class SupportedSites {
 			if ( $key == $site ) return $single_site;
 		}
 		return array();
+	}
+
+	/**
+	* Get a supported site key
+	*/
+	public function getKey($site, $key)
+	{
+		$supported_site = $this->getSite($site);
+		if ( empty($supported_site) ) return false;
+		if ( !isset($supported_site[$key]) ) return false;
+		return $supported_site[$key];
 	}
 
 }

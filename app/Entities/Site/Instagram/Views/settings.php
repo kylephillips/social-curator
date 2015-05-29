@@ -4,7 +4,7 @@ $fieldname = 'social_curator_site_' . $this->site_index;
 $code = ( isset($_GET['code']) ) ? $_GET['code'] : '';
 ?>
 
-<h3><?php _e('Instagram Settings', 'socialcurator'); ?></h3>
+<h3 class="social-curator-settings-header"><i class="social-curator-icon-instagram"></i> <?php _e('Instagram Settings', 'socialcurator'); ?></h3>
 
 <?php if ( !$this->settings_repo->getSiteSetting('instagram', 'auth_token') ) : ?>
 	<div class="social-curator-site-settings-instructions">

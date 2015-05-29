@@ -27,6 +27,15 @@ Copyright: Kyle Phillips
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
+
+/**
+* Adding Support for an API/site:
+* 1) Add method in Config\SupportedSites with necessary keys
+* 2) Add directory/namespace for site logic under Entities\Site.
+* 3) Copy over an existing Feed directory into the new site and edit the three classes as needed.
+* 4) The formatted feed should return an array, whose keys match existing feeds. See Entities\Site\Twitter\Feed\FeedFormatter for example
+*/
     
 /**
 * Check Wordpress and PHP versions before instantiating plugin

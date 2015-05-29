@@ -94,13 +94,5 @@ class Settings {
 		return $url;
 	}
 
-	/**
-	* Save Access Token
-	*/
-	private function saveToken($site, $code)
-	{
-
-	}
-
 
 }

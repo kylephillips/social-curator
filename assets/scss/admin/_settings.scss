@@ -2,6 +2,14 @@
 // Plugin Settings
 // --------------------------------------------------
 
+.social-curator-settings-header {
+	font-size: 20px;
+	i {
+		position: relative;
+		top: 2px;
+	}
+}
+
 .social-curator-site-settings-instructions {
 	background-color: darken($white, 12%);
 	padding: 10px;

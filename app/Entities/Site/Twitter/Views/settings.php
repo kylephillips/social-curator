@@ -4,7 +4,7 @@ $fieldname = 'social_curator_site_' . $this->site_index;
 $search_term = $this->settings_repo->getSiteSetting($this->site_index, 'search_term');
 ?>
 
-<h3><?php _e('Twitter Settings', 'socialcurator'); ?></h3>
+<h3 class="social-curator-settings-header"><i class="social-curator-icon-twitter"></i> <?php _e('Twitter Settings', 'socialcurator'); ?></h3>
 <div class="social-curator-site-settings-instructions">
 	<p><?php _e('To connect a Twitter account, first create an application from the Twitter developer console. Once the application has been created, you must create an access token for the application.', 'socialcurator') . '</p>'; ?></p>
 	<p><strong><?php _e('API Homepage', 'socialcurator'); ?>:</strong> <a href="https://apps.twitter.com/" target="_blank"><?php _e('Twitter Apps', 'socialcurator'); ?></a></p>

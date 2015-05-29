@@ -31,7 +31,7 @@ class SettingsRepository {
 	
 
 	/**
-	* Get Site Settings
+	* Get Single Setting/Option for a single supported site
 	* @since 1.0
 	*/
 	public function getSiteSetting($site, $setting)
