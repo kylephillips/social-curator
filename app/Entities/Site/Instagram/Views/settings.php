@@ -62,12 +62,29 @@ $code = ( isset($_GET['code']) ) ? $_GET['code'] : '';
 	<?php endif; ?>
 
 
-<?php else : // Auth Token is saved ?>
-	<div class="social-curator-alert social-curator-alert-success">
-		<p><?php _e('Connected to Instagram as', 'socialcurator'); ?>: <strong><?php echo $this->settings_repo->getSiteSetting($this->site_index, 'auth_user'); ?></strong></p>
-		<p><a href="#" data-instagram-remove-auth class="button"><?php _e('Disconnect', 'socialcurator'); ?></a></p>
-		<p><em>(<?php _e('Disconnecting will remove authorization credentials from this website. To fully disconnect, visit the connected Instagram account > Edit Profile > Manage Applications > and revoke access.', 'socialcurator'); ?>)</em></p>
-	</div>
+<?php else : // Auth Token is saved 
+$search_term = $this->settings_repo->getSiteSetting($this->site_index, 'search_term');
+?>
+<div class="social-curator-site-settings">
+	<ul class="fields">
+		<li>
+			<label><?php _e('Search Term', 'socialcurator'); ?></label>
+			<input type="text" name="<?php echo $fieldname; ?>[search_term]" value="<?php if ( $search_term ) echo $search_term; ?>" />
+		</li>
+	</ul>
+	<!-- Auth Fields -->
+		<input type="hidden" name="<?php echo $fieldname; ?>[client_id]" value="<?php echo $this->settings_repo->getSiteSetting($this->site_index, 'client_id'); ?>">
+		<input type="hidden" name="<?php echo $fieldname; ?>[client_secret]" value="<?php echo $this->settings_repo->getSiteSetting($this->site_index, 'client_secret'); ?>">
+		<input type="hidden" name="<?php echo $fieldname; ?>[auth_token]" value="<?php echo $this->settings_repo->getSiteSetting($this->site_index, 'auth_token'); ?>">
+		<input type="hidden" name="<?php echo $fieldname; ?>[auth_user]" value="<?php echo $this->settings_repo->getSiteSetting($this->site_index, 'auth_user'); ?>">
+</div>
+<?php submit_button(); ?>
+
+<div class="social-curator-alert social-curator-alert-success">
+	<?php _e('Connected to Instagram as', 'socialcurator'); ?>: <strong><?php echo $this->settings_repo->getSiteSetting($this->site_index, 'auth_user'); ?></strong>
+</div>
+<p><a href="#" data-instagram-remove-auth class="button"><?php _e('Disconnect', 'socialcurator'); ?></a></p>
+<p><em>(<?php _e('Disconnecting will remove authorization credentials from this website. To fully disconnect, visit the connected Instagram account > Edit Profile > Manage Applications > and revoke access.', 'socialcurator'); ?>)</em></p>
 <?php endif; ?>
 
 

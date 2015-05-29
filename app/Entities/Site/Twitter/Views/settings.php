@@ -1,12 +1,13 @@
 <?php 
 settings_fields( 'social-curator-site-' . $this->site_index); 
 $fieldname = 'social_curator_site_' . $this->site_index;
+$search_term = $this->settings_repo->getSiteSetting($this->site_index, 'search_term');
 ?>
 
 <h3><?php _e('Twitter Settings', 'socialcurator'); ?></h3>
 <div class="social-curator-site-settings-instructions">
 	<p><?php _e('To connect a Twitter account, first create an application from the Twitter developer console. Once the application has been created, you must create an access token for the application.', 'socialcurator') . '</p>'; ?></p>
-	<p><strong><?php _e('API Homepage', 'socialcurator'); ?>: <a href="https://apps.twitter.com/" target="_blank"><?php _e('Twitter Apps', 'socialcurator'); ?></a></p>
+	<p><strong><?php _e('API Homepage', 'socialcurator'); ?>:</strong> <a href="https://apps.twitter.com/" target="_blank"><?php _e('Twitter Apps', 'socialcurator'); ?></a></p>
 </div>
 
 <div class="social-curator-site-settings">
@@ -23,4 +24,12 @@ $fieldname = 'social_curator_site_' . $this->site_index;
 	</ul>
 </div><!-- .social-curator-site-settings -->
 
+<div class="social-curator-site-settings">
+	<ul class="fields">
+		<li>
+			<label><?php _e('Search Term', 'socialcurator'); ?></label>
+			<input type="text" name="<?php echo $fieldname; ?>[search_term]" value="<?php if ( $search_term ) echo $search_term; ?>" />
+		</li>
+	</ul>
+</div>
 <?php submit_button(); ?>

@@ -9,3 +9,11 @@
 	color: $red;
 	border-left: 4px solid $red;
 }
+
+.social-curator-alert-success {
+	@include wptable;
+	background-color: $white;
+	padding: 8px;
+	margin-bottom: 20px;
+	border-left: 4px solid $green;
+}

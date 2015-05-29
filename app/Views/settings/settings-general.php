@@ -13,4 +13,6 @@
 		</li>
 	<?php endforeach; ?>
 </ul>
+
+<h3><?php _e('Search Term', 'socialcurator'); ?>
 <?php submit_button(); ?>
