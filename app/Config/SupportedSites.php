@@ -26,6 +26,7 @@ class SupportedSites {
 	{
 		$this->sites['twitter'] = array(
 			'name' => 'Twitter',
+			'namespace' => 'Twitter',
 			'api_endpoint' => 'https://api.twitter.com/1.1/',
 			'settings_fields' => array(
 				'api_key' => __('API Key', 'socialcurator'), 
@@ -44,6 +45,7 @@ class SupportedSites {
 	{
 		$this->sites['instagram'] = array(
 			'name' => 'Instagram',
+			'namespace' => 'Instagram',
 			'api_endpoint' => 'https://api.instagram.com/v1/',
 			'required_for_auth' => array(
 				'client_id', 'client_secret'
