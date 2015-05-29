@@ -27,6 +27,8 @@ class RegisterSocialPost {
 			'capability_type' => 'post',
 			'hierarchical' => false,
 			'has_archive' => true,
+			'menu_position' => 20,
+			'menu_icon' => 'dashicons-share-alt2',
 			'supports' => array('title', 'editor', 'thumbnail'),
 			'rewrite' => array('slug' => 'social-post', 'with_front' => false)
 		);

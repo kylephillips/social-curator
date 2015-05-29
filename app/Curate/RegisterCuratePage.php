@@ -24,7 +24,7 @@ class RegisterCuratePage {
 			'social-curator', 
 			array($this, 'view'), 
 			'dashicons-share', 
-			26
+			'59.2'
 		);
 	}
 
