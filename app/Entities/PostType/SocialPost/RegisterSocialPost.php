@@ -16,8 +16,8 @@ class RegisterSocialPost {
 			'name' => __('Social Posts', 'socialcurator'),  
 			'singular_name' => __('Social Post', 'socialcurator'),
 			'add_new_item'=> __('Add Social Post', 'socialcurator'),
-			'edit_item' => __('Edit Redirect', 'socialcurator'),
-			'view_item' => __('View Redirect', 'socialcurator')
+			'edit_item' => __('Edit Social Post', 'socialcurator'),
+			'view_item' => __('View Social Post', 'socialcurator')
 		);
 		$args = array(
 			'labels' => $labels,
