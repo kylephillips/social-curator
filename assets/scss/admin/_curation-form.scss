@@ -1,0 +1,19 @@
+//
+// Curation Page Form
+// --------------------------------------------------
+.social-curator-run-import {
+	@include wptable;
+	background-color: $white;
+	padding: 10px;
+	@include clearfix;
+	.button {
+		float: right;
+		position: relative;
+		top: -4px;
+	}
+	p {
+		margin: 0;
+		position: relative;
+		top: 4px;
+	}
+}

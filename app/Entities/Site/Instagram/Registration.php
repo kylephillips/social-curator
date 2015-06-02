@@ -1,6 +1,6 @@
 <?php namespace SocialCurator\Entities\Site\Instagram;
 
-use SocialCurator\Entities\Site\Instagram\Listeners\Listeners;
+use SocialCurator\Entities\Site\Instagram\Events\RegisterEvents;
 
 /**
 * Register Instagram as a Supported Site
@@ -17,7 +17,7 @@ class Registration {
 	*/
 	private function pluginInit()
 	{
-		new Listeners;
+		new RegisterEvents;
 	}
 
 }

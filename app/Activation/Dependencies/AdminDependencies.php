@@ -55,6 +55,8 @@ class AdminDependencies extends Dependencies {
 	{
 		$data = array(
 			'social_curator_nonce' => wp_create_nonce( 'social-curator-nonce' ),
+			'run_import' => __('Run Import', 'socialcurator'),
+			'importing' => __('Importing', 'socialcurator')
 		);
 		return $data;
 	}

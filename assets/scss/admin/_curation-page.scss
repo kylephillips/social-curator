@@ -1,0 +1,18 @@
+//
+// Curation Page 
+// --------------------------------------------------
+.social-curator-curation-page {
+	h2 {
+		@include clearfix;
+		margin-bottom: 8px;
+		position: relative;
+	}
+}
+
+// General Loading Indicator
+.social-curator-curation-loading-indicator {
+	position: absolute;
+	right: 0;
+	top: 4px;
+	display: none;
+}

@@ -1,11 +1,11 @@
-<?php namespace SocialCurator\Entities\Site\Instagram\Events;
+<?php namespace SocialCurator\Entities\Site\Instagram\Listeners;
 
-use SocialCurator\Events\EventBase;
+use SocialCurator\Listeners\ListenerBase;
 
 /**
 * Removes Instagram auth credentials
 */
-class removeInstagramAuth extends EventBase {
+class removeInstagramAuth extends ListenerBase {
 
 	public function __construct()
 	{

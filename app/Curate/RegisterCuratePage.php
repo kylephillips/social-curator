@@ -1,14 +1,22 @@
 <?php namespace SocialCurator\Curate;
 
 use SocialCurator\Helpers;
+use SocialCurator\Config\SettingsRepository;
 
 /**
 * Register the Curate Admin Menu Item and Display the View for Curating Posts
 */
 class RegisterCuratePage {
 
+	/**
+	* Settings Repo
+	* @var SocialCurator\Config\SettingsRepository
+	*/
+	private $settings_repo;
+
 	public function __construct()
 	{
+		$this->settings_repo = new SettingsRepository;
 		add_action('admin_menu', array($this, 'registerMenu'));
 	}
 

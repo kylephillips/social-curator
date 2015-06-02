@@ -1,13 +1,13 @@
-<?php namespace SocialCurator\Entities\Site\Instagram\Events;
+<?php namespace SocialCurator\Entities\Site\Instagram\Listeners;
 
-use SocialCurator\Events\EventBase;
+use SocialCurator\Listeners\ListenerBase;
 use SocialCurator\Config\SettingsRepository;
 use \GuzzleHttp\Client;
 
 /**
 * An Instagram Token was Requested
 */
-class InstagramTokenRequest extends EventBase {
+class InstagramTokenRequest extends ListenerBase {
 
 	/**
 	* Form Data
