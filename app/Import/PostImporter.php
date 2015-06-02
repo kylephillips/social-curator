@@ -1,5 +1,7 @@
 <?php namespace SocialCurator\Import;
 
+use SocialCurator\Import\ImageImporter;
+
 /**
 * Import a Single Post from formatted array
 */
@@ -29,8 +31,15 @@ class PostImporter {
 	*/
 	private $meta;
 
+	/**
+	* Image Importer
+	* @var SocialCurator\Import\ImageImporter
+	*/
+	private $image_importer;
+
 	public function __construct()
 	{
+		$this->image_importer = new ImageImporter;
 		$this->setMeta();
 	}
 
@@ -68,6 +77,7 @@ class PostImporter {
 		);
 		$this->post_id = wp_insert_post($imported);
 		$this->attachMeta();
+		$this->saveAvatar();
 	}
 
 	/**
@@ -81,6 +91,15 @@ class PostImporter {
 			if ( isset($this->post_data[$key]) && !is_null($this->post_data[$key]) ) 
 				add_post_meta($this->post_id, $fieldname, $this->post_data[$key]);
 		}
+	}
+
+	/**
+	* Save User Avatars
+	*/
+	private function saveAvatar()
+	{
+		if ( is_null($this->post_data['profile_image'] )) return; 
+		$this->image_importer->run('social-curator/avatars', $this->post_data['profile_image'], $this->post_data['screen_name']);
 	}
 
 	/**
