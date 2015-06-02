@@ -22,6 +22,14 @@ class Helpers {
 	}
 
 	/**
+	* Plugin Base File
+	*/
+	public static function plugin_file()
+	{
+		return dirname( dirname(__FILE__) ) . '/social-curator.php';
+	}
+
+	/**
 	* View
 	*/
 	public static function view($file)
