@@ -1,1 +1,52 @@
-Social Post Meta
+<?php wp_nonce_field( 'my_social_curator_meta_box_nonce', 'social_curator_meta_box_nonce' ); ?>
+<div class="social-curator-meta">
+	
+	<?php if ( $this->meta['social_curator_link'] ) : ?>
+	<div class="original-link">
+		<p><a href="<?php echo esc_url($this->meta['social_curator_link']); ?>" target="_blank" class="button"><strong><?php _e('View Original Post', 'socialcurator'); ?></strong></a></p>
+	</div>
+	<?php endif; ?>
+
+	<div class="field">
+		<label for="social_curator_site"><?php _e('Site', 'socialcurator'); ?></label>
+		<select name="social_curator_site" id="social_curator_site">
+			<?php 
+			foreach($this->settings_repo->getEnabledSites() as $site) { 
+				$site_name = $this->supported_sites->getSite($site);
+				$out = '<option value="' . $site . '"';
+				if ( $site == $this->meta['social_curator_site'] ) $out .= ' selected';
+				$out .= '>';
+				$out .= $site_name['name'];
+				$out .= '</option>';
+				echo $out;
+			}
+			?>
+		</select>
+	</div>
+	<div class="field even">
+		<label for="social_curator_original_id"><?php _e('Original ID', 'socialcurator'); ?></label>
+		<input type="text" name="social_curator_original_id" id="social_curator_original_id" value="<?php echo $this->meta['social_curator_original_id']; ?>" />
+	</div>
+	<div class="field full">
+		<label for="social_curator_link"><?php _e('Link', 'socialcurator'); ?></label>
+		<input type="text" name="social_curator_link" id="social_curator_link" value="<?php echo $this->meta['social_curator_link']; ?>" />
+	</div>
+	<div class="field-header">
+		<h3><?php _e('User Details', 'socialcurator'); ?></h3>
+	</div>
+	<div class="field">
+		<label for="social_curator_screen_name"><?php _e('Screen Name', 'socialcurator'); ?></label>
+		<input type="text" name="social_curator_screen_name" id="social_curator_screen_name" value="<?php echo $this->meta['social_curator_screen_name']; ?>" />
+	</div>
+	<div class="field even">
+		<label for="social_curator_user_id"><?php _e('User ID', 'socialcurator'); ?></label>
+		<input type="text" name="social_curator_user_id" id="social_curator_user_id"  value="<?php echo $this->meta['social_curator_user_id']; ?>" />
+	</div>
+	<div class="field-header">
+		<h3><?php _e('Approved By', 'socialcurator'); ?></h3>
+	</div>
+	<div class="field">
+		<label for="social_curator_approved_by"><?php _e('Approved by', 'socialcurator'); ?></label>
+		<input type="text" name="social_curator_approved_by" id="social_curator_approved_by" value="<?php echo $this->meta['social_curator_approved_by']; ?>" />
+	</div>
+</div><!-- .social-curator-meta -->

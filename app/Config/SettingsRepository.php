@@ -32,6 +32,8 @@ class SettingsRepository {
 
 	/**
 	* Get Single Setting/Option for a single supported site
+	* @param string $site
+	* @param string $setting - See SocialCurator\Config\SupportedSites
 	* @since 1.0
 	*/
 	public function getSiteSetting($site, $setting)
