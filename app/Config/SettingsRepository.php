@@ -59,4 +59,14 @@ class SettingsRepository {
 		return true;
 	}
 
+	/**
+	* Get the last import
+	*/
+	public function lastImport()
+	{
+		$option = get_option('social_curator_last_import');
+		if ( !$option ) return __('No Imports Yet', 'socialcurator');
+		return $option;
+	}
+
 }
