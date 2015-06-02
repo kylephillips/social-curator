@@ -32,6 +32,7 @@ class FeedFormatter {
 			$this->formatted_feed[$key]['profile_image'] = $item->user->profile_image_url;
 			$this->formatted_feed[$key]['image'] = ( isset($item->entities->media[0]->media_url) ) ? $item->entities->media[0]->media_url : null;
 			$this->formatted_feed[$key]['video_url'] = null;
+			$this->formatted_feed[$key]['link'] = 'https://twitter.com/' . $item->user->screen_name . '/status/' . $item->id;
 		}
 		return $this->formatted_feed;
 	}
