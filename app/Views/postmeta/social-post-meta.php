@@ -34,6 +34,8 @@
 	<div class="field-header">
 		<h3><?php _e('User Details', 'socialcurator'); ?></h3>
 	</div>
+	<?php 
+	if ( $this->meta['social_curator_screen_name'] ) echo $this->presenter->getAvatar($this->meta['social_curator_screen_name']); ?>
 	<div class="field">
 		<label for="social_curator_screen_name"><?php _e('Screen Name', 'socialcurator'); ?></label>
 		<input type="text" name="social_curator_screen_name" id="social_curator_screen_name" value="<?php echo $this->meta['social_curator_screen_name']; ?>" />

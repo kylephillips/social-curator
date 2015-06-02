@@ -2,6 +2,7 @@
 
 use SocialCurator\Config\SettingsRepository;
 use SocialCurator\Config\SupportedSites;
+use SocialCurator\Entities\PostType\SocialPost\SocialPostPresenter;
 use SocialCurator\Helpers;
 
 /**
@@ -31,11 +32,18 @@ class SocialPostMeta {
 	*/
 	public $fields;
 
+	/**
+	* Presenter
+	* @var
+	*/
+	private $presenter;
+
 
 	public function __construct()
 	{
 		$this->settings_repo = new SettingsRepository;
 		$this->supported_sites = new SupportedSites;
+		$this->presenter = new SocialPostPresenter;
 		$this->setFields();
 		add_action( 'add_meta_boxes', array( $this, 'metaBox' ));
 		add_action( 'save_post', array($this, 'savePost' ));
