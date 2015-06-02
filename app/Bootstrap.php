@@ -22,6 +22,7 @@ class Bootstrap {
 		new Entities\PostType\SocialPost\SocialPostMeta;
 		new Curate\RegisterCuratePage;
 		new Config\Settings;
+		new Activation\TrashedTable\CreateTrashedTable;
 		new Activation\DefaultSettings\SupportedSites;
 		new Activation\Dependencies\AdminDependencies;
 		new Activation\Dependencies\PublicDependencies;
