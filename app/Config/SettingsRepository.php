@@ -62,10 +62,20 @@ class SettingsRepository {
 	/**
 	* Get the last import
 	*/
-	public function lastImport()
+	public function lastImport($format = 'Y-m-d H:i:s')
 	{
 		$option = get_option('social_curator_last_import');
 		if ( !$option ) return __('No Imports Yet', 'socialcurator');
+		return date($format, $option);
+	}
+
+	/**
+	* Get the last import count
+	*/
+	public function lastImportCount()
+	{
+		$option = get_option('social_curator_last_import_count');
+		if ( !$option ) return 0;
 		return $option;
 	}
 

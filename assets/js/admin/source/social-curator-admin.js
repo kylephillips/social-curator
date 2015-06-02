@@ -28,17 +28,20 @@ function doManualImport()
 			action: 'social_curator_manual_import'
 		},
 		success: function(data){
+			$('[data-social-curator-last-import]').text(data.import_date);
+			updateLastImportCount(data.import_count);
 			appendPosts(data);
 		}
 	});
 }
 
 /**
-* Update Last Imported Text
+* Update Last Import Count
 */
-function updateLastImported(text)
+function updateLastImportCount(count)
 {
-
+	$('[data-social-curator-import-count]').find('span').text(count);
+	$('[data-social-curator-import-count]').show();
 }
 
 /**
@@ -63,6 +66,17 @@ function loadingIndicator(visible)
 		$('[data-curation-loader]').hide();
 	}
 }
+
+
+/**
+* ---------------------------------------------------------------
+* Close an Alert
+* ---------------------------------------------------------------
+*/
+$(document).on('click', '[data-dismiss="alert"]', function(e){
+	e.preventDefault();
+	$(this).parents('.social-curator-alert').fadeOut('fast');
+});
 
 
 }); // jQuery

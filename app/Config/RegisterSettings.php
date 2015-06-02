@@ -29,6 +29,7 @@ class RegisterSettings {
 		register_setting( 'social-curator-general', 'social_curator_display' );
 		register_setting( 'social-curator-general', 'social_curator_enabled_sites' );
 		register_setting( 'social-curator-hidden', 'social_curator_last_import' );
+		register_setting( 'social-curator-hidden', 'social_curator_last_import_count' );
 		$this->registerSocialSiteSettings();
 	}
 

@@ -17,3 +17,13 @@
 	margin-bottom: 20px;
 	border-left: 4px solid $green;
 }
+
+.social-curator-alert {
+	.close {
+		float: right;
+		text-decoration: none;
+		font-size: 18px;
+		color: $black;
+		font-weight: bold;
+	}
+}

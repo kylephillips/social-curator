@@ -69,8 +69,8 @@ class SocialPostMeta {
 			'social_curator_link',
 			'social_curator_screen_name',
 			'social_curator_user_id',
-			'social_curator_approved_by',
-			'social_curator_video_url'
+			'social_curator_video_url',
+			'social_curator_approved_by'
 		);
 	}
 

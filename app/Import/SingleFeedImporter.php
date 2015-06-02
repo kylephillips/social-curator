@@ -43,6 +43,7 @@ class SingleFeedImporter {
 			if ( $this->post_repo->exists($site, $feed_item['id']) ) continue;
 			
 			// TODO: check if post is in trash table (in post repo)
+
 			$importer = new PostImporter;
 			$importer->createPost($site, $feed_item);
 			$this->post_ids[] = $importer->getID();
@@ -54,7 +55,7 @@ class SingleFeedImporter {
 	*/
 	public function getIDs()
 	{
-		return $this->post_ids;
+		return ( $this->post_ids ) ? $this->post_ids : array();
 	}
 	
 

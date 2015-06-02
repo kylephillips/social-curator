@@ -5,6 +5,7 @@
 	@include wptable;
 	background-color: $white;
 	padding: 10px;
+	margin-bottom: 15px;
 	@include clearfix;
 	.button {
 		float: right;
