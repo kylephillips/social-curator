@@ -20,7 +20,7 @@ class Parser extends ParserBase implements ParserInterface {
 	{
 		$content = preg_replace(
 			'/\s+#(\w+)/',
-			' <a href="http://search.twitter.com/search?q=%23$1">#$1</a>',
+			' <a href="http://twitter.com/hashtag/$1?src=hash">#$1</a>',
 		$content);
 		return $content;
 	}

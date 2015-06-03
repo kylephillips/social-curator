@@ -28,6 +28,7 @@ class Bootstrap {
 		new Activation\Dependencies\AdminDependencies;
 		new Activation\Dependencies\PublicDependencies;
 		new Activation\RegisterSites\RegisterSites;
+		new Entities\PostType\SocialPost\ContentFilter;
 	}
 
 
