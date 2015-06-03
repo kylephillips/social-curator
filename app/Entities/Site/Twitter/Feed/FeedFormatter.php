@@ -36,7 +36,7 @@ class FeedFormatter {
 	{
 		$this->unformatted_feed = $unformatted_feed;
 		foreach($this->unformatted_feed as $key => $item){
-			if (isset($item->retweeted_status) && !$this->settings_repo->getSiteSetting('twitter', 'include_retweets')) continue;
+			if ( $this->includeRetweet($item) ) continue;
 			$this->formatted_feed[$key]['type'] = 'tweet';
 			$this->formatted_feed[$key]['id'] = strval($item->id);
 			$this->formatted_feed[$key]['date'] = date('U', strtotime($item->created_at));
@@ -49,6 +49,15 @@ class FeedFormatter {
 			$this->formatted_feed[$key]['link'] = 'https://twitter.com/' . $item->user->screen_name . '/status/' . $item->id;
 		}
 		return $this->formatted_feed;
+	}
+
+	/**
+	* Import Retweet?
+	* @param array $item
+	*/
+	private function includeRetweet($item)
+	{
+		return ( isset($item->retweeted_status) && !$this->settings_repo->getSiteSetting('twitter', 'include_retweets') ) ? true : false;
 	}
 
 }
