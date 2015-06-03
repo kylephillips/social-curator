@@ -1,7 +1,6 @@
 <?php namespace SocialCurator\Import;
 
 use SocialCurator\Import\ImageImporter;
-use SocialCurator\Config\SupportedSites;
 
 /**
 * Import a Single Post from formatted array
@@ -38,16 +37,9 @@ class PostImporter {
 	*/
 	private $image_importer;
 
-	/**
-	* Supported Sites
-	* @var SocialCurator\Config\SupportedSites
-	*/
-	private $supported_sites;
-
 	public function __construct()
 	{
 		$this->image_importer = new ImageImporter;
-		$this->supported_sites = new SupportedSites;
 		$this->setMeta();
 	}
 
