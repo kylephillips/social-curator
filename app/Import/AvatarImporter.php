@@ -3,7 +3,7 @@
 /**
 * Import a remote Image directly into a directory
 */
-class ImageImporter {
+class AvatarImporter {
 
 	/**
 	* Do the import
