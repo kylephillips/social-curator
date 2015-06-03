@@ -20,8 +20,8 @@
 	</div>
 
 	<?php
-	// $feed = new SocialCurator\Entities\Site\Instagram\Feed\Feed;
-	// var_dump($feed->getFeed()); 
+	$feed = new SocialCurator\Entities\Site\Twitter\Feed\Feed;
+	var_dump($feed->getFeed()); 
 	?>
 
 </div><!-- .wrap -->

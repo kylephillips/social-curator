@@ -1,5 +1,7 @@
 <?php namespace SocialCurator\Entities\Site\Twitter\Feed;
 
+use SocialCurator\Config\SettingsRepository;
+
 /**
 * Formats the Twitter Feed into an importable array
 */
@@ -17,12 +19,24 @@ class FeedFormatter {
 	private $formatted_feed;
 
 	/**
+	* Settings Repository
+	* @var SocialCurator\Config\SettingsRepository
+	*/
+	private $settings_repo;
+
+	public function __construct()
+	{
+		$this->settings_repo = new SettingsRepository;
+	}
+
+	/**
 	* Format the Feed into an array for import
 	*/
 	public function format($unformatted_feed)
 	{
 		$this->unformatted_feed = $unformatted_feed;
 		foreach($this->unformatted_feed as $key => $item){
+			if (isset($item->retweeted_status) && !$this->settings_repo->getSiteSetting('twitter', 'include_retweets')) continue;
 			$this->formatted_feed[$key]['type'] = 'tweet';
 			$this->formatted_feed[$key]['id'] = strval($item->id);
 			$this->formatted_feed[$key]['date'] = date('U', strtotime($item->created_at));

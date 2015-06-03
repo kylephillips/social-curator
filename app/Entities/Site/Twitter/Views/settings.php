@@ -30,6 +30,9 @@ $search_term = $this->settings_repo->getSiteSetting($this->site_index, 'search_t
 			<label><?php _e('Search Term', 'socialcurator'); ?></label>
 			<input type="text" name="<?php echo $fieldname; ?>[search_term]" value="<?php if ( $search_term ) echo $search_term; ?>" />
 		</li>
+		<li>
+			<label><input type="checkbox" name="<?php echo $fieldname; ?>[include_retweets]" <?php if ( $this->settings_repo->getSiteSetting($this->site_index, 'include_retweets') ) echo ' checked'; ?> ) /><?php _e('Include Retweets in Import', 'socialcurator'); ?></label>
+		</li>
 	</ul>
 </div>
 <?php submit_button(); ?>
