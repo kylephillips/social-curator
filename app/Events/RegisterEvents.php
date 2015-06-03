@@ -3,6 +3,7 @@
 use SocialCurator\Listeners\RunManualImport;
 use SocialCurator\Listeners\LogTrashedPost;
 use SocialCurator\Listeners\DeleteUserAvatar;
+use SocialCurator\Listeners\UpdateApprovalStatus;
 
 /**
 * Register the App-wide events
@@ -18,6 +19,9 @@ class RegisterEvents {
 
 		// Post Was Trashed
 		add_action('before_delete_post', array($this, 'postWasTrashed'));
+
+		// Post Was Saved
+		add_action('save_post', array($this, 'postStatusChanged'), 10, 3);
 	}
 
 	/**
@@ -37,6 +41,15 @@ class RegisterEvents {
 		$logger->log();
 		$avatar_deleter = new DeleteUserAvatar($post);
 		$avatar_deleter->delete();
+	}
+
+	/**
+	* Post was saved
+	*/
+	public function postStatusChanged($post_id, $post, $update)
+	{
+		$updater = new UpdateApprovalStatus($post_id, $post);
+		$updater->updateStatus();
 	}
 
 }

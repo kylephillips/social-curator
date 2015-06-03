@@ -45,17 +45,14 @@
 		<label for="social_curator_user_id"><?php _e('User ID', 'socialcurator'); ?></label>
 		<input type="text" name="social_curator_user_id" id="social_curator_user_id"  value="<?php echo $this->meta['social_curator_user_id']; ?>" />
 	</div>
-	<?php if ( $this->meta['social_curator_approved_by'] ) : ?>
-	<div class="field-header">
-		<h3><?php _e('Approved By', 'socialcurator'); ?></h3>
-	</div>
-	<div class="field">
-		<label for="social_curator_approved_by"><?php _e('Approved by', 'socialcurator'); ?></label>
-		<input type="text" name="social_curator_approved_by" id="social_curator_approved_by" value="<?php echo $this->meta['social_curator_approved_by']; ?>" />
-	</div>
+	<?php if ( $this->meta['social_curator_approved_by'] && $this->meta['social_curator_approved_date'] ) : ?>
+		<div class="social-curator-alert">
+			<?php _e('Approved By', 'socialcurator'); ?> <?php echo $this->meta['social_curator_approved_by']; ?> <?php _e('on', 'socialcurator'); ?> <?php echo $this->meta['social_curator_approved_date']; ?>
+		</div>
+		<input type="hidden" name="social_curator_approved_by" id="social_curator_approved_by" value="<?php echo $this->meta['social_curator_approved_by']; ?>" />
+		<input type="hidden" name="social_curator_approved_date" id="social_curator_approved_date" value="<?php echo $this->meta['social_curator_approved_date']; ?>" />
+
 	<?php else : ?>
-	<div class="social-curator-alert">
-		<?php _e('Pending Approval', 'socialcurator'); ?>
-	</div>
+		<div class="social-curator-alert"><?php _e('Pending Approval', 'socialcurator'); ?></div>
 	<?php endif; ?>
 </div><!-- .social-curator-meta -->
