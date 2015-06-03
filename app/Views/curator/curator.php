@@ -19,9 +19,9 @@
 		<a href="#" class="close" data-dismiss="alert">&times;</a>
 	</div>
 
-	<?php
-	$feed = new SocialCurator\Entities\Site\Twitter\Feed\Feed;
-	var_dump($feed->getFeed()); 
-	?>
+	<!-- Template used for cloning / appending new posts -->
+	<div class="post-template" data-post-template>
+		<?php include('single-post.php'); ?>
+	</div><!-- .post-template -->
 
 </div><!-- .wrap -->

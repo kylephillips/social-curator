@@ -4,7 +4,7 @@
 	<?php if ( $this->meta['social_curator_link'] && $this->meta['social_curator_screen_name']) : ?>
 	<div class="original-link">
 		<?php echo $this->presenter->getAvatar($post->ID); ?>
-		<p><strong><a href="<?php echo $this->presenter->getProfileLink($this->meta['social_curator_screen_name'], $this->meta['social_curator_site']); ?>" target="_blank">
+		<p><strong><a href="<?php echo $this->presenter->getProfileLink($post->ID); ?>" target="_blank">
 			<?php echo __('By', 'socialcurator') . ' ' . $this->meta['social_curator_screen_name']; ?>
 			</a></strong><a href="<?php echo esc_url($this->meta['social_curator_link']); ?>" target="_blank" class="button"><?php _e('View Original Post', 'socialcurator'); ?></a></p>
 	</div>
@@ -34,6 +34,12 @@
 		<label for="social_curator_link"><?php _e('Link', 'socialcurator'); ?></label>
 		<input type="text" name="social_curator_link" id="social_curator_link" value="<?php echo $this->meta['social_curator_link']; ?>" />
 	</div>
+	<?php if ( $this->meta['social_curator_video_url'] ) : ?>
+	<div class="field full">
+		<label for="social_curator_video_url"><?php _e('Video URL', 'socialcurator'); ?></label>
+		<input type="text" name="social_curator_video_url" id="social_curator_video_url" value="<?php echo $this->meta['social_curator_video_url']; ?>" />
+	</div>
+	<?php endif; ?>
 	<div class="field-header">
 		<h3><?php _e('User Details', 'socialcurator'); ?></h3>
 	</div>

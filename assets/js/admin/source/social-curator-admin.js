@@ -9,7 +9,9 @@ jQuery(function($){
 
 $(document).on('click', '[data-social-curator-manual-import]', function(e){
 	e.preventDefault();
-	doManualImport();
+	//doManualImport();
+	var temp_posts = [1379, 1380, 1384, 1386, 1402, 1406];
+	getNewPosts(temp_posts);
 });
 
 
@@ -30,7 +32,7 @@ function doManualImport()
 		success: function(data){
 			$('[data-social-curator-last-import]').text(data.import_date);
 			updateLastImportCount(data.import_count);
-			appendPosts(data);
+			getNewPosts(data.posts);
 		}
 	});
 }
@@ -42,15 +44,6 @@ function updateLastImportCount(count)
 {
 	$('[data-social-curator-import-count]').find('span').text(count);
 	$('[data-social-curator-import-count]').show();
-}
-
-/**
-* Append New Posts
-*/
-function appendPosts(data){
-	console.log(data);
-	loadingIndicator(false);
-	$('[data-social-curator-manual-import]').attr('disabled', false).text(social_curator_admin.run_import);
 }
 
 
@@ -66,6 +59,45 @@ function loadingIndicator(visible)
 		$('[data-curation-loader]').hide();
 	}
 }
+
+
+
+/**
+* ---------------------------------------------------------------
+* Append new posts after an import
+* ---------------------------------------------------------------
+*/
+
+/**
+* Make AJAX call for posts
+* @param array of post ids
+*/
+function getNewPosts(posts)
+{
+	$.ajax({
+		url: ajaxurl,
+		type: 'POST',
+		data: {
+			nonce : social_curator_admin.social_curator_nonce,
+			action: 'social_curator_get_posts',
+			posts: posts,
+			status: ['pending', 'publish']
+		},
+		success: function(data){
+			console.log(data);
+			appendPosts(data.posts);
+		}
+	});
+}
+
+
+function appendPosts(posts)
+{
+	console.log(posts);
+	loadingIndicator(false);
+	$('[data-social-curator-manual-import]').attr('disabled', false).text(social_curator_admin.run_import);
+}
+
 
 
 /**
