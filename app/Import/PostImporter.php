@@ -21,7 +21,7 @@ class PostImporter {
 
 	/**
 	* New Post ID
-	* @var int
+	* @var int - the Newly Imported WP Post ID
 	*/
 	private $post_id;
 
@@ -68,16 +68,19 @@ class PostImporter {
 	{
 		$this->site = $site;
 		$this->post_data = $post_data;
+		if ( $this->isTrashed() ) return false;
 		$imported = array(
 			'post_type' => 'social-post',
 			'post_content' => $this->post_data['content'],
 			'post_status' => 'pending',
 			'post_title' => $this->site . ' - ' . $this->post_data['id'],
-			'post_date' => date('Y-m-d H:i:s', strtotime($this->post_data['date']))
+			'post_date' => date('Y-m-d H:i:s', intval($this->post_data['date'])),
+			'post_date_gmt' => date('Y-m-d H:i:s', intval($this->post_data['date'])),
 		);
 		$this->post_id = wp_insert_post($imported);
 		$this->attachMeta();
 		$this->saveAvatar();
+		return true;
 	}
 
 
@@ -116,9 +119,14 @@ class PostImporter {
 	* Is the Post Logged as Trash?
 	* @return boolean
 	*/
-	private function isTrash()
+	private function isTrashed()
 	{
-		
+		global $wpdb;
+		$table = $wpdb->prefix . 'social_curator_trashed_posts';
+		$site = $this->site;
+		$post_id = $this->post_data['id'];
+		$row = $wpdb->get_row("SELECT * FROM $table WHERE `site`= '$site' AND `post_id`= '$post_id'");
+		return ( $row ) ? true : false;
 	}
 
 

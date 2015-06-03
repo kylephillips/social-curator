@@ -25,7 +25,7 @@ class FeedFormatter {
 		foreach($this->unformatted_feed as $key => $item){
 			$this->formatted_feed[$key]['type'] = 'tweet';
 			$this->formatted_feed[$key]['id'] = strval($item->id);
-			$this->formatted_feed[$key]['date'] = $item->created_at;
+			$this->formatted_feed[$key]['date'] = date('U', strtotime($item->created_at));
 			$this->formatted_feed[$key]['content'] = $item->text;
 			$this->formatted_feed[$key]['user_id'] = strval($item->user->id);
 			$this->formatted_feed[$key]['screen_name'] = $item->user->screen_name;
