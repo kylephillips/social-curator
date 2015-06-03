@@ -28,6 +28,8 @@ class SupportedSites {
 			'name' => 'Twitter',
 			'namespace' => 'Twitter',
 			'api_endpoint' => 'https://api.twitter.com/1.1/',
+			'user_uri' => 'https://twitter.com/',
+			'icon_class' => 'icon-twitter',
 			'settings_fields' => array(
 				'api_key' => __('API Key', 'socialcurator'), 
 				'api_secret' => __('API Secret', 'socialcurator'), 
@@ -47,6 +49,8 @@ class SupportedSites {
 			'name' => 'Instagram',
 			'namespace' => 'Instagram',
 			'api_endpoint' => 'https://api.instagram.com/v1/',
+			'user_uri' => 'https://instagram.com/',
+			'icon_class' => 'icon-instagram',
 			'required_for_auth' => array(
 				'client_id', 'client_secret'
 			),
