@@ -1,6 +1,8 @@
 <?php namespace SocialCurator\Events;
 
 use SocialCurator\Listeners\RunManualImport;
+use SocialCurator\Listeners\LogTrashedPost;
+use SocialCurator\Listeners\DeleteUserAvatar;
 
 /**
 * Register the App-wide events
@@ -13,6 +15,9 @@ class RegisterEvents {
 		// Run an Import Manully
 		add_action( 'wp_ajax_nopriv_social_curator_manual_import', array($this, 'importWasRun' ));
 		add_action( 'wp_ajax_social_curator_manual_import', array($this, 'importWasRun' ));
+
+		// Post Was Trashed
+		add_action('before_delete_post', array($this, 'postWasTrashed'));
 	}
 
 	/**
@@ -21,6 +26,17 @@ class RegisterEvents {
 	public function importWasRun()
 	{
 		new RunManualImport;
+	}
+
+	/**
+	* Post was Trashed
+	*/
+	public function postWasTrashed($post)
+	{
+		$logger = new LogTrashedPost($post);
+		$logger->log();
+		$avatar_deleter = new DeleteUserAvatar($post);
+		$avatar_deleter->delete();
 	}
 
 }
