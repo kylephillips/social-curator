@@ -39,11 +39,13 @@ class DeleteUserAvatar {
 	*/
 	private function removeImage()
 	{
-		$image = get_post_meta($this->post_id, 'social_curator_screen_name', true);
-		$uploads = wp_upload_dir();
-		$file = $uploads['basedir'] . '/social-curator/avatars/';
+		$image = get_post_meta($this->post_id, 'social_curator_avatar', true);
+		if ( !$image ) return;
 
-		// /var_dump($this->post_id); die();
+		$uploads = wp_upload_dir();
+		$file = $uploads['basedir'] . '/social-curator/avatars/' . $image;
+		if ( !file_exists($file) ) return;
+		unlink($file);
 	}
 
 }
