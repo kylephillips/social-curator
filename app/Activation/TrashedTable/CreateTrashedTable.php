@@ -24,8 +24,8 @@ class CreateTrashedTable {
 			$sql = 'CREATE TABLE ' . $tablename . '(
 				id INTEGER(10) UNSIGNED AUTO_INCREMENT,
 				time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-				site VARCHAR(20),
-				post_id VARCHAR(20),
+				site VARCHAR(255) COLLATE utf8mb4_unicode_ci,
+				post_id LONGTEXT COLLATE utf8mb4_unicode_ci,
 				PRIMARY KEY  (id) )';
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 			dbDelta($sql);

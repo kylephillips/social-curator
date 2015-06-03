@@ -40,15 +40,19 @@ class LogTrashedPost {
 	private function updateLogTable()
 	{
 		$site = get_post_meta($this->post_id, 'social_curator_site', true);
-		$id = get_post_meta($this->post_id, 'social_curator_original_id', true);
+		$original_id = get_post_meta($this->post_id, 'social_curator_original_id', true);
+		
 		global $wpdb;
 		$table = $wpdb->prefix . 'social_curator_trashed_posts';
 		$wpdb->insert(
 			$table,
 			array(
 				'site' => $site,
-				'post_id' => $id,
-				'time' => date('Y-m-d H:i:s')
+				'post_id' => $original_id
+			),
+			array(
+				'%s',
+				'%s'
 			)
 		);
 	}
