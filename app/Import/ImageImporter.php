@@ -23,6 +23,7 @@ class ImageImporter {
 		$filename = wp_unique_filename( $upload_directory . '/', $new_file_name . '.' . $extension );	
 		$fullpathfilename = $upload_directory . '/' . $filename;
 		$fileSaved = file_put_contents($fullpathfilename, $file);
+		return $filename;
 	}
 
 	/**

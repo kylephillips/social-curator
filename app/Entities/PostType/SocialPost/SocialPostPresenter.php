@@ -17,14 +17,16 @@ class SocialPostPresenter {
 
 	/**
 	* Get a profile image/avatar
-	* @param string $screen_name
+	* @param int $post_id WP Post ID
 	* @return html
 	*/
-	public function getAvatar($screen_name = null)
+	public function getAvatar($post_id)
 	{
-		if ( !$screen_name ) return false;
+		if ( !$post_id ) return false;
 		$upload_dir = wp_upload_dir();
-		return '<img src="' . $upload_dir['baseurl'] . '/social-curator/avatars/' . $screen_name . '" />';
+		$image = get_post_meta($post_id, 'social_curator_avatar', true);
+		if ( !$image ) return false;
+		return '<img src="' . $upload_dir['baseurl'] . '/social-curator/avatars/' . $image . '" />';
 	}
 
 	/**

@@ -3,7 +3,7 @@
 	
 	<?php if ( $this->meta['social_curator_link'] && $this->meta['social_curator_screen_name']) : ?>
 	<div class="original-link">
-		<?php echo $this->presenter->getAvatar($this->meta['social_curator_screen_name']); ?>
+		<?php echo $this->presenter->getAvatar($post->ID); ?>
 		<p><strong><a href="<?php echo $this->presenter->getProfileLink($this->meta['social_curator_screen_name'], $this->meta['social_curator_site']); ?>" target="_blank">
 			<?php echo __('By', 'socialcurator') . ' ' . $this->meta['social_curator_screen_name']; ?>
 			</a></strong><a href="<?php echo esc_url($this->meta['social_curator_link']); ?>" target="_blank" class="button"><?php _e('View Original Post', 'socialcurator'); ?></a></p>

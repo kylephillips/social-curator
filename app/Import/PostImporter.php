@@ -1,6 +1,7 @@
 <?php namespace SocialCurator\Import;
 
 use SocialCurator\Import\ImageImporter;
+use SocialCurator\Config\SupportedSites;
 
 /**
 * Import a Single Post from formatted array
@@ -37,9 +38,16 @@ class PostImporter {
 	*/
 	private $image_importer;
 
+	/**
+	* Supported Sites
+	* @var SocialCurator\Config\SupportedSites
+	*/
+	private $supported_sites;
+
 	public function __construct()
 	{
 		$this->image_importer = new ImageImporter;
+		$this->supported_sites = new SupportedSites;
 		$this->setMeta();
 	}
 
@@ -70,7 +78,7 @@ class PostImporter {
 		$this->post_data = $post_data;
 		$imported = array(
 			'post_type' => 'social-post',
-			'post_content' => $this->post_data['content'], // TODO: Parse
+			'post_content' => $this->post_data['content'],
 			'post_status' => 'pending',
 			'post_title' => $this->site . ' - ' . $this->post_data['id'],
 			'post_date' => date('Y-m-d H:i:s', strtotime($this->post_data['date']))
@@ -79,6 +87,7 @@ class PostImporter {
 		$this->attachMeta();
 		$this->saveAvatar();
 	}
+
 
 	/**
 	* Attach Meta Fields
@@ -99,7 +108,8 @@ class PostImporter {
 	private function saveAvatar()
 	{
 		if ( is_null($this->post_data['profile_image'] )) return; 
-		$this->image_importer->run('social-curator/avatars', $this->post_data['profile_image'], $this->post_data['screen_name']);
+		$avatar_image = $this->image_importer->run('social-curator/avatars', $this->post_data['profile_image'], $this->post_data['screen_name']);
+		add_post_meta($this->post_id, 'social_curator_avatar', $avatar_image);
 	}
 
 	/**
@@ -108,6 +118,15 @@ class PostImporter {
 	public function getID()
 	{
 		return $this->post_id;
+	}
+
+	/**
+	* Is the Post Logged as Trash?
+	* @return boolean
+	*/
+	private function isTrash()
+	{
+		
 	}
 
 
