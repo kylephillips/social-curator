@@ -16,9 +16,25 @@
 		padding: 8px;
 		margin: 10px 0 20px 0;
 		color: $white;
-		text-align: right;
+		@include clearfix;
+		.button {
+			float: right;
+			margin-top: 10px;
+		}
 		p {
 			margin: 0;
+		}
+		img {
+			width: 50px;
+			float: left;
+			margin-right: 10px;
+		}
+		strong {
+			position: relative;
+			top: 15px;
+		}
+		a {
+			text-decoration: none;
 		}
 	}
 	

@@ -1,9 +1,12 @@
 <?php wp_nonce_field( 'my_social_curator_meta_box_nonce', 'social_curator_meta_box_nonce' ); ?>
 <div class="social-curator-meta">
 	
-	<?php if ( $this->meta['social_curator_link'] ) : ?>
+	<?php if ( $this->meta['social_curator_link'] && $this->meta['social_curator_screen_name']) : ?>
 	<div class="original-link">
-		<p><a href="<?php echo esc_url($this->meta['social_curator_link']); ?>" target="_blank" class="button"><strong><?php _e('View Original Post', 'socialcurator'); ?></strong></a></p>
+		<?php echo $this->presenter->getAvatar($this->meta['social_curator_screen_name']); ?>
+		<p><strong><a href="<?php echo $this->presenter->getProfileLink($this->meta['social_curator_screen_name'], $this->meta['social_curator_site']); ?>" target="_blank">
+			<?php echo __('By', 'socialcurator') . ' ' . $this->meta['social_curator_screen_name']; ?>
+			</a></strong><a href="<?php echo esc_url($this->meta['social_curator_link']); ?>" target="_blank" class="button"><?php _e('View Original Post', 'socialcurator'); ?></a></p>
 	</div>
 	<?php endif; ?>
 
@@ -34,8 +37,6 @@
 	<div class="field-header">
 		<h3><?php _e('User Details', 'socialcurator'); ?></h3>
 	</div>
-	<?php 
-	if ( $this->meta['social_curator_screen_name'] ) echo $this->presenter->getAvatar($this->meta['social_curator_screen_name']); ?>
 	<div class="field">
 		<label for="social_curator_screen_name"><?php _e('Screen Name', 'socialcurator'); ?></label>
 		<input type="text" name="social_curator_screen_name" id="social_curator_screen_name" value="<?php echo $this->meta['social_curator_screen_name']; ?>" />
@@ -44,6 +45,7 @@
 		<label for="social_curator_user_id"><?php _e('User ID', 'socialcurator'); ?></label>
 		<input type="text" name="social_curator_user_id" id="social_curator_user_id"  value="<?php echo $this->meta['social_curator_user_id']; ?>" />
 	</div>
+	<?php if ( $this->meta['social_curator_approved_by'] ) : ?>
 	<div class="field-header">
 		<h3><?php _e('Approved By', 'socialcurator'); ?></h3>
 	</div>
@@ -51,4 +53,9 @@
 		<label for="social_curator_approved_by"><?php _e('Approved by', 'socialcurator'); ?></label>
 		<input type="text" name="social_curator_approved_by" id="social_curator_approved_by" value="<?php echo $this->meta['social_curator_approved_by']; ?>" />
 	</div>
+	<?php else : ?>
+	<div class="social-curator-alert">
+		<?php _e('Pending Approval', 'socialcurator'); ?>
+	</div>
+	<?php endif; ?>
 </div><!-- .social-curator-meta -->

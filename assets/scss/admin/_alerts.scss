@@ -19,6 +19,11 @@
 }
 
 .social-curator-alert {
+	@include wptable;
+	background-color: $white;
+	padding: 8px;
+	clear: both;
+	border-left: 4px solid $blue;
 	.close {
 		float: right;
 		text-decoration: none;
