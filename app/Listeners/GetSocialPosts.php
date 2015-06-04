@@ -83,7 +83,11 @@ class GetSocialPosts extends ListenerBase {
 	*/
 	protected function sendSuccess($message = null)
 	{
-		return wp_send_json(array('status' => 'success', 'posts' => $this->posts));
+		return wp_send_json(array(
+			'status' => 'success', 
+			'posts' => $this->posts,
+			'unmoderated_count' => $this->social_post_repo->getUnmoderatedCount()
+		));
 	}
 
 

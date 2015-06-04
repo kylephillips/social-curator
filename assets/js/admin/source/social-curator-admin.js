@@ -46,6 +46,14 @@ function updateLastImportCount(count)
 	$('[data-social-curator-import-count]').show();
 }
 
+/**
+* Update Unmoderated Count
+*/
+function updateUnmoderatedCount(count)
+{
+	$('[data-social-curator-unmoderated-count]').text(count);
+}
+
 
 /**
 * Toggle the loading indicator
@@ -85,12 +93,15 @@ function getNewPosts(posts)
 		},
 		success: function(data){
 			console.log(data);
+			updateUnmoderatedCount(data.unmoderated_count);
 			appendPosts(data.posts);
 		}
 	});
 }
 
-
+/**
+* Append the new posts to the grid
+*/
 function appendPosts(posts)
 {
 	console.log(posts);
