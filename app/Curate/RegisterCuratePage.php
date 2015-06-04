@@ -45,6 +45,17 @@ class RegisterCuratePage {
 	}
 
 	/**
+	* Get Posts
+	*/
+	private function loopPosts()
+	{
+		$posts = $this->social_post_repo->getPostsArray(null, array('publish', 'draft', 'pending'));
+		foreach($posts as $post) :
+			include(Helpers::view('curator/single-post'));
+		endforeach;
+	}
+
+	/**
 	* Display the Curator View
 	*/
 	public function view()

@@ -1,0 +1,49 @@
+//
+// Approve/Trash Buttons
+// --------------------------------------------------
+
+.social-curator-status-buttons {
+	@include clearfix;
+	a {
+		float: left;
+		width: 50%;
+		display: block;
+		position: relative;
+		text-align: center;
+		color: $white;
+		font-size: 16px;
+		text-decoration: none;
+		height: 36px;
+		line-height: 36px;
+		transition: all 200ms ease;
+		&:hover {
+			transition: all 200ms ease;
+		}
+	}
+	i {
+		position: absolute;
+		width: 36px;
+		height: 36px;
+		line-height: 36px;
+		display: block;
+		top: 0;
+		left: 0;
+		background-color: rgba(0,0,0,.1);
+	}
+	.social-curator-approve {
+		background-color: $green-light;
+		&:hover {
+			background-color: darken($green-light, 8%);
+		}
+		i {
+			left: auto;
+			right: 0;
+		}
+	}
+	.social-curator-trash {
+		background-color: $red;
+		&:hover {
+			background-color: darken($red, 8%);
+		}
+	}
+} // .social-curator-status-buttons

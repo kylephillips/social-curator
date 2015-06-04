@@ -20,15 +20,16 @@
 		<a href="#" class="close" data-dismiss="alert">&times;</a>
 	</div>
 
-	<!-- TODO: add masonry -->
-	<div class="social-curator-post-grid">
 
+	<div class="social-curator-post-grid" data-post-grid>
+		<div class="gutter-sizer"></div>
+		<?php $this->loopPosts(); ?>
 	</div><!-- .social-curator-post-grid -->
 
 	
 	<!-- Template used for cloning / appending new posts -->
-	<div class="post-template" data-post-template>
-		<?php include('single-post.php'); ?>
+	<div data-post-template style="display:none;">
+		<?php include('single-post-template.php'); ?>
 	</div><!-- .post-template -->
 
 </div><!-- .wrap -->

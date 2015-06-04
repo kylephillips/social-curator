@@ -6,6 +6,7 @@ use SocialCurator\Listeners\DeleteUserAvatar;
 use SocialCurator\Listeners\DeletePostThumbnail;
 use SocialCurator\Listeners\UpdateApprovalStatus;
 use SocialCurator\Listeners\GetSocialPosts;
+use SocialCurator\Listeners\TrashPost;
 
 /**
 * Register the App-wide events
@@ -15,12 +16,11 @@ class RegisterEvents {
 
 	public function __construct()
 	{
-		// Run an Import Manully
-		add_action( 'wp_ajax_nopriv_social_curator_manual_import', array($this, 'importWasRun' ));
+		// Run an Import Manully - Admin Only
 		add_action( 'wp_ajax_social_curator_manual_import', array($this, 'importWasRun' ));
 
 		// Post Was Trashed
-		add_action('before_delete_post', array($this, 'postWasTrashed'));
+		add_action('before_delete_post', array($this, 'postWasDeleted'));
 
 		// Post Was Saved
 		add_action('save_post', array($this, 'postStatusChanged'), 10, 3);
@@ -28,6 +28,9 @@ class RegisterEvents {
 		// Request for Social Posts (AJAX)
 		add_action( 'wp_ajax_nopriv_social_curator_get_posts', array($this, 'postsRequested' ));
 		add_action( 'wp_ajax_social_curator_get_posts', array($this, 'postsRequested' ));
+
+		// Trash a Post
+		add_action( 'wp_ajax_social_curator_trash_post', array($this, 'postTrashRequested' ));
 	}
 
 	/**
@@ -39,9 +42,9 @@ class RegisterEvents {
 	}
 
 	/**
-	* Post was Trashed
+	* Post was Permanently Deleted
 	*/
-	public function postWasTrashed($post)
+	public function postWasDeleted($post)
 	{
 		// Log the trashed post to prevent future import
 		$logger = new LogTrashedPost($post);
@@ -71,6 +74,14 @@ class RegisterEvents {
 	public function postsRequested()
 	{
 		new GetSocialPosts;
+	}
+
+	/**
+	* A request was made to trash a post
+	*/
+	public function postTrashRequested()
+	{
+		new TrashPost;
 	}
 
 }

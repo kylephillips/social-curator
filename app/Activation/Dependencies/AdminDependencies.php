@@ -34,10 +34,11 @@ class AdminDependencies extends Dependencies {
 	*/
 	public function scripts()
 	{
+		wp_enqueue_script('jquery-masonry');
 		wp_enqueue_script(
 			'social-curator-admin', 
 			Helpers::plugin_url() . '/assets/js/admin/social-curator-admin.js', 
-			array('jquery'),
+			array('jquery', 'jquery-masonry'),
 			$this->version
 		);
 		wp_localize_script( 

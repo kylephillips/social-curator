@@ -1,0 +1,59 @@
+//
+// Post Grid
+// --------------------------------------------------
+.social-curator-post-grid {
+	@include clearfix;
+	.gutter-sizer {
+		width: 4%;
+	}
+}
+
+.social-curator-post-grid-single {
+	float: left;
+	width: 48%;
+	margin-bottom: 30px;
+	background-color: $white;
+	box-sizing: border-box;
+	@include wptable;
+	padding: 10px;
+
+	.social-curator-post-head {
+		@include clearfix;
+		margin-bottom: 10px;
+		p {
+			position: relative;
+			top: -2px;
+		}
+	}
+	.social-curator-profile-image {
+		float: left;
+		width: 60px;
+		margin-right: 10px;
+	}
+	// Icon Link
+	.social-curator-post-link {
+		float: right;
+		display: block;
+		position: relative;
+		z-index: 1;
+		a {
+			display: block;
+			text-decoration: none;
+			font-size: 26px;
+			color: darken($white, 20%);
+			&:hover {
+				color: $blue;
+			}
+		}
+	}
+	.social-curator-post-image {
+		img {
+			width: 100%;
+		}
+	}
+
+	.social-curator-post-content {
+		overflow: hidden;
+	}
+
+} // single post
