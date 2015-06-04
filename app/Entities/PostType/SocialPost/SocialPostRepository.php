@@ -81,7 +81,7 @@ class SocialPostRepository {
 		if ( isset($query_params['posts__in']) ) $args['post__in'] = $ids;
 		$args['post_status'] = ( isset($query_params['post_status']) ) ? $query_params['post_status'] : 'publish';
 
-		$pq = new \WP_Query($args);
+		$pq = new \WP_Query(apply_filters('social_curator_posts', $args));
 		$posts = array();
 		if ( $pq->have_posts() ) : $c = 0; while ( $pq->have_posts() ) : $pq->the_post();
 			$id = get_the_id();
