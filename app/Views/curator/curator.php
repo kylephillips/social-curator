@@ -1,7 +1,7 @@
 <div class="wrap social-curator-curation-page">
-	
+
 	<h2>
-		<?php _e('Social Curator', 'socialcurator'); ?>
+		<?php _e('Social Curator Posts', 'socialcurator'); ?>
 		<div class="social-curator-curation-loading-indicator" data-curation-loader>
 			<img src="<?php echo SocialCurator\Helpers::plugin_url(); ?>/assets/images/loading-admin.gif" />
 		</div>
@@ -14,6 +14,29 @@
 			<strong><span data-social-curator-unmoderated-count><?php echo $this->social_post_repo->getUnmoderatedCount(); ?></span> <?php _e('awaiting moderation', 'socialcurator'); ?></strong></p>
 		</p>
 	</div><!-- .social-curator-import-form -->
+
+	<div class="social-curator-filter-grid">
+		<div class="field">
+			<select data-filter-status>
+				<option value=""><?php _e('All Statuses', 'socialcurator'); ?></option>
+				<option value="pending"><?php _e('Unmoderated', 'socialcurator'); ?></option>
+				<option value="publish"><?php _e('Approved', 'socialcurator'); ?></option>
+				<option value="trash"><?php _e('Trashed', 'socialcurator'); ?></option>
+			</select>
+		</div>
+		<div class="field">
+			<select data-filter-site>
+				<option value=""><?php _e('All Sites', 'socialcurator'); ?></option>
+				<?php 
+				foreach ( $this->settings_repo->getEnabledSites() as $site ){
+					$sitename = $this->supported_sites->getKey($site, 'name');
+					echo '<option value="' . $site . '">' . $sitename . '</option>';
+				}
+				?>
+			</select>
+		</div>
+		<button class="button" data-filter-grid><?php _e('Filter', 'socialcurator'); ?></button>
+	</div><!-- .social-curator-filter-grid -->
 
 	<div class="social-curator-alert-success social-curator-alert" data-social-curator-import-count style="display:none;">
 		<span>0</span> <?php _e('New Posts Imported', 'socialcurator'); ?>

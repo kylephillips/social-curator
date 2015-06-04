@@ -8,6 +8,8 @@ use SocialCurator\Listeners\UpdateApprovalStatus;
 use SocialCurator\Listeners\GetSocialPosts;
 use SocialCurator\Listeners\TrashPost;
 use SocialCurator\Listeners\ApprovePost;
+use SocialCurator\Listeners\RestorePost;
+use SocialCurator\Listeners\DeletePost;
 
 /**
 * Register the App-wide events
@@ -35,6 +37,12 @@ class RegisterEvents {
 
 		// Approve a Post
 		add_action( 'wp_ajax_social_curator_approve_post', array($this, 'postApprovalRequested' ));
+
+		// Restore a Post
+		add_action( 'wp_ajax_social_curator_restore_post', array($this, 'restorePostRequested' ));
+
+		// Delete a Post
+		add_action( 'wp_ajax_social_curator_delete_post', array($this, 'deletePostRequested' ));
 	}
 
 	/**
@@ -94,6 +102,22 @@ class RegisterEvents {
 	public function postApprovalRequested()
 	{
 		new ApprovePost;
+	}
+
+	/**
+	* A request was made to restore a post
+	*/
+	public function restorePostRequested()
+	{
+		new RestorePost;
+	}
+
+	/**
+	* A request was made to delete a post
+	*/
+	public function deletePostRequested()
+	{
+		new DeletePost;
 	}
 
 }

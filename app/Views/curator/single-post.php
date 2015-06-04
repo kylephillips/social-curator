@@ -7,7 +7,14 @@
 	
 	<?php if ( $post['thumbnail'] ) : ?>
 	<div class="social-curator-post-image" data-thumbnail>
+		<?php 
+		if ( $post['type'] == 'video' && $post['video_url'] ){
+			$video_link = $post['video_url'];
+			echo '<a href="' . $video_link . '" target="_blank">';
+		}
+		?>
 		<img src="<?php echo $post['thumbnail']; ?>" />
+		<?php if ( isset($video_link) ) echo '</a>'; ?>
 	</div>
 	<?php endif; ?>
 	

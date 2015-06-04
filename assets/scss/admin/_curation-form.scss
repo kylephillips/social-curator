@@ -14,3 +14,16 @@
 		margin: 0;
 	}
 }
+
+.social-curator-filter-grid {
+	@include clearfix;
+	margin-bottom: 10px;
+	.field {
+		float: left;
+		width: 150px;
+		margin-right: 8px;
+		select {
+			width: 100%;
+		}
+	}
+}

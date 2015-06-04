@@ -27,6 +27,7 @@ class SocialPostRepository {
 		$pq = new \WP_Query(array(
 			'post_type' => 'social-post',
 			'posts_per_page' => -1,
+			'post_status' => array('publish', 'pending', 'draft', 'trash'),
 			'meta_query' => array(
 				'relation' => 'AND',
 				array(
@@ -78,8 +79,16 @@ class SocialPostRepository {
 			'order' => 'DESC'
 		);
 		
-		if ( isset($query_params['posts__in']) ) $args['post__in'] = $ids;
+		// Basic Params
+		if ( isset($query_params['post__in']) ) $args['post__in'] = $ids;
 		$args['post_status'] = ( isset($query_params['post_status']) ) ? $query_params['post_status'] : 'publish';
+		if ( !is_user_logged_in() ) $args['post_status'] = 'publish';
+		
+		// Set Site Field Param
+		if ( isset($query_params['site']) ){
+			$args['meta_key'] = 'social_curator_site';
+			$args['meta_value'] = $query_params['site'];
+		}
 
 		$pq = new \WP_Query(apply_filters('social_curator_posts', $args));
 		$posts = array();

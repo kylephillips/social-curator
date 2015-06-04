@@ -3,6 +3,35 @@ jQuery(function($){
 
 /**
 * ---------------------------------------------------------------
+* Masonry Grid
+* ---------------------------------------------------------------
+*/
+$(document).ready(function(){
+	triggerMasonry(false);
+});
+
+// Load Masonry
+function triggerMasonry(prepend)
+{	
+	var $masonry_container = $('.social-curator-post-grid').masonry({
+		itemSelector: '.social-curator-post-grid-single',
+		percentPosition: true ,
+		gutter: '.gutter-sizer'
+	});
+	$masonry_container.imagesLoaded(function(){
+		$masonry_container.masonry();
+	});
+	if ( prepend ){
+		$masonry_container.prepend( prepend ).masonry( 'prepended', prepend );
+	}
+}
+
+
+
+
+
+/**
+* ---------------------------------------------------------------
 * Run the Import Manually
 * ---------------------------------------------------------------
 */
@@ -118,7 +147,6 @@ function appendPosts(posts)
 */
 function appendSinglePost(post)
 {
-	console.log(post);
 	var newpost = $('[data-post-template]').find('.social-curator-post-grid-single').clone();
 
 	$(newpost).find('[data-icon-link]').html(post.icon_link);
@@ -145,6 +173,10 @@ function appendSinglePost(post)
 	if ( post.status === 'publish' ){
 		displayApproval(post);
 	}
+
+	if ( post.status === 'trash' ){
+		displayTrashedButtons(post);
+	}
 	
 	return;
 }
@@ -159,32 +191,6 @@ function resetPostsLoading()
 }
 
 
-
-
-/**
-* ---------------------------------------------------------------
-* Masonry Grid
-* ---------------------------------------------------------------
-*/
-$(document).ready(function(){
-	triggerMasonry(false);
-});
-
-// Load Masonry
-function triggerMasonry(prepend)
-{	
-	var $masonry_container = $('.social-curator-post-grid').masonry({
-		itemSelector: '.social-curator-post-grid-single',
-		percentPosition: true ,
-		gutter: '.gutter-sizer'
-	});
-	$masonry_container.imagesLoaded(function(){
-		$masonry_container.masonry();
-	});
-	if ( prepend ){
-		$masonry_container.prepend( prepend ).masonry( 'prepended', prepend );
-	}
-}
 
 
 
@@ -214,15 +220,33 @@ function trashPost(id)
 			post_id: id
 		},
 		success: function(){
-			loadingIndicator(false)
+			loadingIndicator(false);
 		}
 	});
 }
+
+/**
+* Update the unmoderated count - 1
+*/
 function subtractUnmoderated()
 {
 	var count = $('[data-social-curator-unmoderated-count]').text();
 	count = count - 1;
 	$('[data-social-curator-unmoderated-count]').text(count);
+}
+
+/**
+* Hide the approval buttons and display delete/restore buttons
+*/
+function displayTrashedButtons(post)
+{
+	var html = '<div class="social-curator-status-buttons">';
+	html += '<a href="#" data-permanent-delete-post data-post-id="' + post.id + '" class="social-curator-trash"><i class="social-curator-icon-blocked"></i>' + social_curator_admin.permanently_delete + '</a>';
+	html += '<a href="#" data-restore-post data-post-id="' + post.id + '" class="social-curator-approve"><i class="social-curator-icon-redo"></i>' + social_curator_admin.restore + '</a>';
+
+	var postcontainer = $('[data-post-container-id=' + post.id + ']');
+	$(postcontainer).find('.social-curator-status-buttons').remove();
+	$(postcontainer).append(html);
 }
 
 
@@ -250,7 +274,7 @@ function approvePost(id)
 		success: function(data){
 			displayApproval(data);
 			triggerMasonry();
-			loadingIndicator(false)
+			loadingIndicator(false);
 		}
 	});
 }
@@ -265,6 +289,111 @@ function displayApproval(data)
 	$(postcontainer).append(html);
 	$(postcontainer).addClass('approved');
 }
+
+
+
+
+/**
+* ---------------------------------------------------------------
+* Restore a Post from the Trash
+* ---------------------------------------------------------------
+*/
+$(document).on('click', '[data-restore-post]', function(e){
+	e.preventDefault();
+	var id = $(this).attr('data-post-id');
+	restorePost(id);
+});
+function restorePost(id)
+{
+	loadingIndicator(true);
+	$.ajax({
+		url: ajaxurl,
+		type: 'POST',
+		data: {
+			nonce : social_curator_admin.social_curator_nonce,
+			action: 'social_curator_restore_post',
+			post_id: id
+		},
+		success: function(data){
+			console.log(data);
+			removeGridItem(id);
+			loadingIndicator(false);
+		}
+	});
+}
+
+/**
+* ---------------------------------------------------------------
+* Delete a Post Permanently
+* ---------------------------------------------------------------
+*/
+$(document).on('click', '[data-permanent-delete-post]', function(e){
+	e.preventDefault();
+	var id = $(this).attr('data-post-id');
+	deletePost(id);
+});
+function deletePost(id)
+{
+	loadingIndicator(true);
+	$.ajax({
+		url: ajaxurl,
+		type: 'POST',
+		data: {
+			nonce : social_curator_admin.social_curator_nonce,
+			action: 'social_curator_delete_post',
+			post_id: id
+		},
+		success: function(data){
+			console.log(data);
+			removeGridItem(id);
+			loadingIndicator(false);
+		}
+	});
+}
+
+/**
+* Remove an item from the grid by ID
+*/
+function removeGridItem(id)
+{
+	var postcontainer = $('[data-post-container-id=' + id + ']');
+	$('.social-curator-post-grid').masonry('remove', postcontainer);
+	triggerMasonry();
+}
+
+
+
+
+
+/**
+* ---------------------------------------------------------------
+* Filter Posts
+* ---------------------------------------------------------------
+*/
+$(document).on('click', '[data-filter-grid]', function(e){
+	e.preventDefault();
+	filterPosts();
+});
+function filterPosts()
+{
+	loadingIndicator(true);
+	$('[data-post-grid]').find('.social-curator-post-grid-single').remove();
+	$.ajax({
+		url: ajaxurl,
+		type: 'POST',
+		data: {
+			nonce : social_curator_admin.social_curator_nonce,
+			action: 'social_curator_get_posts',
+			status: $('[data-filter-status]').val(),
+			site : $('[data-filter-site]').val()
+		},
+		success: function(data){
+			appendPosts(data.posts);
+		}
+	});
+}
+
+
 
 
 /**

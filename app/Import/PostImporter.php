@@ -3,6 +3,7 @@
 use SocialCurator\Import\AvatarImporter;
 use SocialCurator\Import\MediaImporter;
 use SocialCurator\Config\SettingsRepository;
+use SocialCurator\Entities\PostType\SocialPost\SocialPostRepository;
 
 /**
 * Import a Single Post from formatted array
@@ -50,6 +51,12 @@ class PostImporter {
 	* @var SocialCurator\Config\SettingsRepository
 	*/
 	private $settings_repo;
+
+	/**
+	* Social Post Repository
+	* @var SocialCurator\Entities\PostType\SocialPost\SocialPostRepository
+	*/
+	private $social_post_repo;
 
 	public function __construct()
 	{

@@ -60,7 +60,9 @@ class AdminDependencies extends Dependencies {
 			'importing' => __('Importing', 'socialcurator'),
 			'approved_by' => __('Approved by', 'socialcurator'),
 			'on' => __('on', 'socialcurator'),
-			'edit' => __('Edit', 'socialcurator')
+			'edit' => __('Edit', 'socialcurator'),
+			'permanently_delete' => __('Permanently Delete', 'socialcurator'),
+			'restore' => __('Restore', 'socialcurator')
 		);
 		return $data;
 	}
