@@ -226,14 +226,25 @@ function trashPost(id)
 }
 
 /**
-* Update the unmoderated count - 1
+* Increment the unmoderated count -1
 */
 function subtractUnmoderated()
 {
-	var count = $('[data-social-curator-unmoderated-count]').text();
+	var count = parseInt($('[data-social-curator-unmoderated-count]').text());
 	count = count - 1;
 	$('[data-social-curator-unmoderated-count]').text(count);
 }
+
+/**
+* Increment the unmoderated count +1
+*/
+function addUnmoderated()
+{
+	var count = parseInt($('[data-social-curator-unmoderated-count]').text());
+	count = count + 1;
+	$('[data-social-curator-unmoderated-count]').text(count);
+}
+
 
 /**
 * Hide the approval buttons and display delete/restore buttons
@@ -273,6 +284,7 @@ function approvePost(id)
 		},
 		success: function(data){
 			displayApproval(data);
+			addUnmoderated();
 			triggerMasonry();
 			loadingIndicator(false);
 		}
@@ -315,7 +327,7 @@ function restorePost(id)
 			post_id: id
 		},
 		success: function(data){
-			console.log(data);
+			addUnmoderated();
 			removeGridItem(id);
 			loadingIndicator(false);
 		}
