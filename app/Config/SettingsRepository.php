@@ -79,4 +79,14 @@ class SettingsRepository {
 		return $option;
 	}
 
+	/**
+	* Get the default import status
+	*/
+	public function importStatus()
+	{
+		$option = get_option('social_curator_import_status');
+		if ( !$option ) return 'pending';
+		return $option;
+	}
+
 }

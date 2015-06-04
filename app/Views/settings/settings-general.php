@@ -13,5 +13,11 @@
 		</li>
 	<?php endforeach; ?>
 </ul>
-
+<div class="social-curator-site-settings">
+<label for="social_curator_import_status"><?php _e('Default Import Status', 'socialcurator'); ?></label>
+<select name="social_curator_import_status">
+	<option value="pending" <?php if ( $this->settings_repo->importStatus() == 'pending' ) echo 'selected'; ?> ><?php _e('Pending Review', 'socialcurator'); ?></option>
+	<option value="publish" <?php if ( $this->settings_repo->importStatus() == 'publish' ) echo 'selected'; ?>><?php _e('Published', 'socialcurator'); ?></option>	
+</select>
+</div>
 <?php submit_button(); ?>

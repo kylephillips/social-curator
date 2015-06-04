@@ -2,6 +2,7 @@
 
 use SocialCurator\Import\AvatarImporter;
 use SocialCurator\Import\MediaImporter;
+use SocialCurator\Config\SettingsRepository;
 
 /**
 * Import a Single Post from formatted array
@@ -44,10 +45,17 @@ class PostImporter {
 	*/
 	private $media_importer;
 
+	/**
+	* Settings Repository
+	* @var SocialCurator\Config\SettingsRepository
+	*/
+	private $settings_repo;
+
 	public function __construct()
 	{
 		$this->avatar_importer = new AvatarImporter;
 		$this->media_importer = new MediaImporter;
+		$this->settings_repo = new SettingsRepository;
 		$this->setMeta();
 	}
 
@@ -77,10 +85,11 @@ class PostImporter {
 		$this->site = $site;
 		$this->post_data = $post_data;
 		if ( $this->isTrashed() ) return false;
+		$status = $this->settings_repo->importStatus();
 		$imported = array(
 			'post_type' => 'social-post',
 			'post_content' => $this->post_data['content'],
-			'post_status' => 'pending',
+			'post_status' => $status,
 			'post_title' => $this->site . ' - ' . $this->post_data['id'],
 			'post_date' => date('Y-m-d H:i:s', intval($this->post_data['date'])),
 			'post_date_gmt' => date('Y-m-d H:i:s', intval($this->post_data['date'])),
@@ -89,6 +98,7 @@ class PostImporter {
 		$this->attachMeta();
 		$this->saveAvatar();
 		$this->saveThumbnail();
+		if ( $status == 'publish' ) $this->saveApprovedBy();
 		return true;
 	}
 
@@ -146,6 +156,15 @@ class PostImporter {
 		$post_id = $this->post_data['id'];
 		$row = $wpdb->get_row("SELECT * FROM $table WHERE `site`= '$site' AND `post_id`= '$post_id'");
 		return ( $row ) ? true : false;
+	}
+
+	/**
+	* Save Approved by if the Import Status is set as published
+	*/
+	private function saveApprovedBy()
+	{
+		update_post_meta($this->post_id, 'social_curator_approved_by', __('Social Curator Importer', 'socialcurator'));
+		update_post_meta($this->post_id, 'social_curator_approved_date', date('Y-m-d H:m:s'));
 	}
 
 

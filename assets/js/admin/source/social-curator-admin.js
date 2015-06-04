@@ -118,7 +118,7 @@ function appendPosts(posts)
 */
 function appendSinglePost(post)
 {
-	// console.log(post);
+	console.log(post);
 	var newpost = $('[data-post-template]').find('.social-curator-post-grid-single').clone();
 
 	$(newpost).find('[data-icon-link]').html(post.icon_link);
@@ -139,7 +139,13 @@ function appendSinglePost(post)
 		html += '<p><a href="' + post.edit_link + '">(' + social_curator_admin.edit + ')</a></p>';
 		$(newpost).find('[data-post-content]').html(html);
 	}
+
 	triggerMasonry(newpost);
+
+	if ( post.status === 'publish' ){
+		displayApproval(post);
+	}
+	
 	return;
 }
 
