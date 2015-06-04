@@ -1,6 +1,7 @@
 <?php namespace SocialCurator\Listeners;
 
 use SocialCurator\Entities\PostType\SocialPost\SocialPostPresenter;
+use SocialCurator\Entities\PostType\SocialPost\SocialPostRepository;
 
 /**
 * Get an array of social posts and return an AJAX response
@@ -30,11 +31,18 @@ class GetSocialPosts extends ListenerBase {
 	*/
 	private $status;
 
+	/**
+	* Social Post Repository
+	* @var SocialCurator\Entities\PostType\SocialPost\SocialPostRepository
+	*/
+	private $social_post_repo;
+
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->presenter = new SocialPostPresenter;
+		$this->social_post_repo = new SocialPostRepository;
 		$this->setPostIDs();
 		$this->setStatus();
 		$this->getPosts();
@@ -66,29 +74,7 @@ class GetSocialPosts extends ListenerBase {
 	*/
 	private function getPosts()
 	{
-		$pq = new \WP_Query(array(
-			'post_type' => 'social-post',
-			'post__in' => $this->post_ids,
-			'ignore_sticky_posts' => 1,
-			'posts_per_page' => -1,
-			'post_status' => $this->status,
-		));
-		$c = 0;
-		if ( $pq->have_posts() ) : while ( $pq->have_posts() ) : $pq->the_post();
-			$id = get_the_id();
-			$this->posts[$c]['id'] = $id;
-			$this->posts[$c]['content'] = apply_filters('the_content', get_the_content());
-			$this->posts[$c]['site'] = get_post_meta($id, 'social_curator_site', true);
-			$this->posts[$c]['profile_image'] = $this->presenter->getAvatar($id);
-			$this->posts[$c]['profile_link'] = $this->presenter->getProfileLink($id);
-			$this->posts[$c]['status'] = get_post_status($id);
-			$this->posts[$c]['profile_name'] = $this->presenter->getProfileName($id);
-			$this->posts[$c]['icon_link'] = $this->presenter->getIconLink($id);
-			$this->posts[$c]['date'] = get_the_time('D, M jS - g:ia');
-			$this->posts[$c]['video_url'] = get_post_meta($id, 'social_curator_video_url', true);
-			$this->posts[$c]['type'] = get_post_meta($id, 'social_curator_type', true);
-			$this->posts[$c]['thumbnail'] = $this->presenter->getThumbnailURL($id);
-		$c++; endwhile; endif; wp_reset_postdata();
+		$this->posts = $this->social_post_repo->getPostsArray($this->post_ids, $this->status);
 	}
 
 	/**

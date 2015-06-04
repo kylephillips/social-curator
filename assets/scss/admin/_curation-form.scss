@@ -2,19 +2,15 @@
 // Curation Page Form
 // --------------------------------------------------
 .social-curator-run-import {
-	@include wptable;
-	background-color: $white;
 	padding: 10px;
 	margin-bottom: 15px;
 	@include clearfix;
 	.button {
 		float: right;
 		position: relative;
-		top: -4px;
+		top: 5px;
 	}
 	p {
 		margin: 0;
-		position: relative;
-		top: 4px;
 	}
 }
