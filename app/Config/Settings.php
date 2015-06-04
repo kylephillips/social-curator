@@ -77,6 +77,7 @@ class Settings {
 		$tab = ( isset($_GET['tab']) ) ? $_GET['tab'] : 'general';
 		$out = '';
 		foreach ( $this->supported_sites->getSites() as $key => $site){
+			if ( !in_array($key, $this->settings_repo->getEnabledSites()) ) continue;
 			$out .= '<a class="nav-tab';
 			if ( $tab == $key ) $out .= ' nav-tab-active';
 			$out .= '" href="options-general.php?page=social-curator-settings&tab=' . $key . '">' . $site['name'] . '</a>';
