@@ -7,6 +7,7 @@ use SocialCurator\Listeners\DeletePostThumbnail;
 use SocialCurator\Listeners\UpdateApprovalStatus;
 use SocialCurator\Listeners\GetSocialPosts;
 use SocialCurator\Listeners\TrashPost;
+use SocialCurator\Listeners\ApprovePost;
 
 /**
 * Register the App-wide events
@@ -31,6 +32,9 @@ class RegisterEvents {
 
 		// Trash a Post
 		add_action( 'wp_ajax_social_curator_trash_post', array($this, 'postTrashRequested' ));
+
+		// Approve a Post
+		add_action( 'wp_ajax_social_curator_approve_post', array($this, 'postApprovalRequested' ));
 	}
 
 	/**
@@ -82,6 +86,14 @@ class RegisterEvents {
 	public function postTrashRequested()
 	{
 		new TrashPost;
+	}
+
+	/**
+	* A request was made to trash a post
+	*/
+	public function postApprovalRequested()
+	{
+		new ApprovePost;
 	}
 
 }

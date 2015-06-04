@@ -1,4 +1,4 @@
-<div class="social-curator-post-grid-single">
+<div class="social-curator-post-grid-single <?php if ( $post['status'] == 'publish' ) echo 'approved'; ?>" data-post-container-id="<?php echo $post['id']; ?>">
 	<div class="social-curator-post-head">
 		<span data-icon-link class="social-curator-post-link"><?php echo $post['icon_link']; ?></span>
 		<img src="<?php echo $post['profile_image_link']; ?>" data-profile-image class="social-curator-profile-image">
@@ -14,12 +14,16 @@
 	<?php if ( $post['content'] ) : ?>
 	<div class="social-curator-post-content" data-post-content>
 		<?php echo $post['content']; ?>
+		<p><a href="<?php echo $post['edit_link']; ?>">(<?php _e('Edit', 'socialcurator'); ?>)</a></p>
 	</div>
 	<?php endif; ?>
 
 	<?php if ( $post['approved_by'] ) : ?>
 	<div class="social-curator-alert-success">
 		<?php echo __('Approved by', 'socialcurator') . ' ' . $post['approved_by'] . ' ' . __('on', 'socialcurator') . ' ' . $post['approved_date']; ?>
+		<?php if ( current_user_can('edit_others_posts') ) : ?>
+			<br><a href="#" data-trash-post data-post-id="<?php echo $post['id']; ?>" class="unapprove-link"><?php _e('Unapprove and Trash', 'socialcurator'); ?></a>
+		<?php endif; ?>
 	</div>
 	<?php else : ?>
 	<div class="social-curator-status-buttons">

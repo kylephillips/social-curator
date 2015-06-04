@@ -22,8 +22,8 @@
 
 
 	<div class="social-curator-post-grid" data-post-grid>
-		<div class="gutter-sizer"></div>
 		<?php $this->loopPosts(); ?>
+		<div class="gutter-sizer"></div>
 	</div><!-- .social-curator-post-grid -->
 
 	

@@ -1,4 +1,4 @@
-<div class="social-curator-post-grid-single">
+<div class="social-curator-post-grid-single" data-post-container-id="">
 	<div class="social-curator-post-head">
 		<span data-icon-link class="social-curator-post-link"></span>
 		<img src="" data-profile-image class="social-curator-profile-image">

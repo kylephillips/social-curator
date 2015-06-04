@@ -1,11 +1,12 @@
 //
 // Post Grid
 // --------------------------------------------------
+.gutter-sizer {
+	width: 4%;
+}
+
 .social-curator-post-grid {
 	@include clearfix;
-	.gutter-sizer {
-		width: 4%;
-	}
 }
 
 .social-curator-post-grid-single {
@@ -16,6 +17,10 @@
 	box-sizing: border-box;
 	@include wptable;
 	padding: 10px;
+
+	&.approved {
+		border: 4px solid $green-light;
+	}
 
 	.social-curator-post-head {
 		@include clearfix;
@@ -54,6 +59,11 @@
 
 	.social-curator-post-content {
 		overflow: hidden;
+	}
+
+	.unapprove-link {
+		color: $red;
+		text-decoration: none;
 	}
 
 } // single post

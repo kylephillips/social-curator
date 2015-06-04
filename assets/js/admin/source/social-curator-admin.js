@@ -127,6 +127,7 @@ function appendSinglePost(post)
 	$(newpost).find('[data-date]').text(post.date);
 	$(newpost).find('[data-profile-name]').text(post.profile_name);
 	$(newpost).find('[data-post-id]').attr('data-post-id', post.id);
+	$(newpost).attr('data-post-container-id', post.id);
 
 	if ( post.thumbnail ){
 		var thumbhtml = '<img src="' + post.thumbnail + '" />';
@@ -134,7 +135,9 @@ function appendSinglePost(post)
 	}
 
 	if ( post.content ){
-		$(newpost).find('[data-post-content]').html(post.content);
+		var html = post.content;
+		html += '<p><a href="' + post.edit_link + '">(' + social_curator_admin.edit + ')</a></p>';
+		$(newpost).find('[data-post-content]').html(html);
 	}
 	triggerMasonry(newpost);
 	return;
@@ -187,8 +190,9 @@ function triggerMasonry(prepend)
 $(document).on('click', '[data-trash-post]', function(e){
 	e.preventDefault();
 	trashPost($(this).attr('data-post-id'));
+	subtractUnmoderated();
 	$(this).parents('.social-curator-post-grid-single').fadeOut('fast', function(){
-		$(this).remove();
+		$('.social-curator-post-grid').masonry('remove', $(this));
 		triggerMasonry();
 	});
 });
@@ -208,6 +212,12 @@ function trashPost(id)
 		}
 	});
 }
+function subtractUnmoderated()
+{
+	var count = $('[data-social-curator-unmoderated-count]').text();
+	count = count - 1;
+	$('[data-social-curator-unmoderated-count]').text(count);
+}
 
 
 
@@ -216,7 +226,39 @@ function trashPost(id)
 * Approve a Post
 * ---------------------------------------------------------------
 */
-
+$(document).on('click', '[data-approve-post]', function(e){
+	e.preventDefault();
+	approvePost($(this).attr('data-post-id'));
+});
+function approvePost(id)
+{
+	loadingIndicator(true);
+	$.ajax({
+		url: ajaxurl,
+		type: 'POST',
+		data: {
+			nonce : social_curator_admin.social_curator_nonce,
+			action: 'social_curator_approve_post',
+			post_id: id
+		},
+		success: function(data){
+			displayApproval(data);
+			triggerMasonry();
+			loadingIndicator(false)
+		}
+	});
+}
+/**
+* Hide the approval buttons and display the approval message
+*/
+function displayApproval(data)
+{
+	var html = '<div class="social-curator-alert-success">' + social_curator_admin.approved_by + ' ' + data.approved_by + ' ' + social_curator_admin.on + ' ' + data.approved_date + '</div>';
+	var postcontainer = $('[data-post-container-id=' + data.id + ']');
+	$(postcontainer).find('.social-curator-status-buttons').remove();
+	$(postcontainer).append(html);
+	$(postcontainer).addClass('approved');
+}
 
 
 /**

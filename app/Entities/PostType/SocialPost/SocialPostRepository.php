@@ -99,6 +99,7 @@ class SocialPostRepository {
 			$posts[$c]['thumbnail'] = $this->presenter->getThumbnailURL($id);
 			$posts[$c]['approved_by'] = get_post_meta($id, 'social_curator_approved_by', true);
 			$posts[$c]['approved_date'] = get_post_meta($id, 'social_curator_approved_date', true);
+			if ( is_user_logged_in() ) $posts[$c]['edit_link'] = get_edit_post_link($id);
 		$c++; endwhile; endif; wp_reset_postdata();
 		return $posts;
 	}
