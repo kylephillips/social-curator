@@ -44,18 +44,8 @@ class GetSocialPosts extends ListenerBase {
 		$this->presenter = new SocialPostPresenter;
 		$this->social_post_repo = new SocialPostRepository;
 		$this->setQueryParams();
-		$this->setStatus();
 		$this->getPosts();
 		$this->sendSuccess();
-	}
-
-	/**
-	* Validate and Set Post IDs array
-	*/
-	private function setPostIDs()
-	{
-		if ( !isset($_POST['posts']) && !is_array($_POST['posts']) ) return $this->sendError(__('Invalid Post IDs', 'socialcurator'));
-		$this->post_ids = $_POST['posts'];
 	}
 
 	/**
@@ -63,7 +53,9 @@ class GetSocialPosts extends ListenerBase {
 	*/
 	private function setQueryParams()
 	{
-		$this->query_params['post_status'] = ( !isset($_POST['status']) ) ? 'pending' : sanitize_text_field($_POST['status']);
+		if ( isset($_POST['posts']) ) $this->query_params['posts__in'] = $_POST['posts'];
+		$this->query_params['post_status'] = ( !isset($_POST['status']) ) ? 'pending' : $_POST['status'];
+		if ( isset($_POST['site']) ) $this->query_params['site'] = $_POST['site'];
 	}
 
 	/**
@@ -72,7 +64,7 @@ class GetSocialPosts extends ListenerBase {
 	*/
 	private function getPosts()
 	{
-		$this->posts = $this->social_post_repo->getPostsArray($this->post_ids, $this->status);
+		$this->posts = $this->social_post_repo->getPostsArray($this->query_params);
 	}
 
 	/**
