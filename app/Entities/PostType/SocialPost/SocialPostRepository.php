@@ -85,6 +85,7 @@ class SocialPostRepository {
 			$posts[$c]['content'] = apply_filters('the_content', get_the_content());
 			$posts[$c]['site'] = get_post_meta($id, 'social_curator_site', true);
 			$posts[$c]['profile_image'] = $this->presenter->getAvatar($id);
+			$posts[$c]['profile_image_link'] = $this->presenter->getAvatarURL($id);
 			$posts[$c]['profile_link'] = $this->presenter->getProfileLink($id);
 			$posts[$c]['status'] = get_post_status($id);
 			$posts[$c]['profile_name'] = $this->presenter->getProfileName($id);
@@ -93,6 +94,8 @@ class SocialPostRepository {
 			$posts[$c]['video_url'] = get_post_meta($id, 'social_curator_video_url', true);
 			$posts[$c]['type'] = get_post_meta($id, 'social_curator_type', true);
 			$posts[$c]['thumbnail'] = $this->presenter->getThumbnailURL($id);
+			$posts[$c]['approved_by'] = get_post_meta($id, 'social_curator_approved_by', true);
+			$posts[$c]['approved_date'] = get_post_meta($id, 'social_curator_approved_date', true);
 		$c++; endwhile; endif; wp_reset_postdata();
 		return $posts;
 	}

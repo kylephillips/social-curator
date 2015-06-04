@@ -30,6 +30,20 @@ class SocialPostPresenter {
 	}
 
 	/**
+	* Get a profile image/avatar link
+	* @param int $post_id WP Post ID
+	* @return url
+	*/
+	public function getAvatarURL($post_id)
+	{
+		if ( !$post_id ) return false;
+		$upload_dir = wp_upload_dir();
+		$image = get_post_meta($post_id, 'social_curator_avatar', true);
+		if ( !$image ) return false;
+		return $upload_dir['baseurl'] . '/social-curator/avatars/' . $image;
+	}
+
+	/**
 	* Get the link to a user profile
 	* @param int $post_id
 	*/
