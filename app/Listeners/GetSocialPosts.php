@@ -26,10 +26,10 @@ class GetSocialPosts extends ListenerBase {
 	private $posts = array();
 
 	/**
-	* Post Status to Query
-	* @var string
+	* Query Parameters to Pass to Repo Method
+	* @var array
 	*/
-	private $status;
+	private $query_params;
 
 	/**
 	* Social Post Repository
@@ -43,7 +43,7 @@ class GetSocialPosts extends ListenerBase {
 		parent::__construct();
 		$this->presenter = new SocialPostPresenter;
 		$this->social_post_repo = new SocialPostRepository;
-		$this->setPostIDs();
+		$this->setQueryParams();
 		$this->setStatus();
 		$this->getPosts();
 		$this->sendSuccess();
@@ -59,13 +59,11 @@ class GetSocialPosts extends ListenerBase {
 	}
 
 	/**
-	* Set the Status
+	* Set the Query Parameters
 	*/
-	private function setStatus()
+	private function setQueryParams()
 	{
-		$allowed = array('pending', 'publish', 'draft');
-		if ( !isset($_POST['status']) ) return $this->status = 'pending';
-		$this->status = $_POST['status'];
+		$this->query_params['post_status'] = ( !isset($_POST['status']) ) ? 'pending' : sanitize_text_field($_POST['status']);
 	}
 
 	/**

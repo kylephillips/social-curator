@@ -68,21 +68,22 @@ class SocialPostRepository {
 	* @param str|array Post Statuses
 	* @return Array of Posts for JSON response
 	*/
-	public function getPostsArray($ids = null, $statuses = 'publish')
+	public function getPostsArray($query_params)
 	{
 		$args = array(
 			'post_type' => 'social-post',
 			'ignore_sticky_posts' => 1,
 			'posts_per_page' => -1,
-			'post_status' => $statuses,
 			'orderby' => 'date',
 			'order' => 'DESC'
 		);
-		if ( $ids ) $args['post__in'] = $ids;
+		
+		if ( isset($query_params['posts__in']) ) $args['post__in'] = $ids;
+		$args['post_status'] = ( isset($query_params['post_status']) ) ? $query_params['post_status'] : 'publish';
+
 		$pq = new \WP_Query($args);
-		$c = 0;
 		$posts = array();
-		if ( $pq->have_posts() ) : while ( $pq->have_posts() ) : $pq->the_post();
+		if ( $pq->have_posts() ) : $c = 0; while ( $pq->have_posts() ) : $pq->the_post();
 			$id = get_the_id();
 			$posts[$c]['id'] = $id;
 			$posts[$c]['content'] = apply_filters('the_content', get_the_content());

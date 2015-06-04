@@ -2,6 +2,7 @@
 
 use SocialCurator\Helpers;
 use SocialCurator\Config\SettingsRepository;
+use SocialCurator\Config\SupportedSites;
 use SocialCurator\Entities\PostType\SocialPost\SocialPostRepository;
 
 /**
@@ -16,6 +17,12 @@ class RegisterCuratePage {
 	private $settings_repo;
 
 	/**
+	* Settings Repo
+	* @var SocialCurator\Config\SupportedSites
+	*/
+	private $supported_sites;
+
+	/**
 	* Social Posts Repo
 	* @var SocialCurator\Entities\PostType\SocialPost\SocialPostRepository
 	*/
@@ -25,6 +32,7 @@ class RegisterCuratePage {
 	{
 		$this->settings_repo = new SettingsRepository;
 		$this->social_post_repo = new SocialPostRepository;
+		$this->supported_sites = new SupportedSites;
 		add_action('admin_menu', array($this, 'registerMenu'));
 	}
 
@@ -49,7 +57,7 @@ class RegisterCuratePage {
 	*/
 	private function loopPosts()
 	{
-		$posts = $this->social_post_repo->getPostsArray(null, array('publish', 'draft', 'pending'));
+		$posts = $this->social_post_repo->getPostsArray(array('post_status' => array('publish', 'draft', 'pending')));
 		foreach($posts as $post) :
 			include(Helpers::view('curator/single-post'));
 		endforeach;
