@@ -1,0 +1,29 @@
+//
+// Manage Post Columns
+// --------------------------------------------------
+.social-curator-column-user {
+	@include clearfix;
+	img {
+		width: 50px;
+		float: left;
+		border: 1px solid darken($white, 15%);
+		margin-right: 8px;
+	}
+	p {
+		position: relative;
+		top: 4px;
+	}
+}
+
+.social-curator-column-content {
+	i {
+		float: left;
+		font-size: 24px;
+		margin: 3px 10px 20px 0;
+		color: darken($white, 40%);
+	}
+}
+
+.social-curator-column-media {
+	text-align: center;
+}

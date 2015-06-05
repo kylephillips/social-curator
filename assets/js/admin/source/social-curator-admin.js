@@ -264,14 +264,14 @@ function displayTrashedButtons(post)
 
 /**
 * ---------------------------------------------------------------
-* Approve a Post
+* Approve a Post in the Grid View
 * ---------------------------------------------------------------
 */
 $(document).on('click', '[data-approve-post]', function(e){
 	e.preventDefault();
-	approvePost($(this).attr('data-post-id'));
+	approveGridPost($(this).attr('data-post-id'));
 });
-function approvePost(id)
+function approveGridPost(id)
 {
 	loadingIndicator(true);
 	$.ajax({
@@ -313,9 +313,9 @@ function displayApproval(data)
 $(document).on('click', '[data-restore-post]', function(e){
 	e.preventDefault();
 	var id = $(this).attr('data-post-id');
-	restorePost(id);
+	restoreGridPost(id);
 });
-function restorePost(id)
+function restoreGridPost(id)
 {
 	loadingIndicator(true);
 	$.ajax({
@@ -401,6 +401,48 @@ function filterPosts()
 		},
 		success: function(data){
 			appendPosts(data.posts);
+		}
+	});
+}
+
+
+
+
+/**
+* ---------------------------------------------------------------
+* Change the Moderation from the Manage Posts Screen
+* ---------------------------------------------------------------
+*/
+$(document).on('click', '[data-social-curator-moderate-select-button]', function(e){
+	e.preventDefault();
+	var post_id = $(this).attr('data-post-id');
+	var status = $(this).siblings('[data-social-curator-moderate-select]').val();
+	var button = $(this);
+	$(this).attr('disabled', 'disabled').text(social_curator_admin.updating);
+	changeStatus(post_id, status, button);
+});
+/**
+* Change the post status
+*/
+function changeStatus(post_id, status, button)
+{
+	$.ajax({
+		url: ajaxurl,
+		type: 'POST',
+		data: {
+			nonce : social_curator_admin.social_curator_nonce,
+			action: 'social_update_post_status',
+			post_id: post_id,
+			status: status
+		},
+		success: function(data){
+			console.log(data);
+			$(button).attr('disabled', false).text(social_curator_admin.update);
+			if ( status === 'trash' ){
+				$(button).parents('tr').fadeOut('fast', function(){
+					$(this).remove();
+				});
+			}
 		}
 	});
 }

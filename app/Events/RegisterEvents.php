@@ -4,12 +4,13 @@ use SocialCurator\Listeners\RunManualImport;
 use SocialCurator\Listeners\LogTrashedPost;
 use SocialCurator\Listeners\DeleteUserAvatar;
 use SocialCurator\Listeners\DeletePostThumbnail;
-use SocialCurator\Listeners\UpdateApprovalStatus;
+use SocialCurator\Listeners\UpdateApproverDetails;
 use SocialCurator\Listeners\GetSocialPosts;
 use SocialCurator\Listeners\TrashPost;
 use SocialCurator\Listeners\ApprovePost;
 use SocialCurator\Listeners\RestorePost;
 use SocialCurator\Listeners\DeletePost;
+use SocialCurator\Listeners\UpdateStatus;
 
 /**
 * Register the App-wide events
@@ -43,6 +44,9 @@ class RegisterEvents {
 
 		// Delete a Post
 		add_action( 'wp_ajax_social_curator_delete_post', array($this, 'deletePostRequested' ));
+
+		// Update the Status of a Post (Generic update event for AJAX Requests)
+		add_action( 'wp_ajax_social_update_post_status', array($this, 'statusWasUpdated' ));
 	}
 
 	/**
@@ -76,7 +80,7 @@ class RegisterEvents {
 	*/
 	public function postStatusChanged($post_id, $post, $update)
 	{
-		$updater = new UpdateApprovalStatus($post_id, $post);
+		$updater = new UpdateApproverDetails($post_id, $post);
 		$updater->updateStatus();
 	}
 
@@ -118,6 +122,14 @@ class RegisterEvents {
 	public function deletePostRequested()
 	{
 		new DeletePost;
+	}
+
+	/**
+	* A request was made to update the status of a post
+	*/
+	public function statusWasUpdated()
+	{
+		new UpdateStatus;
 	}
 
 }

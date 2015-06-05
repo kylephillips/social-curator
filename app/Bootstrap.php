@@ -18,8 +18,8 @@ class Bootstrap {
 	private function pluginInit()
 	{
 		new Entities\PostType\SocialPost\RegisterSocialPost;
-		new Config\RegisterSettings;
 		new Entities\PostType\SocialPost\SocialPostMeta;
+		new Config\RegisterSettings;
 		new Curate\RegisterCuratePage;
 		new Config\Settings;
 		new Events\RegisterEvents;
@@ -38,6 +38,7 @@ class Bootstrap {
 	public function wordpressInit()
 	{
 		$this->localize();
+		new Entities\PostType\SocialPost\SocialPostColumns;
 	}
 
 

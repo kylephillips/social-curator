@@ -62,7 +62,9 @@ class AdminDependencies extends Dependencies {
 			'on' => __('on', 'socialcurator'),
 			'edit' => __('Edit', 'socialcurator'),
 			'permanently_delete' => __('Permanently Delete', 'socialcurator'),
-			'restore' => __('Restore', 'socialcurator')
+			'restore' => __('Restore', 'socialcurator'),
+			'updating' => __('Updating', 'socialcurator'),
+			'update' => __('Update', 'socialcurator')
 		);
 		return $data;
 	}

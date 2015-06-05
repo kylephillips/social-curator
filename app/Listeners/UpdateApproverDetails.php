@@ -3,7 +3,7 @@
 /**
 * Update approval status when a post is updated
 */
-class UpdateApprovalStatus {
+class UpdateApproverDetails {
 
 	/**
 	* The Post ID
