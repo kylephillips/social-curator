@@ -17,6 +17,7 @@ class SupportedSites {
 	{
 		$this->twitter();
 		$this->instagram();
+		$this->flickr();
 	}
 
 	/**
@@ -28,7 +29,6 @@ class SupportedSites {
 			'name' => 'Twitter',
 			'namespace' => 'Twitter',
 			'api_endpoint' => 'https://api.twitter.com/1.1/',
-			'user_uri' => 'https://twitter.com/',
 			'icon_class' => 'social-curator-icon-twitter',
 			'settings_fields' => array(
 				'api_key' => __('API Key', 'socialcurator'), 
@@ -49,7 +49,6 @@ class SupportedSites {
 			'name' => 'Instagram',
 			'namespace' => 'Instagram',
 			'api_endpoint' => 'https://api.instagram.com/v1/',
-			'user_uri' => 'https://instagram.com/',
 			'icon_class' => 'social-curator-icon-instagram',
 			'required_for_auth' => array(
 				'client_id', 'client_secret'
@@ -58,6 +57,23 @@ class SupportedSites {
 				'client_id' => __('Client ID', 'socialcurator'), 
 				'client_secret' => __('Client Secret', 'socialcurator'),
 				'auth_token' => __('Authorization Token', 'socialcurator')
+			)
+		);
+	}
+
+
+	/**
+	* Add Flickr
+	*/
+	protected function flickr()
+	{
+		$this->sites['flickr'] = array(
+			'name' => 'Flickr',
+			'namespace' => 'Flickr',
+			'api_endpoint' => 'https://api.flickr.com/',
+			'icon_class' => 'social-curator-icon-flickr2',
+			'settings_fields' => array(
+				'api_key' => __('API Key', 'socialcurator')
 			)
 		);
 	}

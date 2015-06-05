@@ -57,6 +57,7 @@ function doManualImport()
 			action: 'social_curator_manual_import'
 		},
 		success: function(data){
+			console.log(data);
 			$('[data-social-curator-last-import]').text(data.import_date);
 			updateLastImportCount(data.import_count);
 			getNewPosts(data.posts);
