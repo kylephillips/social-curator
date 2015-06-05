@@ -1,7 +1,7 @@
-<?php namespace SocialCurator\Entities\Site\Flickr\Feed;
+<?php namespace SocialCurator\Entities\Site\Youtube\Feed;
 
-use SocialCurator\Entities\Site\Flickr\Feed\FetchFeed;
-use SocialCurator\Entities\Site\Flickr\Feed\FeedFormatter;
+use SocialCurator\Entities\Site\Youtube\Feed\FetchFeed;
+use SocialCurator\Entities\Site\Youtube\Feed\FeedFormatter;
 
 /**
 * Formatted Feed, ready for import
@@ -10,13 +10,13 @@ class Feed {
 
 	/**
 	* The Unformatted Feed
-	* @var SocialCurator\Entities\Site\Flickr\Feed\FetchFeed
+	* @var SocialCurator\Entities\Site\Youtube\Feed\FetchFeed
 	*/
 	private $unformatted_feed;
 
 	/**
 	* Feed Formatter
-	* @var SocialCurator\Entities\Site\Flickr\Feed\FeedFormatter
+	* @var SocialCurator\Entities\Site\Youtube\Feed\FeedFormatter
 	*/
 	private $feed_formatter;
 

@@ -18,6 +18,7 @@ class SupportedSites {
 		$this->twitter();
 		$this->instagram();
 		$this->flickr();
+		$this->youtube();
 	}
 
 	/**
@@ -72,6 +73,23 @@ class SupportedSites {
 			'namespace' => 'Flickr',
 			'api_endpoint' => 'https://api.flickr.com/',
 			'icon_class' => 'social-curator-icon-flickr2',
+			'settings_fields' => array(
+				'api_key' => __('API Key', 'socialcurator')
+			)
+		);
+	}
+
+
+	/**
+	* Add Youtube
+	*/
+	protected function youtube()
+	{
+		$this->sites['youtube'] = array(
+			'name' => 'YouTube',
+			'namespace' => 'Youtube',
+			'api_endpoint' => 'https://www.googleapis.com/youtube/v3/',
+			'icon_class' => 'social-curator-icon-youtube3',
 			'settings_fields' => array(
 				'api_key' => __('API Key', 'socialcurator')
 			)
