@@ -1,6 +1,7 @@
 <?php namespace SocialCurator\Entities\PostType\SocialPost;
 
 use SocialCurator\Config\SupportedSites;
+use SocialCurator\Helpers;
 
 class SocialPostPresenter {
 
@@ -26,7 +27,8 @@ class SocialPostPresenter {
 		$upload_dir = wp_upload_dir();
 		$image = get_post_meta($post_id, 'social_curator_avatar', true);
 		if ( !$image ) return false;
-		return '<img src="' . $upload_dir['baseurl'] . '/social-curator/avatars/' . $image . '" />';
+		$fallback = Helpers::plugin_url() . '/assets/images/kickapoo-fallback.png';
+		return '<img src="' . $upload_dir['baseurl'] . '/social-curator/avatars/' . $image . '" onerror="this.onerror=null;this.src=' . $fallback . ';" />';
 	}
 
 	/**
