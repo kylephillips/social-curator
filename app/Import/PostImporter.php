@@ -79,7 +79,8 @@ class PostImporter {
 			'user_id' => 'social_curator_user_id',
 			'screen_name' => 'social_curator_screen_name',
 			'link' => 'social_curator_link',
-			'video_url' => 'social_curator_video_url'
+			'video_url' => 'social_curator_video_url',
+			'profile_url' => 'social_curator_profile_url'
 		);
 	}
 
