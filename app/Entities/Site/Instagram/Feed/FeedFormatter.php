@@ -33,6 +33,7 @@ class FeedFormatter {
 			$this->formatted_feed[$key]['image'] = ( isset($item->images->standard_resolution->url) ) ? $item->images->standard_resolution->url : null;
 			$this->formatted_feed[$key]['video_url'] = ( isset($item->videos->standard_resolution) ) ? $item->videos->standard_resolution->url : null;
 			$this->formatted_feed[$key]['link'] = $item->link;
+			$this->formatted_feed[$key]['profile_url'] = 'https://instagram.com/' . $item->user->username;
 		}
 		return $this->formatted_feed;
 	}

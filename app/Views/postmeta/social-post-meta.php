@@ -51,6 +51,10 @@
 		<label for="social_curator_user_id"><?php _e('User ID', 'socialcurator'); ?></label>
 		<input type="text" name="social_curator_user_id" id="social_curator_user_id"  value="<?php echo $this->meta['social_curator_user_id']; ?>" />
 	</div>
+	<div class="field full">
+		<label for="social_curator_profile_url"><?php _e('Profile Link', 'socialcurator'); ?></label>
+		<input type="text" name="social_curator_profile_url" id="social_curator_profile_url" value="<?php echo $this->meta['social_curator_profile_url']; ?>" />
+	</div>
 	<?php if ( $this->meta['social_curator_approved_by'] && $this->meta['social_curator_approved_date'] ) : ?>
 		<div class="social-curator-alert">
 			<?php _e('Approved By', 'socialcurator'); ?> <?php echo $this->meta['social_curator_approved_by']; ?> <?php _e('on', 'socialcurator'); ?> <?php echo $this->meta['social_curator_approved_date']; ?>

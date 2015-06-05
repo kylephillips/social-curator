@@ -80,7 +80,8 @@ class SocialPostMeta {
 			'social_curator_user_id',
 			'social_curator_video_url',
 			'social_curator_approved_by',
-			'social_curator_approved_date'
+			'social_curator_approved_date',
+			'social_curator_profile_url'
 		);
 	}
 

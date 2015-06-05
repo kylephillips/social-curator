@@ -47,6 +47,7 @@ class FeedFormatter {
 			$this->formatted_feed[$key]['image'] = ( isset($item->entities->media[0]->media_url) ) ? $item->entities->media[0]->media_url : null;
 			$this->formatted_feed[$key]['video_url'] = null;
 			$this->formatted_feed[$key]['link'] = 'https://twitter.com/' . $item->user->screen_name . '/status/' . $item->id;
+			$this->formatted_feed[$key]['profile_url'] = 'https://twitter.com/' . $item->user->screen_name;
 		}
 		return $this->formatted_feed;
 	}

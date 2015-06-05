@@ -61,10 +61,10 @@ class Importer {
 			if ( !class_exists($feed_class) ) continue;
 			$feed = new $feed_class;
 			$feed = $feed->getFeed();
-			//var_dump($feed);
 			$this->feed_importer->import($enabled_site, $feed);
 			if ( is_array($this->feed_importer->getIDs()) ) $this->post_ids = array_merge($this->post_ids, $this->feed_importer->getIDs());
 		}
+		$this->post_ids = array_unique($this->post_ids);
 	}
 
 	/**

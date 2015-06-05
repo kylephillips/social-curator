@@ -51,16 +51,7 @@ class SocialPostPresenter {
 	*/
 	public function getProfileLink($post_id)
 	{
-		$user = $this->getProfileName($post_id);
-		if ( !$user ) return false;
-
-		$site = get_post_meta($post_id, 'social_curator_site', true);
-		if ( !$site ) return false;
-
-		$site_details = $this->supported_sites->getSite($site);
-		if ( empty($site_details) ) return false;
-		
-		return $site_details['user_uri'] . $user;
+		return get_post_meta($post_id, 'social_curator_profile_url', true);
 	}
 
 	/**
