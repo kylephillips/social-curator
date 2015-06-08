@@ -77,7 +77,6 @@ function doImport(site)
 			site: site
 		},
 		success: function(data){
-			console.log(data);
 			if ( data.status === 'success' ){
 				$('[data-social-curator-last-import]').text(data.import_date);
 				updateLastImportCount(data);

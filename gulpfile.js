@@ -68,7 +68,7 @@ gulp.task('public_styles', function(){
 
 // JS
 gulp.task('public_js', function(){
-	return gulp.src(admin_js_source)
+	return gulp.src(public_js_source)
 		.pipe(concat('social-curator.js'))
 		.pipe(gulp.dest(public_js_compiled))
 		.pipe(uglify())
