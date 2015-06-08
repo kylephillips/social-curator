@@ -60,7 +60,7 @@ class RegisterCuratePage {
 		$args = array(
 			'post_status' => array('publish', 'draft', 'pending')
 		);
-		$posts = $this->social_post_repo->getPostsArray($args);
+		$posts = $this->social_post_repo->getPostsArray($args, true);
 		foreach($posts as $post) :
 			include(Helpers::view('curator/single-post'));
 		endforeach;

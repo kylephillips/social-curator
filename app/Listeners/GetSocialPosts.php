@@ -66,7 +66,8 @@ class GetSocialPosts extends ListenerBase {
 	*/
 	private function getPosts()
 	{
-		$this->posts = $this->social_post_repo->getPostsArray($this->query_params);
+		$admin = ( isset($_POST['adminview']) ) ? true : false;
+		$this->posts = $this->social_post_repo->getPostsArray($this->query_params, $admin);
 	}
 
 	/**

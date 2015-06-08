@@ -156,7 +156,8 @@ function getNewPosts(posts)
 			nonce : social_curator_admin.social_curator_nonce,
 			action: 'social_curator_get_posts',
 			posts: posts,
-			status: ['pending']
+			status: ['pending'],
+			adminview: true
 		},
 		success: function(data){
 			updateUnmoderatedCount(data.unmoderated_count);
@@ -440,7 +441,8 @@ function filterPosts()
 			nonce : social_curator_admin.social_curator_nonce,
 			action: 'social_curator_get_posts',
 			status: $('[data-filter-status]').val(),
-			site : $('[data-filter-site]').val()
+			site : $('[data-filter-site]').val(),
+			adminview: true
 		},
 		success: function(data){
 			appendPosts(data.posts);

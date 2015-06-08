@@ -69,7 +69,7 @@ class SocialPostRepository {
 	* @param str|array Post Statuses
 	* @return Array of Posts for JSON response
 	*/
-	public function getPostsArray($query_params)
+	public function getPostsArray($query_params, $admin = false)
 	{
 		$args = array(
 			'post_type' => 'social-post',
@@ -113,9 +113,11 @@ class SocialPostRepository {
 			$posts[$c]['video_url'] = get_post_meta($id, 'social_curator_video_url', true);
 			$posts[$c]['type'] = get_post_meta($id, 'social_curator_type', true);
 			$posts[$c]['thumbnail'] = $this->presenter->getThumbnailURL($id);
-			$posts[$c]['approved_by'] = get_post_meta($id, 'social_curator_approved_by', true);
-			$posts[$c]['approved_date'] = get_post_meta($id, 'social_curator_approved_date', true);
-			if ( is_user_logged_in() ) $posts[$c]['edit_link'] = get_edit_post_link($id);
+			if ( $admin && is_user_logged_in() ){
+				$posts[$c]['approved_by'] = get_post_meta($id, 'social_curator_approved_by', true);
+				$posts[$c]['approved_date'] = get_post_meta($id, 'social_curator_approved_date', true);
+				$posts[$c]['edit_link'] = get_edit_post_link($id);
+			}
 		$c++; endwhile; endif; wp_reset_postdata();
 		return $posts;
 	}
