@@ -16,7 +16,7 @@ use SocialCurator\Listeners\UpdateStatus;
 * Register the App-wide events
 * Events for individual social sites should be registered within their own namespace
 */
-class RegisterEvents {
+class RegisterAdminEvents {
 
 	public function __construct()
 	{
