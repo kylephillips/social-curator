@@ -106,7 +106,6 @@ class SocialPostRepository {
 			$posts[$c]['profile_image'] = $this->presenter->getAvatar($id);
 			$posts[$c]['profile_image_link'] = $this->presenter->getAvatarURL($id);
 			$posts[$c]['profile_link'] = $this->presenter->getProfileLink($id);
-			$posts[$c]['status'] = get_post_status($id);
 			$posts[$c]['profile_name'] = $this->presenter->getProfileName($id);
 			$posts[$c]['icon_link'] = $this->presenter->getIconLink($id);
 			$posts[$c]['date'] = get_the_time('D, M jS - g:ia');
@@ -114,6 +113,7 @@ class SocialPostRepository {
 			$posts[$c]['type'] = get_post_meta($id, 'social_curator_type', true);
 			$posts[$c]['thumbnail'] = $this->presenter->getThumbnailURL($id);
 			if ( $admin && is_user_logged_in() ){
+				$posts[$c]['status'] = get_post_status($id);
 				$posts[$c]['approved_by'] = get_post_meta($id, 'social_curator_approved_by', true);
 				$posts[$c]['approved_date'] = get_post_meta($id, 'social_curator_approved_date', true);
 				$posts[$c]['edit_link'] = get_edit_post_link($id);
