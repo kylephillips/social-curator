@@ -60,7 +60,7 @@ class FetchFeed extends FeedBase {
 			$feed = json_decode($response->getBody());
 			$this->feed = $feed->photos->photo;
 		} catch (\Exception $e){
-			return false;
+			throw new \Exception($e->getMessage());
 		}
 	}
 

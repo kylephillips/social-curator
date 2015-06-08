@@ -58,6 +58,10 @@
 		<a href="#" class="close" data-dismiss="alert">&times;</a>
 	</div>
 
+	<div class="social-curator-alert-error" style="display:none;">
+		<span data-social-curator-import-error></span>
+	</div>
+
 
 	<div class="social-curator-post-grid" data-post-grid>
 		<?php $this->loopPosts(); ?>

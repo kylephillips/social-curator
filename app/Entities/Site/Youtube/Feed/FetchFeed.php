@@ -58,7 +58,7 @@ class FetchFeed extends FeedBase {
 			$feed = json_decode($response->getBody());
 			$this->feed = $feed->items;
 		} catch (\Exception $e){
-			return false;
+			throw new \Exception($e->getMessage());
 		}
 	}
 

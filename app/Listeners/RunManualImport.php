@@ -55,11 +55,15 @@ class RunManualImport extends ListenerBase {
 	private function runImport()
 	{
 		$this->site = ( isset($_POST['site']) ) ? sanitize_text_field($_POST['site']) : 'all';
-		$this->importer->doImport($this->site);
-		$ids = $this->importer->getIDs();
-		$this->return_data['post_ids'] = ( isset( $ids ) ) ? $ids : array();
-		$this->return_data['import_count'] = isset( $ids ) ? count($ids) : 0;
-		$this->return_data['import_date'] = $this->settings_repo->lastImport('M jS') . ' at ' . $this->settings_repo->lastImport('g:ia');
+		try {
+			$this->importer->doImport($this->site);
+			$ids = $this->importer->getIDs();
+			$this->return_data['post_ids'] = ( isset( $ids ) ) ? $ids : array();
+			$this->return_data['import_count'] = isset( $ids ) ? count($ids) : 0;
+			$this->return_data['import_date'] = $this->settings_repo->lastImport('M jS') . ' at ' . $this->settings_repo->lastImport('g:ia');
+		} catch ( \Exception $e ){
+			$this->sendError($e->getMessage());
+		}
 	}
 
 	/**

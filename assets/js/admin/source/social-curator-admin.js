@@ -60,6 +60,7 @@ $(document).on('click', '[data-import-site]', function(e){
 */
 function doImport(site)
 {
+	$('[data-social-curator-import-error]').parents('.social-curator-alert-error').hide();
 	loadingIndicator(true);
 	$('[data-import-site]').attr('disabled', 'disabled');
 	$('[data-social-curator-import-all]').attr('disabled', 'disabled').text(social_curator_admin.importing);
@@ -77,10 +78,14 @@ function doImport(site)
 		},
 		success: function(data){
 			console.log(data);
-			$('[data-social-curator-last-import]').text(data.import_date);
-			updateLastImportCount(data);
-			if ( data.import_count > 30 ) document.location.reload(true);
-			getNewPosts(data.posts);
+			if ( data.status === 'success' ){
+				$('[data-social-curator-last-import]').text(data.import_date);
+				updateLastImportCount(data);
+				if ( data.import_count > 30 ) document.location.reload(true);
+				getNewPosts(data.posts);
+			} else {
+				displayImportError(data.message);
+			}
 		}
 	});
 }
@@ -101,6 +106,16 @@ function updateLastImportCount(data)
 function updateUnmoderatedCount(count)
 {
 	$('[data-social-curator-unmoderated-count]').text(count);
+}
+
+/**
+* Display an import error
+*/
+function displayImportError(message)
+{
+	$('[data-social-curator-import-error]').text(message);
+	$('[data-social-curator-import-error]').parents('.social-curator-alert-error').show();
+	resetPostsLoading();
 }
 
 
