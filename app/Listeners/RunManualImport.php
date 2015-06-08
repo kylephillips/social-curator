@@ -2,6 +2,7 @@
 
 use SocialCurator\Import\Importer;
 use SocialCurator\Config\SettingsRepository;
+use SocialCurator\Config\SupportedSites;
 
 /**
 * Run a Manual Import
@@ -26,11 +27,23 @@ class RunManualImport extends ListenerBase {
 	*/
 	private $settings_repo;
 
+	/**
+	* Supported Sites
+	* @var SocialCurator\Config\SupportedSites
+	*/
+	private $supported_sites;
+
+	/**
+	* Site to Import From
+	* @var string
+	*/
+	private $site;
 
 	public function __construct()
 	{
 		parent::__construct();
 		$this->settings_repo = new SettingsRepository;
+		$this->supported_sites = new SupportedSites;
 		$this->importer = new Importer;
 		$this->runImport();
 		$this->sendSuccess();
@@ -41,7 +54,8 @@ class RunManualImport extends ListenerBase {
 	*/
 	private function runImport()
 	{
-		$this->importer->doImport();
+		$this->site = ( isset($_POST['site']) ) ? sanitize_text_field($_POST['site']) : 'all';
+		$this->importer->doImport($this->site);
 		$ids = $this->importer->getIDs();
 		$this->return_data['post_ids'] = ( isset( $ids ) ) ? $ids : array();
 		$this->return_data['import_count'] = isset( $ids ) ? count($ids) : 0;
@@ -53,11 +67,14 @@ class RunManualImport extends ListenerBase {
 	*/
 	protected function sendSuccess($message = null)
 	{
+		$site_name = ' ' . __('from', 'socialcurator') . ' ';
+		$site_name .= ( $this->site !== 'all' ) ? $this->supported_sites->getKey($this->site, 'name') : __('All Sites', 'socialcurator');
 		return wp_send_json(array(
 			'status' => 'success', 
 			'posts' => $this->return_data['post_ids'],
 			'import_count' => $this->return_data['import_count'],
-			'import_date' => $this->return_data['import_date']
+			'import_date' => $this->return_data['import_date'],
+			'site' => $site_name
 		));
 	}
 

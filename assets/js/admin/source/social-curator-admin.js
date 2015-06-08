@@ -1,5 +1,8 @@
 jQuery(function($){
 
+var importingsite = ''; // For holding text of currently importing site
+var importingbutton = ''; // For holding currently active site import button
+
 
 /**
 * ---------------------------------------------------------------
@@ -36,30 +39,47 @@ function triggerMasonry(prepend)
 * ---------------------------------------------------------------
 */
 
-$(document).on('click', '[data-social-curator-manual-import]', function(e){
+$(document).on('click', '[data-social-curator-import-all]', function(e){
 	e.preventDefault();
-	doManualImport();
+	doImport();
+});
+$(document).on('click', '[data-import-site]', function(e){
+	e.preventDefault();
+	
+	importingsite = $(this).text();
+	importingbutton = $(this);
+
+	var site = $(this).attr('data-import-site');
+	$(this).text(social_curator_admin.importing);
+	doImport(site);
 });
 
 
 /**
 * Run the Manual Import
 */
-function doManualImport()
+function doImport(site)
 {
 	loadingIndicator(true);
-	$('[data-social-curator-manual-import]').attr('disabled', 'disabled').text(social_curator_admin.importing);
+	$('[data-import-site]').attr('disabled', 'disabled');
+	$('[data-social-curator-import-all]').attr('disabled', 'disabled').text(social_curator_admin.importing);
+	
+	// Set site-specific vars
+	if ( !site ) var site = 'all';
+	
 	$.ajax({
 		url: ajaxurl,
 		type: 'POST',
 		data: {
 			nonce : social_curator_admin.social_curator_nonce,
-			action: 'social_curator_manual_import'
+			action: 'social_curator_manual_import',
+			site: site
 		},
 		success: function(data){
 			console.log(data);
 			$('[data-social-curator-last-import]').text(data.import_date);
-			updateLastImportCount(data.import_count);
+			updateLastImportCount(data);
+			if ( data.import_count > 30 ) document.location.reload(true);
 			getNewPosts(data.posts);
 		}
 	});
@@ -68,10 +88,11 @@ function doManualImport()
 /**
 * Update Last Import Count
 */
-function updateLastImportCount(count)
+function updateLastImportCount(data)
 {
-	$('[data-social-curator-import-count]').find('span').text(count);
-	$('[data-social-curator-import-count]').show();
+	$('[data-social-curator-import-count]').text(data.import_count);
+	$('[data-social-curator-import-site]').text(data.site);
+	$('[data-social-curator-import-count]').parents('.social-curator-alert').show();
 }
 
 /**
@@ -188,7 +209,14 @@ function appendSinglePost(post)
 function resetPostsLoading()
 {
 	loadingIndicator(false);
-	$('[data-social-curator-manual-import]').attr('disabled', false).text(social_curator_admin.run_import);
+	$('[data-social-curator-import-all]').attr('disabled', false).text(social_curator_admin.run_import);
+	$('[data-import-site]').attr('disabled', false);
+
+	if ( importingsite !== "" ){
+		importingbutton.text(importingsite);
+		importingsite = '';
+		importingbutton = '';
+	}
 }
 
 
@@ -460,6 +488,30 @@ $(document).on('click', '[data-dismiss="alert"]', function(e){
 	e.preventDefault();
 	$(this).parents('.social-curator-alert').fadeOut('fast');
 });
+
+
+/**
+* ---------------------------------------------------------------
+* Dropdowns
+* ---------------------------------------------------------------
+*/
+$(document).on('click', '[data-toggle="social-curator-dropdown"]', function(e){
+	e.preventDefault();
+	toggleDropdown($(this));
+});
+$(document).on('click', function(e){
+	if ( $(e.target).parents('.social-curator-dropdown').length == 0 ){
+		$('.social-curator-dropdown-content').hide();
+		$('.social-curator-dropdown').removeClass('open');
+	}
+});
+function toggleDropdown(button)
+{
+	var dropdown = $(button).siblings('.social-curator-dropdown-content');
+	$(button).parents('.social-curator-dropdown').toggleClass('open');
+	$(dropdown).toggle();
+}
+
 
 
 }); // jQuery

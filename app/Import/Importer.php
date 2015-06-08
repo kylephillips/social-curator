@@ -32,6 +32,10 @@ class Importer {
 	*/
 	private $post_ids = array();
 
+	/**
+	* Site to Import From
+	*/
+	private $site;
 	
 	public function __construct()
 	{
@@ -43,8 +47,9 @@ class Importer {
 	/**
 	* Run the Import
 	*/
-	public function doImport()
+	public function doImport($site)
 	{
+		$this->site = $site;
 		$this->loopSiteFeeds();
 		$this->setImportData();
 	}
@@ -56,6 +61,7 @@ class Importer {
 	{
 		$enabled_sites = $this->settings_repo->getEnabledSites();
 		foreach($enabled_sites as $enabled_site){
+			if ( $this->site !== 'all' && $enabled_site !== $this->site ) continue;
 			$site = $this->supported_sites->getSite($enabled_site);
 			$feed_class = 'SocialCurator\Entities\Site\\' . $site['namespace'] . '\Feed\Feed';
 			if ( !class_exists($feed_class) ) continue;

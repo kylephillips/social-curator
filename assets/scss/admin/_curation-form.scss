@@ -5,10 +5,14 @@
 	padding: 10px;
 	margin-bottom: 15px;
 	@include clearfix;
-	.button {
+	.social-curator-dropdown {
 		float: right;
 		position: relative;
 		top: 5px;
+	}
+	.toggle-button i {
+		position: relative;
+		top: 2px;
 	}
 	p {
 		margin: 0;
