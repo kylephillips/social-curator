@@ -1,0 +1,1 @@
+$(document).ready(function(){var c=new SocialCuratorNonce;c.injectNonce()});var SocialCuratorNonce=function(){this.injectNonce=function(c){$.ajax({url:social_curator.ajaxurl,type:"POST",data:{action:"social_curator_nonce"},success:function(a){var n='<script> var social_curator_nonce = "'+a.nonce+'"; </script>';$("head").append(n),c&&c()}})}};

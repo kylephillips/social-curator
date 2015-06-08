@@ -23,6 +23,7 @@ class Bootstrap {
 		new Curate\RegisterCuratePage;
 		new Config\Settings;
 		new Events\RegisterAdminEvents;
+		new Events\RegisterPublicEvents;
 		new Activation\TrashedTable\CreateTrashedTable;
 		new Activation\DefaultSettings\SupportedSites;
 		new Activation\Dependencies\AdminDependencies;
