@@ -108,9 +108,10 @@ class SocialPostRepository {
 			$posts[$c]['profile_link'] = $this->presenter->getProfileLink($id);
 			$posts[$c]['profile_name'] = $this->presenter->getProfileName($id);
 			$posts[$c]['icon_link'] = $this->presenter->getIconLink($id);
-			$posts[$c]['date'] = get_the_time('D, M jS - g:ia');
+			$posts[$c]['date'] = get_the_date();
 			$posts[$c]['video_url'] = get_post_meta($id, 'social_curator_video_url', true);
 			$posts[$c]['type'] = get_post_meta($id, 'social_curator_type', true);
+			$posts[$c]['link'] = get_post_meta($id, 'social_curator_link', true);
 			$posts[$c]['thumbnail'] = $this->presenter->getThumbnailURL($id);
 			if ( $admin && is_user_logged_in() ){
 				$posts[$c]['status'] = get_post_status($id);
