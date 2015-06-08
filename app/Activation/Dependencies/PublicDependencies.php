@@ -55,6 +55,7 @@ class PublicDependencies extends Dependencies {
 	{
 		$data = array(
 			'social_curator_nonce' => wp_create_nonce( 'social-curator-nonce' ),
+			'ajaxurl' => admin_url('admin-ajax.php')
 		);
 		return $data;
 	}

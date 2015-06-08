@@ -156,7 +156,7 @@ function getNewPosts(posts)
 			nonce : social_curator_admin.social_curator_nonce,
 			action: 'social_curator_get_posts',
 			posts: posts,
-			status: ['pending', 'publish']
+			status: ['pending']
 		},
 		success: function(data){
 			updateUnmoderatedCount(data.unmoderated_count);

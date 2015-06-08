@@ -54,8 +54,9 @@ class GetSocialPosts extends ListenerBase {
 	private function setQueryParams()
 	{
 		if ( isset($_POST['posts']) ) $this->query_params['posts__in'] = $_POST['posts'];
-		$this->query_params['post_status'] = ( !isset($_POST['status']) ) ? 'pending' : $_POST['status'];
+		if ( isset($_POST['status']) ) $this->query_params['post_status'] = $_POST['status'];
 		if ( isset($_POST['site']) ) $this->query_params['site'] = $_POST['site'];
+		$this->query_params['offset'] = ( isset($_POST['offset']) ) ? intval($_POST['offset']) : 0;
 	}
 
 	/**
