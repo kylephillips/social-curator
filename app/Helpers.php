@@ -45,4 +45,13 @@ class Helpers {
 		return dirname(__FILE__) . '/Entities/Site/' . $site_name . '/Views/' . $file . '.php';
 	}
 
+	/**
+	* Get the Plugin Version
+	*/
+	public static function version()
+	{
+		global $social_curator_version;
+		return $social_curator_version;
+	}
+
 }
