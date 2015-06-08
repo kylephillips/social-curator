@@ -56,7 +56,8 @@ class GetSocialPosts extends ListenerBase {
 		if ( isset($_POST['posts']) ) $this->query_params['posts__in'] = $_POST['posts'];
 		if ( isset($_POST['status']) ) $this->query_params['post_status'] = $_POST['status'];
 		if ( isset($_POST['site']) ) $this->query_params['site'] = $_POST['site'];
-		$this->query_params['offset'] = ( isset($_POST['offset']) ) ? intval($_POST['offset']) : 0;
+		if ( isset($_POST['offset']) ) $this->query_params['offset'] = intval($_POST['offset']);
+		if ( isset($_POST['number']) ) $this->query_params['number'] = intval($_POST['number']);
 	}
 
 	/**

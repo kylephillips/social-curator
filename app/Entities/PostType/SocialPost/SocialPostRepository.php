@@ -73,6 +73,7 @@ class SocialPostRepository {
 	{
 		$args = array(
 			'post_type' => 'social-post',
+			'posts_per_page' => -1,
 			'ignore_sticky_posts' => 1,
 			'posts_per_page' => -1,
 			'orderby' => 'date',
@@ -88,6 +89,11 @@ class SocialPostRepository {
 		if ( isset($query_params['site']) ){
 			$args['meta_key'] = 'social_curator_site';
 			$args['meta_value'] = $query_params['site'];
+		}
+
+		if ( isset($query_params['offset']) && isset($query_params['number']) ){
+			$args['posts_per_page'] = $query_params['number'];
+			$args['offset'] = $query_params['offset'];
 		}
 
 		$pq = new \WP_Query(apply_filters('social_curator_posts', $args));
