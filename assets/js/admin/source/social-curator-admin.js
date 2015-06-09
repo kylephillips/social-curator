@@ -264,6 +264,7 @@ function trashPost(id)
 			post_id: id
 		},
 		success: function(){
+			$('[data-trash-count]').text(parseInt($('[data-trash-count]').text()) + 1);
 			loadingIndicator(false);
 		}
 	});
@@ -374,6 +375,7 @@ function restoreGridPost(id)
 			addUnmoderated();
 			removeGridItem(id);
 			loadingIndicator(false);
+			$('[data-trash-count]').text(parseInt($('[data-trash-count]').text()) - 1);
 		}
 	});
 }
@@ -403,6 +405,7 @@ function deletePost(id)
 			console.log(data);
 			removeGridItem(id);
 			loadingIndicator(false);
+			$('[data-trash-count]').text(parseInt($('[data-trash-count]').text()) - 1);
 		}
 	});
 }
@@ -501,8 +504,10 @@ function changeStatus(post_id, status, button)
 */
 $(document).on('click', '[data-empty-social-trash]', function(e){
 	e.preventDefault();
-	$(this).attr('disabled', 'disabled');
-	emptyTrash();
+	if ( window.confirm('Are you sure you want to empty the trash?') ){
+		$(this).attr('disabled', 'disabled');
+		emptyTrash();
+	}
 });
 function emptyTrash()
 {
@@ -515,7 +520,6 @@ function emptyTrash()
 			action: 'social_empty_trash'
 		},
 		success: function(data){
-			console.log(data);
 			loadingIndicator(false);
 			$('[data-trash-count]').text('0');
 			$('[data-empty-social-trash]').attr('disabled', false);
