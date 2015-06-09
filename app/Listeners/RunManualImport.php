@@ -3,6 +3,7 @@
 use SocialCurator\Import\Importer;
 use SocialCurator\Config\SettingsRepository;
 use SocialCurator\Config\SupportedSites;
+use SocialCurator\Import\FailedImportLog;
 
 /**
 * Run a Manual Import
@@ -62,6 +63,7 @@ class RunManualImport extends ListenerBase {
 			$this->return_data['import_count'] = isset( $ids ) ? count($ids) : 0;
 			$this->return_data['import_date'] = $this->settings_repo->lastImport('M jS') . ' at ' . $this->settings_repo->lastImport('g:ia');
 		} catch ( \Exception $e ){
+			new FailedImportLog($e->getMessage());
 			$this->sendError($e->getMessage());
 		}
 	}

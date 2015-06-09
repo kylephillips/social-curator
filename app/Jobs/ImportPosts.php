@@ -1,8 +1,7 @@
 <?php namespace SocialCurator\Jobs;
 
 use SocialCurator\Import\Importer;
-use SocialCurator\Config\SettingsRepository;
-use SocialCurator\Config\SupportedSites;
+use SocialCurator\Import\FailedImportLog;
 
 /**
 * Run an Import Job
@@ -29,7 +28,7 @@ class ImportPosts {
 		try {
 			$this->importer->doImport('all');
 		} catch ( \Exception $e ){
-			// TODO: Log Exception
+			new FailedImportLog($e->getMessage());
 		}
 	}
 
