@@ -24,13 +24,15 @@ class Bootstrap {
 		new Config\Settings;
 		new Events\RegisterAdminEvents;
 		new Events\RegisterPublicEvents;
-		new Activation\TrashedTable\CreateTrashedTable;
+		new Activation\Migrations\CreateTables;
 		new Activation\DefaultSettings\SupportedSites;
 		new Activation\Dependencies\AdminDependencies;
 		new Activation\Dependencies\PublicDependencies;
 		new Activation\RegisterSites\RegisterSites;
 		new Entities\PostType\SocialPost\ContentFilter;
 		new API\APIFactory;
+		new Jobs\RegisterIntervals;
+		new Jobs\RegisterJobs;
 	}
 
 
