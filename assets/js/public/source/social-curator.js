@@ -1,4 +1,4 @@
-$(document).ready(function(){
+jQuery(document).ready(function(){
 	var nonce = new SocialCuratorNonce;
 	nonce.injectNonce();
 });
@@ -11,7 +11,7 @@ var SocialCuratorNonce = function(){
 	* @param callback function
 	*/
 	this.injectNonce = function(callback){
-		$.ajax({
+		jQuery.ajax({
 			url: social_curator.ajaxurl,
 			type: 'POST',
 			data: {
@@ -19,7 +19,7 @@ var SocialCuratorNonce = function(){
 			},
 			success: function(data){
 				var nonce = '<script> var social_curator_nonce = "' + data.nonce + '"; </script>';
-				$('head').append(nonce);
+				jQuery('head').append(nonce);
 				if ( callback ) callback();
 			}
 		});
