@@ -113,6 +113,7 @@ class SocialPostRepository {
 			$posts[$c]['type'] = get_post_meta($id, 'social_curator_type', true);
 			$posts[$c]['link'] = get_post_meta($id, 'social_curator_link', true);
 			$posts[$c]['thumbnail'] = $this->presenter->getThumbnailURL($id);
+			$posts[$c]['original_id'] = get_post_meta($id, 'social_curator_original_id', true);
 			if ( $admin && is_user_logged_in() ){
 				$posts[$c]['status'] = get_post_status($id);
 				$posts[$c]['approved_by'] = get_post_meta($id, 'social_curator_approved_by', true);
