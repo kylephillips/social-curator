@@ -11,6 +11,7 @@ use SocialCurator\Listeners\ApprovePost;
 use SocialCurator\Listeners\RestorePost;
 use SocialCurator\Listeners\DeletePost;
 use SocialCurator\Listeners\UpdateStatus;
+use SocialCurator\Listeners\EmptyTrash;
 
 /**
 * Register the App-wide events
@@ -47,6 +48,9 @@ class RegisterAdminEvents {
 
 		// Update the Status of a Post (Generic update event for AJAX Requests)
 		add_action( 'wp_ajax_social_update_post_status', array($this, 'statusWasUpdated' ));
+
+		// Empty the trash
+		add_action( 'wp_ajax_social_empty_trash', array($this, 'trashWasEmptied' ));
 	}
 
 	/**
@@ -130,6 +134,14 @@ class RegisterAdminEvents {
 	public function statusWasUpdated()
 	{
 		new UpdateStatus;
+	}
+
+	/**
+	* A request was made to empty the trash
+	*/
+	public function trashWasEmptied()
+	{
+		new EmptyTrash;
 	}
 
 }

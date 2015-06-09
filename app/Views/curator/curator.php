@@ -51,6 +51,12 @@
 			</select>
 		</div>
 		<button class="button" data-filter-grid><?php _e('Filter', 'socialcurator'); ?></button>
+
+		<?php if ( current_user_can('delete_others_posts') ) : ?>
+		<button class="button pull-right" data-empty-social-trash><?php _e('Empty Trash', 'socialcurator'); ?> (<span data-trash-count><?php echo $this->social_post_repo->trashCount(); ?></span>)</button>
+		<?php endif; ?>
+
+
 	</div><!-- .social-curator-filter-grid -->
 
 	<div class="social-curator-alert-success social-curator-alert" style="display:none;">

@@ -494,6 +494,40 @@ function changeStatus(post_id, status, button)
 
 
 
+/**
+* ---------------------------------------------------------------
+* Empty the Trash
+* ---------------------------------------------------------------
+*/
+$(document).on('click', '[data-empty-social-trash]', function(e){
+	e.preventDefault();
+	$(this).attr('disabled', 'disabled');
+	emptyTrash();
+});
+function emptyTrash()
+{
+	loadingIndicator(true);
+	$.ajax({
+		url: ajaxurl,
+		type: 'POST',
+		data: {
+			nonce : social_curator_admin.social_curator_nonce,
+			action: 'social_empty_trash'
+		},
+		success: function(data){
+			console.log(data);
+			loadingIndicator(false);
+			$('[data-trash-count]').text('0');
+			$('[data-empty-social-trash]').attr('disabled', false);
+			
+			if ( $('[data-filter-status]').val() === 'trash' ) {
+				$('[data-post-grid]').find('.social-curator-post-grid-single').remove();
+			}
+		}
+	});
+}
+
+
 
 /**
 * ---------------------------------------------------------------

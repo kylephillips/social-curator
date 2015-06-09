@@ -124,4 +124,15 @@ class SocialPostRepository {
 		return $posts;
 	}
 
+	/**
+	* Get number of social posts in the trash
+	*/
+	public function trashCount()
+	{
+		global $wpdb;
+		$table = $wpdb->prefix . 'posts';
+		$count = $wpdb->get_var("SELECT COUNT(*) FROM $table WHERE `post_type` = 'social-post' AND `post_status` = 'trash'");
+		return $count;
+	}
+
 }
