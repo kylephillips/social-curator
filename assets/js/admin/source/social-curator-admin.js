@@ -551,6 +551,7 @@ $(document).on('click', '[data-dismiss="alert"]', function(e){
 */
 $(document).on('click', '[data-toggle="social-curator-dropdown"]', function(e){
 	e.preventDefault();
+	var visible = ( $(this).siblings('.social-curator-dropdown-content').is(':visible') ) ? true : false;
 	toggleDropdown($(this));
 });
 $(document).on('click', function(e){
@@ -562,8 +563,13 @@ $(document).on('click', function(e){
 function toggleDropdown(button)
 {
 	var dropdown = $(button).siblings('.social-curator-dropdown-content');
+	if ( $(dropdown).is(':visible') ){
+		$('.social-curator-dropdown-content').hide();
+	} else {
+		$('.social-curator-dropdown-content').hide();
+		$(dropdown).show();
+	}
 	$(button).parents('.social-curator-dropdown').toggleClass('open');
-	$(dropdown).toggle();
 }
 
 

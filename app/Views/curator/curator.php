@@ -25,6 +25,23 @@
 				</div><!-- .social-curator-drowdown-content -->
 			</div><!-- .dropdown -->
 
+			<!-- Single Importer -->
+			<div class="social-curator-dropdown" style="margin-right:8px;">
+				<a href="#" data-toggle="social-curator-dropdown" class="button toggle-button"><?php _e('Import Single Post', 'socialcurator'); ?><i class="dashicons dashicons-arrow-down"></i>
+				</a>
+				<div class="social-curator-dropdown-content social-curator-single-import">
+					<select data-social-curator-single-import-site>
+						<?php
+							foreach ( $this->supported_sites->singleImportSites() as $site => $name ){
+								echo '<option value="' . $site . '">' . $name . '</option>';
+							}
+						?>
+					</select>
+					<input type="text" data-social-curator-single-import-id placeholder="<?php _e('ID', 'socialcurator'); ?>" />
+					<button class="button button-primary" data-social-curator-single-import><?php _e('Import', 'socialcurator'); ?>
+				</div>
+			</div>
+
 			<?php _e('Last Import', 'socialcurator'); ?>: <span data-social-curator-last-import><?php echo $this->settings_repo->lastImport('M jS'); ?> at <?php echo $this->settings_repo->lastImport('g:ia'); ?></span><br>
 			<strong><span data-social-curator-unmoderated-count><?php echo $this->social_post_repo->getUnmoderatedCount(); ?></span> <?php _e('awaiting moderation', 'socialcurator'); ?></strong></p>
 		</p>

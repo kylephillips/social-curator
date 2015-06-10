@@ -154,4 +154,19 @@ class SupportedSites {
 		return $supported_site[$key];
 	}
 
+	/**
+	* Get Single Imported Sites Array
+	* @return array
+	*/
+	public function singleImportSites()
+	{
+		$all_sites = $this->getSites();
+		$sites = array();
+		foreach($all_sites as $key => $site){
+			if ( !isset($site['single_import']) || !$site['single_import'] ) continue;
+			$sites[$key] = $site['name'];
+		}
+		return $sites;
+	}
+
 }
