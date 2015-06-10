@@ -2,6 +2,7 @@
 
 use SocialCurator\Config\SupportedSites;
 use SocialCurator\Helpers;
+use SocialCurator\Config\SettingsRepository;
 
 class SocialPostPresenter {
 
@@ -11,9 +12,16 @@ class SocialPostPresenter {
 	*/
 	private $supported_sites;
 
+	/**
+	* Settings Repository
+	* @var SocialCurator\Config\SettingsRepository
+	*/
+	private $settings_repo;
+
 	public function __construct()
 	{
 		$this->supported_sites = new SupportedSites;
+		$this->settings_repo = new SettingsRepository;
 	}
 
 	/**
@@ -27,7 +35,7 @@ class SocialPostPresenter {
 		$upload_dir = wp_upload_dir();
 		$image = get_post_meta($post_id, 'social_curator_avatar', true);
 		if ( !$image ) return false;
-		$fallback = Helpers::plugin_url() . '/assets/images/kickapoo-fallback.png';
+		$fallback = $this->settings_repo->fallbackAvatar();
 		return '<img src="' . $upload_dir['baseurl'] . '/social-curator/avatars/' . $image . '" onerror="this.onerror=null;this.src=' . "'" . $fallback . "'" . ';" />';
 	}
 

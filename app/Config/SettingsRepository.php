@@ -1,6 +1,7 @@
 <?php namespace SocialCurator\Config;
 
 use SocialCurator\Config\SupportedSites;
+use SocialCurator\Helpers;
 
 class SettingsRepository {
 
@@ -87,6 +88,47 @@ class SettingsRepository {
 		$option = get_option('social_curator_import_status');
 		if ( !$option ) return 'pending';
 		return $option;
+	}
+
+	/**
+	* Get Notification Emails
+	*/
+	public function notificationEmails($format = 'list')
+	{
+		$option = get_option('social_curator_notification_emails');
+		if ( $format == 'list' ) return $option;
+		$emails = str_replace(' ', '', $option);
+		return explode(',', $emails);
+	}
+
+	/**
+	* Get the email "from name" setting
+	*/
+	public function fromName()
+	{
+		return get_option('social_curator_notification_from');
+	}
+
+	/**
+	* Get the email "from email" setting
+	*/
+	public function fromEmail()
+	{
+		return get_option('social_curator_notification_from_email');
+	}
+
+	/**
+	* Get the Fallback Avatar
+	*/
+	public function fallbackAvatar($return_url = true)
+	{
+		$default_url = Helpers::plugin_url() . '/assets/images/avatar-fallback.png';
+		$option = get_option('social_curator_fallback_avatar');
+		if ( !$option && !$return_url) return false;
+		if ( !$option && $return_url ) return $default_url;
+		if ( !$option ) return '<img src="' . $default_url . '" />';
+		if ( $return_url ) return $option;
+		return '<img src="' . $option . '" />';
 	}
 
 }

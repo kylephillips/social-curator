@@ -17,6 +17,7 @@ class SupportedSites {
 	{
 		$this->twitter();
 		$this->instagram();
+		$this->facebook();
 		$this->flickr();
 		$this->youtube();
 	}
@@ -92,6 +93,24 @@ class SupportedSites {
 			'icon_class' => 'social-curator-icon-youtube3',
 			'settings_fields' => array(
 				'api_key' => __('API Key', 'socialcurator')
+			)
+		);
+	}
+
+
+	/**
+	* Add Facebook
+	*/
+	protected function facebook()
+	{
+		$this->sites['facebook'] = array(
+			'name' => 'Facebook',
+			'namespace' => 'Facebook',
+			'api_endpoint' => 'https://www.googleapis.com/youtube/v3/',
+			'icon_class' => 'social-curator-icon-facebook',
+			'settings_fields' => array(
+				'app_id' => __('APP ID', 'socialcurator'),
+				'app_secrent' => __('APP Secret', 'socialcurator'),
 			)
 		);
 	}

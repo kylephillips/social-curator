@@ -1,10 +1,8 @@
-<?php
-$fallback = SocialCurator\Helpers::plugin_url() . '/assets/images/kickapoo-fallback.png';
-?>
+<?php $fallback = $this->settings_repo->fallbackAvatar(); ?>
 <div class="social-curator-post-grid-single <?php if ( $post['status'] == 'publish' ) echo 'approved'; ?>" data-post-container-id="<?php echo $post['id']; ?>">
 	<div class="social-curator-post-head">
 		<span data-icon-link class="social-curator-post-link"><?php echo $post['icon_link']; ?></span>
-		<img src="<?php echo $post['profile_image_link']; ?>" data-profile-image class="social-curator-profile-image"  onerror="this.onerror=null;this.src='<?php echo $fallback; ?>';" />
+		<img src="<?php echo $post['profile_image_link']; ?>" data-profile-image class="social-curator-profile-image" onerror="this.onerror=null;this.src='<?php echo $fallback; ?>';" />
 		<p>By <strong><a href="<?php echo $post['profile_link']; ?>" data-profile-link target="_blank"><span data-profile-name><?php echo $post['profile_name']; ?></span></a></strong><br>on <span data-date><?php echo $post['date']; ?></span></p>
 	</div><!-- .post-head -->
 	

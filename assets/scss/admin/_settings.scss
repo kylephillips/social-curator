@@ -19,12 +19,38 @@
 	}
 }
 
+// Enabled Sites
+.social-curator-settings-enabled-sites {
+	ul {
+		@include clearfix;
+		background-color: darken($white, 11%);
+		padding: 10px;
+		li {
+			float: left;
+			width: 50%;
+		}
+	}
+}
+
+
+// Fallback Avatar
+.social-curator-settings-fallback-avatar {
+	@include clearfix;
+	.remove-avatar-button {
+		float: left;
+	}
+	.avatar-fallback-image {
+		float: left;
+		margin-right: 20px;
+	}
+}
+
 // Site Fields
 .social-curator-site-settings {
 	@include wptable;
 	background-color: $white;
 	display: block;
-	max-width: 400px;
+	max-width: 500px;
 	padding: 20px;
 	margin-bottom: 30px;
 	label {

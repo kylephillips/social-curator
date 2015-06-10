@@ -34,6 +34,8 @@ class AdminDependencies extends Dependencies {
 	*/
 	public function scripts()
 	{
+		wp_enqueue_script('thickbox');
+		wp_enqueue_style('thickbox');
 		wp_enqueue_script('jquery-masonry');
 		wp_enqueue_script(
 			'social-curator-admin', 
@@ -65,7 +67,8 @@ class AdminDependencies extends Dependencies {
 			'permanently_delete' => __('Permanently Delete', 'socialcurator'),
 			'restore' => __('Restore', 'socialcurator'),
 			'updating' => __('Updating', 'socialcurator'),
-			'update' => __('Update', 'socialcurator')
+			'update' => __('Update', 'socialcurator'),
+			'choose_image' => __('Choose Image', 'socialcurator')
 		);
 		return $data;
 	}
