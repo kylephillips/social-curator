@@ -17,7 +17,7 @@ class SupportedSites {
 	{
 		$this->twitter();
 		$this->instagram();
-		$this->facebook();
+		//$this->facebook();
 		$this->flickr();
 		$this->youtube();
 	}
@@ -32,6 +32,7 @@ class SupportedSites {
 			'namespace' => 'Twitter',
 			'api_endpoint' => 'https://api.twitter.com/1.1/',
 			'icon_class' => 'social-curator-icon-twitter',
+			'single_import' => true,
 			'settings_fields' => array(
 				'api_key' => __('API Key', 'socialcurator'), 
 				'api_secret' => __('API Secret', 'socialcurator'), 
@@ -52,6 +53,7 @@ class SupportedSites {
 			'namespace' => 'Instagram',
 			'api_endpoint' => 'https://api.instagram.com/v1/',
 			'icon_class' => 'social-curator-icon-instagram',
+			'single_import' => false,
 			'required_for_auth' => array(
 				'client_id', 'client_secret'
 			),
@@ -74,6 +76,7 @@ class SupportedSites {
 			'namespace' => 'Flickr',
 			'api_endpoint' => 'https://api.flickr.com/',
 			'icon_class' => 'social-curator-icon-flickr2',
+			'single_import' => false,
 			'settings_fields' => array(
 				'api_key' => __('API Key', 'socialcurator')
 			)
@@ -91,6 +94,7 @@ class SupportedSites {
 			'namespace' => 'Youtube',
 			'api_endpoint' => 'https://www.googleapis.com/youtube/v3/',
 			'icon_class' => 'social-curator-icon-youtube3',
+			'single_import' => false,
 			'settings_fields' => array(
 				'api_key' => __('API Key', 'socialcurator')
 			)
@@ -108,6 +112,7 @@ class SupportedSites {
 			'namespace' => 'Facebook',
 			'api_endpoint' => 'https://www.googleapis.com/youtube/v3/',
 			'icon_class' => 'social-curator-icon-facebook',
+			'single_import' => false,
 			'settings_fields' => array(
 				'app_id' => __('APP ID', 'socialcurator'),
 				'app_secrent' => __('APP Secret', 'socialcurator'),

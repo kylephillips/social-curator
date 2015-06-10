@@ -3,9 +3,9 @@
 use SocialCurator\Config\SettingsRepository;
 
 /**
-* Formats the Twitter Feed into an importable array
+* Formats the Twitter Search Feed results into an importable array
 */
-class FeedFormatter {
+class FeedFormatterSearch {
 
 	/**
 	* The Unformatted Feed

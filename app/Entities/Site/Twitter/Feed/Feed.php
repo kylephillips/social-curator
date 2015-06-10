@@ -1,7 +1,9 @@
 <?php namespace SocialCurator\Entities\Site\Twitter\Feed;
 
-use SocialCurator\Entities\Site\Twitter\Feed\FetchFeed;
-use SocialCurator\Entities\Site\Twitter\Feed\FeedFormatter;
+use SocialCurator\Entities\Site\Twitter\Feed\FetchFeedSearch;
+use SocialCurator\Entities\Site\Twitter\Feed\FeedFormatterSearch;
+use SocialCurator\Entities\Site\Twitter\Feed\FetchFeedSingle;
+use SocialCurator\Entities\Site\Twitter\Feed\FeedFormatterSingle;
 
 /**
 * Formatted Feed, ready for import
@@ -26,10 +28,41 @@ class Feed {
 	*/
 	private $formatted_feed;
 
-	public function __construct()
+	/**
+	* Type of Feed to fetch
+	* @var string
+	*/
+	private $type;
+
+	/**
+	* Term to search (ID)
+	* @var string
+	*/
+	private $query;
+
+	public function __construct($type = 'search', $query = false)
 	{
-		$this->unformatted_feed = new FetchFeed;
-		$this->feed_formatter = new FeedFormatter;
+		$this->query = $query;
+		$this->$type();
+	}
+
+	/**
+	* Fetch a Search Feed
+	*/
+	private function search()
+	{
+		$this->unformatted_feed = new FetchFeedSearch;
+		$this->feed_formatter = new FeedFormatterSearch;
+		$this->format();
+	}
+
+	/**
+	* Fetch a Single Tweet
+	*/
+	private function single()
+	{
+		$this->unformatted_feed = new FetchFeedSingle($this->query);
+		$this->feed_formatter = new FeedFormatterSingle;
 		$this->format();
 	}
 

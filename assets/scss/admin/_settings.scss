@@ -70,6 +70,33 @@
 	}
 }
 
+// Notification Settings
+.social-curator-settings-notifications {
+	@include wptable;
+	background-color: $white;
+	padding: 5px 20px;
+	label {
+		font-weight: bold;
+	}
+	input[type="text"]{
+		width: 100%;
+		box-sizing: border-box;
+	}
+	p {
+		clear: both;
+		margin-bottom: 20px;
+		&.half {
+			width: 45%;
+			float: left;
+		}
+		&.right {
+			clear: none;
+			float: right;
+		}
+	}
+}
+
+
 // Status Indication
 .social-curator-loading-small {
 	display: inline-block;

@@ -5,9 +5,9 @@ use \GuzzleHttp\Client;
 use \GuzzleHttp\Subscriber\Oauth\Oauth1;
 
 /**
-* Fetch the API Feed
+* Fetch the Search API Feed
 */
-class FetchFeed extends FeedBase {
+class FetchFeedSearch extends FeedBase {
 
 	/**
 	* Search Term for Querying API
