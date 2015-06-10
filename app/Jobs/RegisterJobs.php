@@ -14,7 +14,7 @@ class RegisterJobs {
 	}
 
 	/**
-	* Schedule the Jobs
+	* Schedule the WP Cron Jobs
 	*/
 	public function scheduleJobs()
 	{

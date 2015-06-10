@@ -3,6 +3,7 @@
 
 	<h2 class="nav-tab-wrapper">
 		<a class="nav-tab <?php if ( $tab == 'general' ) echo 'nav-tab-active'; ?>" href="options-general.php?page=social-curator-settings"><?php _e('General', 'socialcurator'); ?></a>
+		<a class="nav-tab <?php if ( $tab == 'notifications' ) echo 'nav-tab-active'; ?>" href="options-general.php?page=social-curator-settings&amp;tab=notifications"><?php _e('Notifications', 'socialcurator'); ?></a>
 		<?php echo $this->siteTabs(); ?>
 	</h2>
 

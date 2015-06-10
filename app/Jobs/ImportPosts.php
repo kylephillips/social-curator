@@ -2,6 +2,7 @@
 
 use SocialCurator\Import\Importer;
 use SocialCurator\Import\FailedImportLog;
+use SocialCurator\Notifications\FailedImportNotification;
 
 /**
 * Run an Import Job
@@ -29,6 +30,7 @@ class ImportPosts {
 			$this->importer->doImport('all');
 		} catch ( \Exception $e ){
 			new FailedImportLog($e->getMessage());
+			new FailedImportNotification($e->getMessage());
 		}
 	}
 
