@@ -1,18 +1,11 @@
 <?php namespace SocialCurator\Import;
 
-use SocialCurator\Entities\PostType\SocialPost\SocialPostRepository;
 use SocialCurator\Import\PostImporter;
 
 /**
 * Import a Single Feed
 */
 class SingleFeedImporter {
-
-	/**
-	* Social Post Repository
-	* @var SocialCurator\Entities\PostType\SocialPost\SocialPostRepository
-	*/
-	private $post_repo;
 
 	/**
 	* Single Post Importer
@@ -28,7 +21,6 @@ class SingleFeedImporter {
 
 	public function __construct()
 	{
-		$this->post_repo = new SocialPostRepository;
 		$this->post_importer = new PostImporter;
 	}
 
@@ -40,7 +32,6 @@ class SingleFeedImporter {
 	public function import($site, $feed)
 	{
 		foreach($feed as $feed_item){
-			if ( $this->post_repo->exists($site, $feed_item['id']) ) continue;
 			$importer = new PostImporter;
 			if ( $importer->createPost($site, $feed_item) ){
 				$this->post_ids[] = $importer->getID();

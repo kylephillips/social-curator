@@ -36,9 +36,3 @@ $search_term = $this->settings_repo->getSiteSetting($this->site_index, 'search_t
 	</ul>
 </div>
 <?php submit_button(); ?>
-<?php
-
-// $feed = new \SocialCurator\Entities\Site\Twitter\Feed\Feed('single', '608756287959130112');
-// $importer = new \SocialCurator\Import\SingleFeedImporter;
-// $feed_array = array($feed->getFeed());
-// $importer->import('twitter', $feed_array);

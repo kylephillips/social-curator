@@ -1,6 +1,7 @@
 <?php namespace SocialCurator\Events;
 
 use SocialCurator\Listeners\RunManualImport;
+use SocialCurator\Listeners\RunSingleImport;
 use SocialCurator\Listeners\LogTrashedPost;
 use SocialCurator\Listeners\DeleteUserAvatar;
 use SocialCurator\Listeners\DeletePostThumbnail;
@@ -21,8 +22,11 @@ class RegisterAdminEvents {
 
 	public function __construct()
 	{
-		// Run an Import Manully - Admin Only
+		// Run a Search Import Manully
 		add_action( 'wp_ajax_social_curator_manual_import', array($this, 'importWasRun' ));
+
+		// Run a Single Import
+		add_action( 'wp_ajax_social_curator_single_import', array($this, 'singleImportWasRun' ));
 
 		// Post Was Trashed
 		add_action('before_delete_post', array($this, 'postWasDeleted'));
@@ -59,6 +63,14 @@ class RegisterAdminEvents {
 	public function importWasRun()
 	{
 		new RunManualImport;
+	}
+
+	/**
+	* 
+	*/
+	public function singleImportWasRun()
+	{
+		new RunSingleImport;
 	}
 
 	/**

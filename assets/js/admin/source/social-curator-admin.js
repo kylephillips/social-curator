@@ -62,8 +62,8 @@ function doImport(site)
 {
 	$('[data-social-curator-import-error]').parents('.social-curator-alert-error').hide();
 	loadingIndicator(true);
-	$('[data-import-site]').attr('disabled', 'disabled');
-	$('[data-social-curator-import-all]').attr('disabled', 'disabled').text(social_curator_admin.importing);
+	$('[data-import-site], [data-social-curator-single-import]').attr('disabled', 'disabled');
+	$('[data-social-curator-import-all], [data-social-curator-single-import]').attr('disabled', 'disabled').text(social_curator_admin.importing);
 	
 	// Set site-specific vars
 	if ( !site ) var site = 'all';
@@ -88,6 +88,58 @@ function doImport(site)
 		}
 	});
 }
+
+
+
+/**
+* ---------------------------------------------------------------
+* Run a Single Import
+* ---------------------------------------------------------------
+*/
+
+$(document).on('click', '[data-social-curator-single-import]', function(e){
+	e.preventDefault();
+	doSingleImport();
+});
+
+/**
+* Run the Single Import
+*/
+function doSingleImport()
+{
+	$('[data-social-curator-import-error]').parents('.social-curator-alert-error').hide();
+	loadingIndicator(true);
+	$('[data-import-site], [data-social-curator-single-import]').attr('disabled', 'disabled');
+	$('[data-social-curator-import-all], [data-social-curator-single-import]').attr('disabled', 'disabled').text(social_curator_admin.importing);
+	
+	// Set Vars
+	var site = $('[data-social-curator-single-import-site]').val();
+	var id = $('[data-social-curator-single-import-id]').val();
+	
+	$.ajax({
+		url: ajaxurl,
+		type: 'POST',
+		data: {
+			nonce : social_curator_admin.social_curator_nonce,
+			action: 'social_curator_single_import',
+			site: site,
+			id: id
+		},
+		success: function(data){
+			console.log(data);
+			if ( data.status === 'success' ){
+				$('[data-social-curator-last-import]').text(data.import_date);
+				updateLastImportCount(data);
+				if ( data.import_count > 30 ) document.location.reload(true);
+				getNewPosts(data.posts);
+			} else {
+				displayImportError(data.message);
+			}
+		}
+	});
+}
+
+
 
 /**
 * Update Last Import Count
@@ -224,8 +276,13 @@ function appendSinglePost(post)
 function resetPostsLoading()
 {
 	loadingIndicator(false);
-	$('[data-social-curator-import-all]').attr('disabled', false).text(social_curator_admin.run_import);
-	$('[data-import-site]').attr('disabled', false);
+	$('[data-social-curator-import-all], [data-social-curator-single-import]').attr('disabled', false).text(social_curator_admin.run_import);
+	$('[data-import-site], [data-social-curator-single-import]').attr('disabled', false);
+	$('[data-social-curator-single-import-id]').val('');
+
+	// Close dropdowns
+	$('.social-curator-dropdown-content').hide();
+	$(button).parents('.social-curator-dropdown').toggleClass('open');
 
 	if ( importingsite !== "" ){
 		importingbutton.text(importingsite);
