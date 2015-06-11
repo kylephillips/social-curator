@@ -1,0 +1,37 @@
+//
+// Logs Table
+// --------------------------------------------------
+.social-curator-log-table {
+	background-color: $white;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+	@include wptable;
+	th, td {
+		padding: 8px;
+		width: 20%;
+		text-align: left;
+		border-left: 1px solid darken($white, 8%);
+		vertical-align: top;
+		&:first-child {
+			border-left: 0;
+		}
+		&.long {
+			width: 40%;
+		}
+	}
+	th {
+		background-color: darken($white, 85%);
+		color: $white;
+		border-color: darken($white, 90%);
+		vertical-align: middle;
+		padding: 10px 8px;
+	}
+	tr:nth-child(even) td {
+		background-color: darken($white, 6%);
+	}
+}
+
+.social-curator-button-loading-indicator {
+	display: none;
+	margin-left: 10px;
+}

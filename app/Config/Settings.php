@@ -5,6 +5,7 @@ namespace SocialCurator\Config;
 use SocialCurator\Config\SettingsRepository;
 use SocialCurator\Config\SupportedSites;
 use SocialCurator\Helpers;
+use SocialCurator\Entities\Log\LogRepository;
 
 /**
 * Plugin Settings
@@ -17,6 +18,12 @@ class Settings
 	* @var SocialCurator\Config\SettingsRepository
 	*/
 	private $settings_repo;
+
+	/**
+	* Log Repository
+	* @var SocialCurator\Entities\Log\LogRepository
+	*/
+	private $log_repo;
 
 	/**
 	* Supported Sites
@@ -42,6 +49,7 @@ class Settings
 	{
 		$this->settings_repo = new SettingsRepository;
 		$this->supported_sites = new SupportedSites;
+		$this->log_repo = new LogRepository;
 		add_action('admin_menu', array($this, 'registerSettingsPage'));
 	}
 

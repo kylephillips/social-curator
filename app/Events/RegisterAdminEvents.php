@@ -15,6 +15,7 @@ use SocialCurator\Listeners\RestorePost;
 use SocialCurator\Listeners\DeletePost;
 use SocialCurator\Listeners\UpdateStatus;
 use SocialCurator\Listeners\EmptyTrash;
+use SocialCurator\Listeners\ClearLogs;
 
 /**
 * Register the Admin events
@@ -58,6 +59,9 @@ class RegisterAdminEvents
 
 		// Empty the trash
 		add_action( 'wp_ajax_social_empty_trash', array($this, 'trashWasEmptied' ));
+
+		// Clear the Logs
+		add_action( 'wp_ajax_social_curator_clear_logs', array($this, 'logsWereCleared' ));
 	}
 
 	/**
@@ -157,6 +161,14 @@ class RegisterAdminEvents
 	public function trashWasEmptied()
 	{
 		new EmptyTrash;
+	}
+
+	/**
+	* A request was made to clear the import logs
+	*/
+	public function logsWereCleared()
+	{
+		new ClearLogs;
 	}
 
 }
