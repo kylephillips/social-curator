@@ -6,9 +6,10 @@ use SocialCurator\Import\SingleFeedImporter;
 use SocialCurator\Import\FailedImportLog;
 
 /**
-* Run a Manual Import
+* Import a Single Post
 */
-class RunSingleImport extends ListenerBase {
+class RunSingleImport extends ListenerBase 
+{
 
 	/**
 	* Importer
@@ -51,7 +52,9 @@ class RunSingleImport extends ListenerBase {
 	}
 
 	/**
-	* Run the Importer
+	* Run the Import
+	*
+	* Instantiates new formatted feed and passes it into the import class, bypassing "posts exists" check
 	*/
 	private function runImport()
 	{
@@ -64,7 +67,7 @@ class RunSingleImport extends ListenerBase {
 		try {
 			$feed = new $feed_class('single', $id);
 			$feed_array = array($feed->getFeed());
-			$this->importer->import($this->site, $feed_array);
+			$this->importer->import($this->site, $feed_array, false);
 			$ids = $this->importer->getIDs();
 			$this->return_data['post_ids'] = ( isset( $ids ) ) ? $ids : array();
 			$this->return_data['import_count'] = isset( $ids ) ? count($ids) : 0;
@@ -75,16 +78,9 @@ class RunSingleImport extends ListenerBase {
 		}
 	}
 
-//608775602179440640
-
-//608777103320993792	
-// $feed = new \SocialCurator\Entities\Site\Twitter\Feed\Feed('single', '608756287959130112');
-// $importer = new \SocialCurator\Import\SingleFeedImporter;
-// $feed_array = array($feed->getFeed());
-// $importer->import('twitter', $feed_array);
-
 	/**
 	* Send Success Data
+	* @return json
 	*/
 	protected function sendSuccess($message = null)
 	{
@@ -98,5 +94,4 @@ class RunSingleImport extends ListenerBase {
 			'site' => $site_name
 		));
 	}
-
 }

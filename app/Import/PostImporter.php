@@ -8,7 +8,8 @@ use SocialCurator\Entities\PostType\SocialPost\SocialPostRepository;
 /**
 * Import a Single Post from formatted array
 */
-class PostImporter {
+class PostImporter 
+{
 
 	/**
 	* Site the feed is from
@@ -84,7 +85,6 @@ class PostImporter {
 		);
 	}
 
-
 	/**
 	* Create the Post
 	*/
@@ -110,14 +110,12 @@ class PostImporter {
 		return true;
 	}
 
-
 	/**
-	* Attach Meta Fields
+	* Attach Meta Fields to the newly created post
 	*/
 	private function attachMeta()
 	{
 		add_post_meta($this->post_id, 'social_curator_site', $this->site);
-		
 		foreach($this->meta as $key => $fieldname){
 			if ( isset($this->post_data[$key]) && !is_null($this->post_data[$key]) ) 
 				add_post_meta($this->post_id, $fieldname, $this->post_data[$key]);
@@ -174,6 +172,5 @@ class PostImporter {
 		update_post_meta($this->post_id, 'social_curator_approved_by', __('Social Curator Importer', 'socialcurator'));
 		update_post_meta($this->post_id, 'social_curator_approved_date', date('Y-m-d H:m:s'));
 	}
-
 
 }
