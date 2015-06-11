@@ -141,6 +141,17 @@ function doSingleImport()
 }
 
 
+/**
+* ---------------------------------------------------------------
+* Update the Help modal target
+* ---------------------------------------------------------------
+*/
+$(document).on('change', '[data-social-curator-single-import-site]', function(){
+	var value = $(this).val();
+	$('[data-id-help-modal]').attr('data-social-curator-modal-open', 'id-help-' + value);
+});
+
+
 
 /**
 * Update Last Import Count

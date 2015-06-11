@@ -40,4 +40,20 @@
 		width: 100%;
 		margin-bottom: 8px;
 	}
+	.single-import-id {
+		position: relative;
+		a {
+			background-color: darken($white, 50%);
+			color: $white;
+			position: absolute;
+			right: 5px;
+			top: 5px;
+			width: 18px;
+			text-align: center;
+			display: block;
+			border-radius: 50%;
+			text-decoration: none;
+			line-height: 18px;
+		}
+	}
 }

@@ -77,4 +77,15 @@ class RegisterCuratePage
 		include(Helpers::view('curator/curator'));
 	}
 
+	/**
+	* Display the Help Modals
+	*/
+	private function helpModals()
+	{
+		foreach ( $this->supported_sites->getSites() as $key => $site ){
+			if ( !isset($site['help_modal_id']) || !$site['help_modal_id'] ) continue;
+			include(Helpers::site_view($key, 'id-help-modal'));
+		}
+	}
+
 }

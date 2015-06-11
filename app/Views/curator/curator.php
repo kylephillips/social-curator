@@ -20,7 +20,9 @@
 								echo $out;
 							}
 						?>
-						<li><a href="#" data-social-curator-import-all class="button button-primary"><?php _e('Import All', 'socialcurator'); ?></a></li>
+						<li>
+							<a href="#" data-social-curator-import-all class="button button-primary"><?php _e('Import All', 'socialcurator'); ?></a>
+						</li>
 					</ul>
 				</div><!-- .social-curator-drowdown-content -->
 			</div><!-- .dropdown -->
@@ -37,7 +39,10 @@
 							}
 						?>
 					</select>
-					<input type="text" data-social-curator-single-import-id placeholder="<?php _e('ID', 'socialcurator'); ?>" />
+					<div class="single-import-id">
+						<input type="text" data-social-curator-single-import-id placeholder="<?php _e('ID', 'socialcurator'); ?>" />
+						<a href="#" data-id-help-modal data-social-curator-modal-open="id-help-twitter">?</a>
+					</div>
 					<button class="button button-primary" data-social-curator-single-import><?php _e('Import', 'socialcurator'); ?>
 				</div>
 			</div>
@@ -95,5 +100,8 @@
 	<div data-post-template style="display:none;">
 		<?php include('single-post-template.php'); ?>
 	</div><!-- .post-template -->
+
+	<!-- Help Modals -->
+	<?php $this->helpModals(); ?>
 
 </div><!-- .wrap -->
