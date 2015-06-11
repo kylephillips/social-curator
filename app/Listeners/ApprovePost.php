@@ -1,8 +1,12 @@
-<?php namespace SocialCurator\Listeners;
+<?php 
+
+namespace SocialCurator\Listeners;
+
 /**
 * Approve a post from AJAX request
 */
-class ApprovePost extends ListenerBase {
+class ApprovePost extends ListenerBase 
+{
 
 	/**
 	* Post ID

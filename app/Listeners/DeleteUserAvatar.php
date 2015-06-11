@@ -1,8 +1,12 @@
-<?php namespace SocialCurator\Listeners;
+<?php 
+
+namespace SocialCurator\Listeners;
+
 /**
 * Delete a user avatar
 */
-class DeleteUserAvatar {
+class DeleteUserAvatar 
+{
 
 	/**
 	* The Post ID
@@ -23,7 +27,6 @@ class DeleteUserAvatar {
 		if ( $this->isSocialPost() ) return $this->removeImage();
 		return true;
 	}
-
 
 	/**
 	* Is the post a social post?

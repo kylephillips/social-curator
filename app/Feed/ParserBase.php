@@ -1,6 +1,8 @@
-<?php namespace SocialCurator\Feed;
+<?php 
+namespace SocialCurator\Feed;
 
-class ParserBase {
+class ParserBase 
+{
 
 	protected function parseLinks($text)
 	{

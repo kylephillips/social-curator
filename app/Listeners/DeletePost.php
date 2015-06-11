@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Listeners;
+<?php 
+
+namespace SocialCurator\Listeners;
 
 /**
 * Delete a post permanently
 */
-class DeletePost extends ListenerBase {
+class DeletePost extends ListenerBase 
+{
 
 	/**
 	* Post ID

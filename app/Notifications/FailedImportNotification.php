@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Notifications;
+<?php 
+
+namespace SocialCurator\Notifications;
 
 /**
 * Email the Admin when an import fails
 */
-class FailedImportNotification extends NotificationBase {
+class FailedImportNotification extends NotificationBase 
+{
 
 	public function __construct($message)
 	{

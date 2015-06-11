@@ -1,10 +1,12 @@
-<?php namespace SocialCurator\Import;
+<?php 
+
+namespace SocialCurator\Import;
 
 /**
 * Import a remote image into the media library
 */
-class MediaImporter {
-
+class MediaImporter 
+{
 
 	/**
 	* Import the Image to the Library

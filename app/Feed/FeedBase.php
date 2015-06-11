@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Feed;
+<?php 
+
+namespace SocialCurator\Feed;
 
 use SocialCurator\Config\SettingsRepository;
 use SocialCurator\Config\SupportedSites;
@@ -6,7 +8,8 @@ use SocialCurator\Config\SupportedSites;
 /**
 * Base class for extending site/API specific feeds
 */
-abstract class FeedBase {
+abstract class FeedBase 
+{
 
 	/**
 	* Settings Repository

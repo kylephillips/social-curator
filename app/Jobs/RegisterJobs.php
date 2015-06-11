@@ -1,11 +1,14 @@
-<?php namespace SocialCurator\Jobs;
+<?php 
+
+namespace SocialCurator\Jobs;
 
 use SocialCurator\Jobs\ImportPosts;
 
 /**
 * Schedule necessary jobs/crons
 */
-class RegisterJobs {
+class RegisterJobs 
+{
 
 	public function __construct()
 	{

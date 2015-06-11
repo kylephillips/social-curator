@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Listeners;
+<?php 
+
+namespace SocialCurator\Listeners;
 
 use SocialCurator\Entities\PostType\SocialPost\SocialPostPresenter;
 use SocialCurator\Entities\PostType\SocialPost\SocialPostRepository;
@@ -6,7 +8,8 @@ use SocialCurator\Entities\PostType\SocialPost\SocialPostRepository;
 /**
 * Get an array of social posts and return an AJAX response
 */
-class GetSocialPosts extends ListenerBase {
+class GetSocialPosts extends ListenerBase 
+{
 
 	/**
 	* Social Post Presenter

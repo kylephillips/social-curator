@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Listeners;
+<?php 
+
+namespace SocialCurator\Listeners;
 
 /**
 * Restore a post back to Pending
 */
-class RestorePost extends ListenerBase {
+class RestorePost extends ListenerBase 
+{
 
 	/**
 	* Post ID

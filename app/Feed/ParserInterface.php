@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Feed;
+<?php 
+
+namespace SocialCurator\Feed;
 
 /**
 * Contract for Parsers
 */
-interface ParserInterface {
+interface ParserInterface 
+{
 
 	public function parse($content);
 

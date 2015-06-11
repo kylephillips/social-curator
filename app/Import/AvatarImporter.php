@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Import;
+<?php 
+
+namespace SocialCurator\Import;
 
 /**
 * Import a remote Image directly into a directory
 */
-class AvatarImporter {
+class AvatarImporter 
+{
 
 	/**
 	* Do the import

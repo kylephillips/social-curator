@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Import;
+<?php 
+
+namespace SocialCurator\Import;
 
 use SocialCurator\Config\SettingsRepository;
 use SocialCurator\Config\SupportedSites;
@@ -7,7 +9,8 @@ use SocialCurator\Import\SingleFeedImporter;
 /**
 * The Primary Import Class
 */
-class Importer {
+class Importer 
+{
 
 	/**
 	* Settings Repository

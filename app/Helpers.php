@@ -1,9 +1,12 @@
-<?php namespace SocialCurator;
+<?php 
+
+namespace SocialCurator;
 
 /**
 * Helper Functions
 */
-class Helpers {
+class Helpers 
+{
 
 	/**
 	* Plugin URL

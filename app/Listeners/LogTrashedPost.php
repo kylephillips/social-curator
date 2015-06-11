@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Listeners;
+<?php 
+
+namespace SocialCurator\Listeners;
 
 /**
 * Log a trashed post so it is not imported again
 */
-class LogTrashedPost {
+class LogTrashedPost 
+{
 
 	/**
 	* The Post ID

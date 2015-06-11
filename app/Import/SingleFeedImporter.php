@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Import;
+<?php 
+
+namespace SocialCurator\Import;
 
 use SocialCurator\Import\PostImporter;
 use SocialCurator\Entities\PostType\SocialPost\SocialPostRepository;
@@ -6,7 +8,8 @@ use SocialCurator\Entities\PostType\SocialPost\SocialPostRepository;
 /**
 * Import a Single Feed
 */
-class SingleFeedImporter {
+class SingleFeedImporter 
+{
 
 	/**
 	* Single Post Importer
@@ -58,6 +61,5 @@ class SingleFeedImporter {
 	{
 		return ( $this->post_ids ) ? $this->post_ids : array();
 	}
-	
 
 }

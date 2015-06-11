@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Events;
+<?php 
+
+namespace SocialCurator\Events;
 
 use SocialCurator\Listeners\RunManualImport;
 use SocialCurator\Listeners\RunSingleImport;
@@ -15,10 +17,11 @@ use SocialCurator\Listeners\UpdateStatus;
 use SocialCurator\Listeners\EmptyTrash;
 
 /**
-* Register the App-wide events
+* Register the Admin events
 * Events for individual social sites should be registered within their own namespace
 */
-class RegisterAdminEvents {
+class RegisterAdminEvents 
+{
 
 	public function __construct()
 	{

@@ -1,4 +1,6 @@
-<?php namespace SocialCurator;
+<?php 
+
+namespace SocialCurator;
 
 /**
 * Primary Plugin Bootstrap

@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Listeners;
+<?php 
+
+namespace SocialCurator\Listeners;
 
 /**
 * Update approval status when a post is updated
 */
-class UpdateApproverDetails {
+class UpdateApproverDetails 
+{
 
 	/**
 	* The Post ID

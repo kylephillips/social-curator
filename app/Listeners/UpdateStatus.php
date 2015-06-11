@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Listeners;
+<?php 
+
+namespace SocialCurator\Listeners;
 
 /**
 * Update Post Status 
 */
-class UpdateStatus extends ListenerBase {
+class UpdateStatus extends ListenerBase 
+{
 
 	public function __construct()
 	{

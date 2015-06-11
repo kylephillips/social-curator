@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Listeners;
+<?php 
+
+namespace SocialCurator\Listeners;
 
 use SocialCurator\Config\SupportedSites;
 use SocialCurator\Config\SettingsRepository;

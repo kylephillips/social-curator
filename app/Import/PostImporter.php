@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Import;
+<?php 
+
+namespace SocialCurator\Import;
 
 use SocialCurator\Import\AvatarImporter;
 use SocialCurator\Import\MediaImporter;

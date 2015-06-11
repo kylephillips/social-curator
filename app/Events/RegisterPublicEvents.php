@@ -1,6 +1,9 @@
-<?php namespace SocialCurator\Events;
+<?php 
 
-class RegisterPublicEvents {
+namespace SocialCurator\Events;
+
+class RegisterPublicEvents 
+{
 
 	public function __construct()
 	{

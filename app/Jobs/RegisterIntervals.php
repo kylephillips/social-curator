@@ -1,8 +1,12 @@
-<?php namespace SocialCurator\Jobs;
+<?php 
+
+namespace SocialCurator\Jobs;
+
 /**
 * Add custom intervals for crons
 */
-class RegisterIntervals {
+class RegisterIntervals 
+{
 
 	public function __construct()
 	{

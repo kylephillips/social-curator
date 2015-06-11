@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Listeners;
+<?php 
+
+namespace SocialCurator\Listeners;
 
 /**
 * Base Event Class Handles Nonce Validation
 */
-class ListenerBase {
+class ListenerBase 
+{
 
 	/**
 	* Nonce

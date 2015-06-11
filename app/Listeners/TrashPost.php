@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Listeners;
+<?php 
+
+namespace SocialCurator\Listeners;
 
 /**
 * Move a post to the trash, return AJAX response
 */
-class TrashPost extends ListenerBase {
+class TrashPost extends ListenerBase 
+{
 
 	/**
 	* Post ID

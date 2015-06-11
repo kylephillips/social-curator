@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Listeners;
+<?php 
+
+namespace SocialCurator\Listeners;
 
 use SocialCurator\Import\Importer;
 use SocialCurator\Config\SettingsRepository;
@@ -8,7 +10,8 @@ use SocialCurator\Import\FailedImportLog;
 /**
 * Run a Manual Import
 */
-class RunManualImport extends ListenerBase {
+class RunManualImport extends ListenerBase 
+{
 
 	/**
 	* Importer

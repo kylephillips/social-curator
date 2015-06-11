@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Listeners;
+<?php 
+
+namespace SocialCurator\Listeners;
 
 /**
 * Empty the Social Posts Trash
 */
-class EmptyTrash extends ListenerBase {
+class EmptyTrash extends ListenerBase 
+{
 
 	public function __construct()
 	{

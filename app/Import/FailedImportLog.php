@@ -1,8 +1,12 @@
-<?php namespace SocialCurator\Import;
+<?php 
+
+namespace SocialCurator\Import;
+
 /**
 * Log a failed import
 */
-class FailedImportLog {
+class FailedImportLog 
+{
 
 	/**
 	* The message to log

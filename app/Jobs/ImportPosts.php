@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Jobs;
+<?php 
+
+namespace SocialCurator\Jobs;
 
 use SocialCurator\Import\Importer;
 use SocialCurator\Import\FailedImportLog;
@@ -7,7 +9,8 @@ use SocialCurator\Notifications\FailedImportNotification;
 /**
 * Run an Import Job
 */
-class ImportPosts {
+class ImportPosts 
+{
 
 	/**
 	* Importer

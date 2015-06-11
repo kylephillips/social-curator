@@ -1,11 +1,14 @@
-<?php namespace SocialCurator\Notifications;
+<?php 
+
+namespace SocialCurator\Notifications;
 
 use SocialCurator\Config\SettingsRepository;
 
 /**
 * Base class for extending email notifications
 */
-abstract class NotificationBase {
+abstract class NotificationBase 
+{
 
 	/**
 	* Settings Repository

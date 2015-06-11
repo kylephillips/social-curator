@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Listeners;
+<?php 
+
+namespace SocialCurator\Listeners;
 
 /**
 * Delete a Social Post Thumbnail
 */
-class DeletePostThumbnail {
+class DeletePostThumbnail 
+{
 
 	/**
 	* The Post ID
@@ -24,7 +27,6 @@ class DeletePostThumbnail {
 		if ( $this->isSocialPost() ) return $this->removeImage();
 		return true;
 	}
-
 
 	/**
 	* Is the post a social post?
