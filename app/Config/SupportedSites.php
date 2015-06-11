@@ -76,7 +76,7 @@ class SupportedSites {
 			'namespace' => 'Flickr',
 			'api_endpoint' => 'https://api.flickr.com/',
 			'icon_class' => 'social-curator-icon-flickr2',
-			'single_import' => false,
+			'single_import' => true,
 			'settings_fields' => array(
 				'api_key' => __('API Key', 'socialcurator')
 			)

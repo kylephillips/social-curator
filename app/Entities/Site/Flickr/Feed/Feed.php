@@ -1,12 +1,17 @@
-<?php namespace SocialCurator\Entities\Site\Flickr\Feed;
+<?php 
 
-use SocialCurator\Entities\Site\Flickr\Feed\FetchFeed;
-use SocialCurator\Entities\Site\Flickr\Feed\FeedFormatter;
+namespace SocialCurator\Entities\Site\Flickr\Feed;
+
+use SocialCurator\Entities\Site\Flickr\Feed\FetchFeedSearch;
+use SocialCurator\Entities\Site\Flickr\Feed\FeedFormatterSearch;
+use SocialCurator\Entities\Site\Flickr\Feed\FetchFeedSingle;
+use SocialCurator\Entities\Site\Flickr\Feed\FeedFormatterSingle;
 
 /**
-* Formatted Feed, ready for import
+* Fetch the Proper Feed and Format it for Import
 */
-class Feed {
+class Feed 
+{
 
 	/**
 	* The Unformatted Feed
@@ -26,10 +31,41 @@ class Feed {
 	*/
 	private $formatted_feed;
 
-	public function __construct()
+	/**
+	* Type of Feed to fetch
+	* @var string
+	*/
+	private $type;
+
+	/**
+	* Term to search (ID)
+	* @var string
+	*/
+	private $query;
+
+	public function __construct($type = 'search', $query = false)
 	{
-		$this->unformatted_feed = new FetchFeed;
-		$this->feed_formatter = new FeedFormatter;
+		$this->query = $query;
+		$this->$type();
+	}
+
+	/**
+	* Fetch a Search Feed
+	*/
+	private function search()
+	{
+		$this->unformatted_feed = new FetchFeedSearch;
+		$this->feed_formatter = new FeedFormatterSearch;
+		$this->format();
+	}
+
+	/**
+	* Fetch a Single Instagram Post
+	*/
+	private function single()
+	{
+		$this->unformatted_feed = new FetchFeedSingle($this->query);
+		$this->feed_formatter = new FeedFormatterSingle;
 		$this->format();
 	}
 

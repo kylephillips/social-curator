@@ -1,9 +1,9 @@
 <?php namespace SocialCurator\Entities\Site\Flickr\Feed;
 
 /**
-* Formats the Flickr Feed into an importable array
+* Formats the Flickr Search Feed into an importable array
 */
-class FeedFormatter {
+class FeedFormatterSearch {
 
 	/**
 	* The Unformatted Feed

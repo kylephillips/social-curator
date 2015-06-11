@@ -6,7 +6,7 @@ use \GuzzleHttp\Client;
 /**
 * Fetch the API Feed
 */
-class FetchFeed extends FeedBase {
+class FetchFeedSearch extends FeedBase {
 
 	/**
 	* Search Term for Querying API
