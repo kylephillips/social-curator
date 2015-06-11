@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\API;
+<?php 
+
+namespace SocialCurator\API;
 
 use SocialCurator\API\PostGridShortcode;
 

@@ -283,7 +283,6 @@ function resetPostsLoading()
 
 	// Close dropdowns
 	$('.social-curator-dropdown-content').hide();
-	$(button).parents('.social-curator-dropdown').toggleClass('open');
 
 	if ( importingsite !== "" ){
 		importingbutton.text(importingsite);
@@ -291,8 +290,6 @@ function resetPostsLoading()
 		importingbutton = '';
 	}
 }
-
-
 
 
 

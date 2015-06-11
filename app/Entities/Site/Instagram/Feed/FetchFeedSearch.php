@@ -1,12 +1,15 @@
-<?php namespace SocialCurator\Entities\Site\Instagram\Feed;
+<?php 
+
+namespace SocialCurator\Entities\Site\Instagram\Feed;
 
 use SocialCurator\Feed\FeedBase;
 use \GuzzleHttp\Client;
 
 /**
-* Fetch the API Feed
+* Fetch the Search Feed from the Instagram API
 */
-class FetchFeed extends FeedBase {
+class FetchFeedSearch extends FeedBase 
+{
 
 	/**
 	* Search Term for Querying API

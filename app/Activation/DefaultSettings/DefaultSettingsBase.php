@@ -1,8 +1,12 @@
-<?php namespace SocialCurator\Activation\DefaultSettings;
+<?php 
+
+namespace SocialCurator\Activation\DefaultSettings;
+
 /**
 * Base Default Settings Class
 */
-class DefaultSettingsBase {
+class DefaultSettingsBase 
+{
 
 	/**
 	* Plugin Version
@@ -15,7 +19,6 @@ class DefaultSettingsBase {
 	* @var string
 	*/
 	protected $old_plugin_version;
-
 
 	public function __construct()
 	{
@@ -31,14 +34,6 @@ class DefaultSettingsBase {
 	{
 		$old_version = get_option('social_curator_version');
 		$this->old_plugin_version = ( $old_version ) ? $old_version : '0.1';
-	}
-
-	/**
-	* Perform Updates before setting the new plugin version
-	*/
-	protected function performUpdates()
-	{
-
 	}
 
 	/**

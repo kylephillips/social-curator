@@ -1,12 +1,14 @@
-<?php namespace SocialCurator\Activation\Migrations;
+<?php 
+
+namespace SocialCurator\Activation\Migrations;
 
 use SocialCurator\Helpers;
 
 /**
-* Create the Trashed Social Posts Table
-* Saves posts that are trashed so they are not imported on future imports
+* Create DB Tables Required by the Plugin
 */
-class CreateTables {
+class CreateTables 
+{
 
 	public function __construct()
 	{
@@ -42,7 +44,7 @@ class CreateTables {
 	}
 
 	/**
-	* Create the Logs Table
+	* Create the Table to store logs
 	*/
 	private function createLogsTable()
 	{

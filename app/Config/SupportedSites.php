@@ -53,7 +53,7 @@ class SupportedSites {
 			'namespace' => 'Instagram',
 			'api_endpoint' => 'https://api.instagram.com/v1/',
 			'icon_class' => 'social-curator-icon-instagram',
-			'single_import' => false,
+			'single_import' => true,
 			'required_for_auth' => array(
 				'client_id', 'client_secret'
 			),

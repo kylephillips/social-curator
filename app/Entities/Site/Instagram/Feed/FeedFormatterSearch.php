@@ -1,9 +1,11 @@
-<?php namespace SocialCurator\Entities\Site\Instagram\Feed;
+<?php 
+
+namespace SocialCurator\Entities\Site\Instagram\Feed;
 
 /**
-* Formats the Instagram Feed into an importable array
+* Formats the Instagram Search Feed into an importable array
 */
-class FeedFormatter {
+class FeedFormatterSearch {
 
 	/**
 	* The Unformatted Feed

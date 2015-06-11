@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Activation\RegisterSites;
+<?php 
+
+namespace SocialCurator\Activation\RegisterSites;
 
 use SocialCurator\Helpers;
 
@@ -6,7 +8,8 @@ use SocialCurator\Helpers;
 * Register all supported sites
 * Bootstraps all supported sites by newing up a Registration class for each
 */
-class RegisterSites {
+class RegisterSites 
+{
 
 	public function __construct()
 	{

@@ -1,11 +1,14 @@
-<?php namespace SocialCurator\Activation\Dependencies;
+<?php 
+
+namespace SocialCurator\Activation\Dependencies;
 
 use SocialCurator\Helpers;
 
 /**
-* Register & Enqueue the Admin Dependencies
+* Register & Enqueue the Public Dependencies
 */
-class PublicDependencies extends Dependencies {
+class PublicDependencies extends Dependencies 
+{
 
 	public function __construct()
 	{
@@ -14,9 +17,8 @@ class PublicDependencies extends Dependencies {
 		add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ));
 	}
 
-
 	/**
-	* Register/Enqueue the Plugin Admin Styles
+	* Register/Enqueue the Plugin Public Styles
 	*/
 	public function styles()
 	{
@@ -28,9 +30,8 @@ class PublicDependencies extends Dependencies {
 		);
 	}
 
-
 	/**
-	* Register/Enqueue the Plugin Admin Scripts
+	* Register/Enqueue the Plugin Public Scripts
 	*/
 	public function scripts()
 	{
@@ -46,7 +47,6 @@ class PublicDependencies extends Dependencies {
 			$this->localizedData()
 		);
 	}
-
 
 	/**
 	* Localized JS Data

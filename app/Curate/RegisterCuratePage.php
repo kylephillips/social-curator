@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Curate;
+<?php 
+
+namespace SocialCurator\Curate;
 
 use SocialCurator\Helpers;
 use SocialCurator\Config\SettingsRepository;
@@ -8,7 +10,8 @@ use SocialCurator\Entities\PostType\SocialPost\SocialPostRepository;
 /**
 * Register the Curate Admin Menu Item and Display the View for Curating Posts
 */
-class RegisterCuratePage {
+class RegisterCuratePage 
+{
 
 	/**
 	* Settings Repo

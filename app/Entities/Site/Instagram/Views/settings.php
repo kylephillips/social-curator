@@ -87,8 +87,6 @@ $search_term = $this->settings_repo->getSiteSetting($this->site_index, 'search_t
 <p><em>(<?php _e('Disconnecting will remove authorization credentials from this website. To fully disconnect, visit the connected Instagram account > Edit Profile > Manage Applications > and revoke access.', 'socialcurator'); ?>)</em></p>
 <?php endif; ?>
 
-
-
 <script>
 
 	jQuery(document).on('click', '[data-instagram-remove-auth]', function(e){

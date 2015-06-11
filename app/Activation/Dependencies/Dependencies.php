@@ -1,16 +1,18 @@
-<?php namespace SocialCurator\Activation\Dependencies;
+<?php 
+
+namespace SocialCurator\Activation\Dependencies;
 
 /**
 * Base Dependency Class
 */
-class Dependencies {
+class Dependencies 
+{
 
 	/**
 	* Plugin Version
 	* @var string
 	*/
 	protected $version;
-
 
 	public function __construct()
 	{

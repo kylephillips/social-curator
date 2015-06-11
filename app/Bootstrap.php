@@ -3,7 +3,8 @@
 /**
 * Primary Plugin Bootstrap
 */
-class Bootstrap {
+class Bootstrap 
+{
 
 	public function __construct()
 	{
@@ -25,7 +26,6 @@ class Bootstrap {
 		new Events\RegisterAdminEvents;
 		new Events\RegisterPublicEvents;
 		new Activation\Migrations\CreateTables;
-		new Activation\DefaultSettings\SupportedSites;
 		new Activation\Dependencies\AdminDependencies;
 		new Activation\Dependencies\PublicDependencies;
 		new Activation\RegisterSites\RegisterSites;
@@ -35,7 +35,6 @@ class Bootstrap {
 		new Jobs\RegisterJobs;
 	}
 
-
 	/**
 	* Wordpress Initialization Actions
 	*/
@@ -44,7 +43,6 @@ class Bootstrap {
 		$this->localize();
 		new Entities\PostType\SocialPost\SocialPostColumns;
 	}
-
 
 	/**
 	* Localization Domain
@@ -58,7 +56,6 @@ class Bootstrap {
 		);
 	}
 
-
 	/**
 	* Add a link to the settings on the plugin page
 	*/
@@ -68,6 +65,5 @@ class Bootstrap {
 		array_unshift($links, $settings_link); 
 		return $links; 
 	}
-
 
 }

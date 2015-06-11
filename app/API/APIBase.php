@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\API;
+<?php 
+
+namespace SocialCurator\API;
 
 /**
 * Base class for API Classes
