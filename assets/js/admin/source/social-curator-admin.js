@@ -1,11 +1,15 @@
 jQuery(function($){
 
+// Initialize Plugins
+var dropdowns = new SocialCuratorDropdown;
+var modals = new SocialCuratorModal;
+
 var importingsite = ''; // For holding text of currently importing site
 var importingbutton = ''; // For holding currently active site import button
 
 
 /**
-* ---------------------------------------------------------------
+* --------------------------------------------------------------
 * Masonry Grid
 * ---------------------------------------------------------------
 */
@@ -292,8 +296,7 @@ function resetPostsLoading()
 	$('[data-import-site], [data-social-curator-single-import]').attr('disabled', false);
 	$('[data-social-curator-single-import-id]').val('');
 
-	// Close dropdowns
-	$('.social-curator-dropdown-content').hide();
+	dropdowns.closeAll();
 
 	if ( importingsite !== "" ){
 		importingbutton.text(importingsite);
@@ -601,35 +604,6 @@ function emptyTrash()
 	});
 }
 
-
-
-/**
-* ---------------------------------------------------------------
-* Dropdowns
-* ---------------------------------------------------------------
-*/
-$(document).on('click', '[data-toggle="social-curator-dropdown"]', function(e){
-	e.preventDefault();
-	var visible = ( $(this).siblings('.social-curator-dropdown-content').is(':visible') ) ? true : false;
-	toggleDropdown($(this));
-});
-$(document).on('click', function(e){
-	if ( $(e.target).parents('.social-curator-dropdown').length == 0 ){
-		$('.social-curator-dropdown-content').hide();
-		$('.social-curator-dropdown').removeClass('open');
-	}
-});
-function toggleDropdown(button)
-{
-	var dropdown = $(button).siblings('.social-curator-dropdown-content');
-	if ( $(dropdown).is(':visible') ){
-		$('.social-curator-dropdown-content').hide();
-	} else {
-		$('.social-curator-dropdown-content').hide();
-		$(dropdown).show();
-	}
-	$(button).parents('.social-curator-dropdown').toggleClass('open');
-}
 
 
 }); // jQuery

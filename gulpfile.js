@@ -14,6 +14,7 @@ var admin_js_source = [
 	'assets/js/admin/source/avatar-update.js',
 	'assets/js/admin/source/alerts.js',
 	'assets/js/admin/source/modals.js',
+	'assets/js/admin/source/dropdowns.js',
 	'assets/js/admin/source/social-curator-admin.js'
 ]
 var admin_js_compiled = 'assets/js/admin/';
