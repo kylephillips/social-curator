@@ -406,7 +406,11 @@ function approveGridPost(id)
 */
 function displayApproval(data)
 {
-	var html = '<div class="social-curator-alert-success">' + social_curator_admin.approved_by + ' ' + data.approved_by + ' ' + social_curator_admin.on + ' ' + data.approved_date + '</div>';
+	var html = '<div class="social-curator-alert-success">' + social_curator_admin.approved_by + ' ' + data.approved_by + ' ' + social_curator_admin.on + ' ' + data.approved_date;
+	if ( social_curator_admin.can_delete_posts === '1' ){
+		html += '<br><a href="#" data-trash-post data-post-id="' + data.id + '" class="unapprove-link">Unapprove and Trash</a>';
+	}
+	html += '</div>';
 	var postcontainer = $('[data-post-container-id=' + data.id + ']');
 	$(postcontainer).find('.social-curator-status-buttons').remove();
 	$(postcontainer).append(html);

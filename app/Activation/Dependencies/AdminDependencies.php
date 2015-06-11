@@ -58,6 +58,7 @@ class AdminDependencies extends Dependencies
 	{
 		$data = array(
 			'social_curator_nonce' => wp_create_nonce( 'social-curator-nonce' ),
+			'can_delete_posts' => ( current_user_can('edit_others_posts') ) ? true : false,
 			'run_import' => __('Run Import', 'socialcurator'),
 			'import_all' => __('Import All', 'socialcurator'),
 			'importing' => __('Importing', 'socialcurator'),
@@ -68,7 +69,8 @@ class AdminDependencies extends Dependencies
 			'restore' => __('Restore', 'socialcurator'),
 			'updating' => __('Updating', 'socialcurator'),
 			'update' => __('Update', 'socialcurator'),
-			'choose_image' => __('Choose Image', 'socialcurator')
+			'choose_image' => __('Choose Image', 'socialcurator'),
+			'unapprove_and_trash' => __('Unapprove and Trash', 'socialcurator')
 		);
 		return $data;
 	}
