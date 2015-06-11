@@ -53,7 +53,7 @@ class FetchFeedSingle extends FeedBase
 			]);
 			$feed = json_decode($response->getBody());
 			if ( !isset($feed->photo) ){
-				throw new \Exception(__('Photo not found.', 'socialcurator'));
+				throw new \Exception(__('Flickr Photo not found.', 'socialcurator'));
 			}
 			$this->feed = $feed->photo;
 		} catch (\Exception $e){
