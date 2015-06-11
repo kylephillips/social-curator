@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Entities\Site\Flickr\Feed;
+<?php 
+
+namespace SocialCurator\Entities\Site\Flickr\Feed;
 
 use SocialCurator\Feed\FeedBase;
 use \GuzzleHttp\Client;
@@ -6,7 +8,8 @@ use \GuzzleHttp\Client;
 /**
 * Fetch the API Feed
 */
-class FetchFeedSearch extends FeedBase {
+class FetchFeedSearch extends FeedBase 
+{
 
 	/**
 	* Search Term for Querying API

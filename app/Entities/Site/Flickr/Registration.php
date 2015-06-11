@@ -1,10 +1,12 @@
-<?php namespace SocialCurator\Entities\Site\Flickr;
+<?php 
 
+namespace SocialCurator\Entities\Site\Flickr;
 
 /**
 * Register Flickr as a Supported Site
 */
-class Registration {
+class Registration 
+{
 
 	public function __construct()
 	{

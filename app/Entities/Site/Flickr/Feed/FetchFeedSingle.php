@@ -1,12 +1,15 @@
-<?php namespace SocialCurator\Entities\Site\Flickr\Feed;
+<?php 
+
+namespace SocialCurator\Entities\Site\Flickr\Feed;
 
 use SocialCurator\Feed\FeedBase;
 use \GuzzleHttp\Client;
 
 /**
-* Fetch the API Feed
+* Fetch a Single Photo from the API
 */
-class FetchFeedSingle extends FeedBase {
+class FetchFeedSingle extends FeedBase 
+{
 
 	/**
 	* Search Term for Querying API
@@ -49,6 +52,9 @@ class FetchFeedSingle extends FeedBase {
 				]
 			]);
 			$feed = json_decode($response->getBody());
+			if ( !isset($feed->photo) ){
+				throw new \Exception(__('Photo not found.', 'socialcurator'));
+			}
 			$this->feed = $feed->photo;
 		} catch (\Exception $e){
 			throw new \Exception($e->getMessage());
