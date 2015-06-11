@@ -60,7 +60,8 @@ class RunSingleImport extends ListenerBase
 	private function runImport()
 	{
 		$this->site = ( isset($_POST['site']) ) ? sanitize_text_field($_POST['site']) : 'all';
-		$id = ( isset($_POST['id']) ) ? sanitize_text_field($_POST['id']) : '';
+		$id = ( isset($_POST['id']) ) ? sanitize_text_field($_POST['id']) : false;
+		if ( !$id ) $this->sendError(__('Please provide a post ID.', 'socialcurator'));
 
 		// Set the Feed Class
 		$feed_class = $this->supported_sites->getKey($this->site, 'namespace') . '\Feed\Feed';
