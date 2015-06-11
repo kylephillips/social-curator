@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Entities\Site\Instagram;
+<?php 
+
+namespace SocialCurator\Entities\Site\Instagram;
 
 use SocialCurator\Entities\Site\Instagram\Events\RegisterEvents;
 

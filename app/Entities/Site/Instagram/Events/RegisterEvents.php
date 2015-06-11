@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Entities\Site\Instagram\Events;
+<?php 
+
+namespace SocialCurator\Entities\Site\Instagram\Events;
 
 use SocialCurator\Entities\Site\Instagram\Listeners\InstagramTokenRequest;
 use SocialCurator\Entities\Site\Instagram\Listeners\removeInstagramAuth;
 
-class RegisterEvents {
+class RegisterEvents 
+{
 
 	public function __construct()
 	{

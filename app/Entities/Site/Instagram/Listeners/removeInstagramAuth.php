@@ -1,11 +1,14 @@
-<?php namespace SocialCurator\Entities\Site\Instagram\Listeners;
+<?php 
+
+namespace SocialCurator\Entities\Site\Instagram\Listeners;
 
 use SocialCurator\Listeners\ListenerBase;
 
 /**
 * Removes Instagram auth credentials
 */
-class removeInstagramAuth extends ListenerBase {
+class removeInstagramAuth extends ListenerBase 
+{
 
 	public function __construct()
 	{

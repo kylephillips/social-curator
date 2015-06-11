@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Entities\Site\Instagram\Listeners;
+<?php 
+
+namespace SocialCurator\Entities\Site\Instagram\Listeners;
 
 use SocialCurator\Listeners\ListenerBase;
 use SocialCurator\Config\SettingsRepository;
@@ -7,7 +9,8 @@ use \GuzzleHttp\Client;
 /**
 * An Instagram Token was Requested
 */
-class InstagramTokenRequest extends ListenerBase {
+class InstagramTokenRequest extends ListenerBase 
+{
 
 	/**
 	* Form Data
@@ -66,7 +69,6 @@ class InstagramTokenRequest extends ListenerBase {
 		}
 		$this->saveToken($auth_token, $auth_user);
 		return $this->sendSuccess();
-		
 	}
 
 
