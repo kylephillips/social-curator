@@ -32,7 +32,7 @@ class SupportedSites
 	{
 		$this->sites['twitter'] = array(
 			'name' => 'Twitter',
-			'namespace' => 'Twitter',
+			'namespace' => 'SocialCurator\Entities\Site\Twitter',
 			'api_endpoint' => 'https://api.twitter.com/1.1/',
 			'icon_class' => 'social-curator-icon-twitter',
 			'single_import' => true,
@@ -53,7 +53,7 @@ class SupportedSites
 	{
 		$this->sites['instagram'] = array(
 			'name' => 'Instagram',
-			'namespace' => 'Instagram',
+			'namespace' => 'SocialCurator\Entities\Site\Instagram',
 			'api_endpoint' => 'https://api.instagram.com/v1/',
 			'icon_class' => 'social-curator-icon-instagram',
 			'single_import' => true,
@@ -76,7 +76,7 @@ class SupportedSites
 	{
 		$this->sites['flickr'] = array(
 			'name' => 'Flickr',
-			'namespace' => 'Flickr',
+			'namespace' => 'SocialCurator\Entities\Site\Flickr',
 			'api_endpoint' => 'https://api.flickr.com/',
 			'icon_class' => 'social-curator-icon-flickr2',
 			'single_import' => true,
@@ -94,7 +94,7 @@ class SupportedSites
 	{
 		$this->sites['youtube'] = array(
 			'name' => 'YouTube',
-			'namespace' => 'Youtube',
+			'namespace' => 'SocialCurator\Entities\Site\Youtube',
 			'api_endpoint' => 'https://www.googleapis.com/youtube/v3/',
 			'icon_class' => 'social-curator-icon-youtube3',
 			'single_import' => true,
@@ -112,7 +112,7 @@ class SupportedSites
 	{
 		$this->sites['facebook'] = array(
 			'name' => 'Facebook',
-			'namespace' => 'Facebook',
+			'namespace' => 'SocialCurator\Entities\Site\Facebook',
 			'api_endpoint' => 'https://www.googleapis.com/youtube/v3/',
 			'icon_class' => 'social-curator-icon-facebook',
 			'single_import' => false,

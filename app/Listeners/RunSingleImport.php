@@ -63,7 +63,7 @@ class RunSingleImport extends ListenerBase
 		$id = ( isset($_POST['id']) ) ? sanitize_text_field($_POST['id']) : '';
 
 		// Set the Feed Class
-		$feed_class = 'SocialCurator\Entities\Site\\' . $this->supported_sites->getKey($this->site, 'namespace') . '\Feed\Feed';
+		$feed_class = $this->supported_sites->getKey($this->site, 'namespace') . '\Feed\Feed';
 		if ( !class_exists($feed_class) ) return $this->sendError(__('There was an error connecting to the feed.', 'socialcurator'));
 
 		try {

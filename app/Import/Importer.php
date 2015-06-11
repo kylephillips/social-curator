@@ -66,7 +66,7 @@ class Importer
 		foreach($enabled_sites as $enabled_site){
 			if ( $this->site !== 'all' && $enabled_site !== $this->site ) continue;
 			$site = $this->supported_sites->getSite($enabled_site);
-			$feed_class = 'SocialCurator\Entities\Site\\' . $site['namespace'] . '\Feed\Feed';
+			$feed_class = $site['namespace'] . '\Feed\Feed';
 			if ( !class_exists($feed_class) ) continue;
 			$feed = new $feed_class;
 			$feed = $feed->getFeed();
