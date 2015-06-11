@@ -1,11 +1,14 @@
-<?php namespace SocialCurator\Entities\Site\Twitter\Feed;
+<?php 
+
+namespace SocialCurator\Entities\Site\Twitter\Feed;
 
 use SocialCurator\Config\SettingsRepository;
 
 /**
 * Formats the Twitter Search Feed results into an importable array
 */
-class FeedFormatterSearch {
+class FeedFormatterSearch 
+{
 
 	/**
 	* The Unformatted Feed

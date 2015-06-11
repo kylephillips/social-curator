@@ -1,10 +1,12 @@
-<?php namespace SocialCurator\Entities\Site\Twitter;
+<?php 
 
+namespace SocialCurator\Entities\Site\Twitter;
 
 /**
 * Register Instagram as a Supported Site
 */
-class Registration {
+class Registration 
+{
 
 	public function __construct()
 	{

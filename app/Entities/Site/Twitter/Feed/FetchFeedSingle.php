@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Entities\Site\Twitter\Feed;
+<?php 
+
+namespace SocialCurator\Entities\Site\Twitter\Feed;
 
 use SocialCurator\Feed\FeedBase;
 use \GuzzleHttp\Client;
@@ -7,7 +9,8 @@ use \GuzzleHttp\Subscriber\Oauth\Oauth1;
 /**
 * Fetch a Single Post from the API Feed
 */
-class FetchFeedSingle extends FeedBase {
+class FetchFeedSingle extends FeedBase 
+{
 
 	/**
 	* The ID to fetch

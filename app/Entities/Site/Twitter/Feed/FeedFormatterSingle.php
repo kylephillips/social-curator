@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Entities\Site\Twitter\Feed;
+<?php 
+
+namespace SocialCurator\Entities\Site\Twitter\Feed;
 
 /**
 * Formats a single Twitter Feed post into an importable array
 */
-class FeedFormatterSingle {
+class FeedFormatterSingle 
+{
 
 	/**
 	* The Formatted Feed

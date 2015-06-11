@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Entities\Site\Twitter\Feed;
+<?php 
+
+namespace SocialCurator\Entities\Site\Twitter\Feed;
 
 use SocialCurator\Feed\FeedBase;
 use \GuzzleHttp\Client;
@@ -7,7 +9,8 @@ use \GuzzleHttp\Subscriber\Oauth\Oauth1;
 /**
 * Fetch the Search API Feed
 */
-class FetchFeedSearch extends FeedBase {
+class FetchFeedSearch extends FeedBase 
+{
 
 	/**
 	* Search Term for Querying API

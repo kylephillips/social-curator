@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Entities\Site\Twitter\Feed;
+<?php 
+
+namespace SocialCurator\Entities\Site\Twitter\Feed;
 
 use SocialCurator\Entities\Site\Twitter\Feed\FetchFeedSearch;
 use SocialCurator\Entities\Site\Twitter\Feed\FeedFormatterSearch;
@@ -8,7 +10,8 @@ use SocialCurator\Entities\Site\Twitter\Feed\FeedFormatterSingle;
 /**
 * Formatted Feed, ready for import
 */
-class Feed {
+class Feed 
+{
 
 	/**
 	* The Unformatted Feed
