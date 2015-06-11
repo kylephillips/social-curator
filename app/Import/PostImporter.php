@@ -88,11 +88,13 @@ class PostImporter
 	/**
 	* Create the Post
 	*/
-	public function createPost($site, $post_data)
+	public function createPost($site, $post_data, $checktrash = true)
 	{
 		$this->site = $site;
 		$this->post_data = $post_data;
-		if ( $this->isTrashed() ) return false;
+		if ( $checktrash )	{
+			if ( $this->isTrashed() ) return false;
+		}
 		$status = $this->settings_repo->importStatus();
 		$imported = array(
 			'post_type' => 'social-post',

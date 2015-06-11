@@ -10,7 +10,6 @@ use SocialCurator\Import\FailedImportLog;
 */
 class RunSingleImport extends ListenerBase 
 {
-
 	/**
 	* Importer
 	* @var SocialCurator\Import\Importer
@@ -60,14 +59,15 @@ class RunSingleImport extends ListenerBase
 	{
 		$this->site = ( isset($_POST['site']) ) ? sanitize_text_field($_POST['site']) : 'all';
 		$id = ( isset($_POST['id']) ) ? sanitize_text_field($_POST['id']) : '';
-		$feed_class = 'SocialCurator\Entities\Site\\' . $this->supported_sites->getKey($this->site, 'namespace') . '\Feed\Feed';
 
+		// Set the Feed Class
+		$feed_class = 'SocialCurator\Entities\Site\\' . $this->supported_sites->getKey($this->site, 'namespace') . '\Feed\Feed';
 		if ( !class_exists($feed_class) ) return $this->sendError(__('There was an error connecting to the feed.', 'socialcurator'));
 
 		try {
 			$feed = new $feed_class('single', $id);
 			$feed_array = array($feed->getFeed());
-			$this->importer->import($this->site, $feed_array, false);
+			$this->importer->import($this->site, $feed_array, null);
 			$ids = $this->importer->getIDs();
 			$this->return_data['post_ids'] = ( isset( $ids ) ) ? $ids : array();
 			$this->return_data['import_count'] = isset( $ids ) ? count($ids) : 0;

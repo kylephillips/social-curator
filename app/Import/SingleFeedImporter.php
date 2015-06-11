@@ -45,7 +45,7 @@ class SingleFeedImporter {
 				if ( $this->post_repo->exists($site, $feed_item['id']) ) continue;
 			}
 			$importer = new PostImporter;
-			if ( $importer->createPost($site, $feed_item) ){
+			if ( $importer->createPost($site, $feed_item, $checktrash) ){
 				$this->post_ids[] = $importer->getID();
 			}
 		}
