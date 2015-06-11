@@ -11,8 +11,9 @@ var uglify = require('gulp-uglify');
 var admin_scss = 'assets/scss/admin/*';
 var admin_css = 'assets/css/admin/';
 var admin_js_source = [
-	'assets/js/admin/source/social-curator-admin.js',
-	'assets/js/admin/source/social-curator-admin-modal.js'
+	'assets/js/admin/source/avatar-update.js',
+	'assets/js/admin/source/modals.js',
+	'assets/js/admin/source/social-curator-admin.js'
 ]
 var admin_js_compiled = 'assets/js/admin/';
 
