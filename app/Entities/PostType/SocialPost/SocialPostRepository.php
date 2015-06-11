@@ -1,11 +1,14 @@
-<?php namespace SocialCurator\Entities\PostType\SocialPost;
+<?php 
+
+namespace SocialCurator\Entities\PostType\SocialPost;
 
 use SocialCurator\Entities\PostType\SocialPost\SocialPostPresenter;
 
 /**
 * Repository for Social Posts
 */
-class SocialPostRepository {
+class SocialPostRepository 
+{
 
 	/**
 	* Social Post Presenter

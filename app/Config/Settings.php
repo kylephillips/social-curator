@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Config;
+<?php 
+
+namespace SocialCurator\Config;
 
 use SocialCurator\Config\SettingsRepository;
 use SocialCurator\Config\SupportedSites;
@@ -7,7 +9,8 @@ use SocialCurator\Helpers;
 /**
 * Plugin Settings
 */
-class Settings {
+class Settings 
+{
 
 	/**
 	* Settings Repository

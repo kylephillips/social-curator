@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Entities\PostType\SocialPost;
+<?php 
+
+namespace SocialCurator\Entities\PostType\SocialPost;
 
 /**
 * Register the Social Post Post Type
 */
-class RegisterSocialPost {
+class RegisterSocialPost 
+{
 
 	public function __construct()
 	{

@@ -7,7 +7,8 @@ use SocialCurator\API\PostGridShortcode;
 /**
 * Build up API Classes
 */
-class APIFactory {
+class APIFactory 
+{
 
 	public function __construct()
 	{

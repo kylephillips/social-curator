@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Entities\PostType\SocialPost;
+<?php 
+
+namespace SocialCurator\Entities\PostType\SocialPost;
 
 use SocialCurator\Config\SettingsRepository;
 use SocialCurator\Config\SupportedSites;
@@ -8,7 +10,8 @@ use SocialCurator\Helpers;
 /**
 * Register the Custom Meta Fields for Social Posts
 */
-class SocialPostMeta {
+class SocialPostMeta 
+{
 
 	/**
 	* Settings Repository
@@ -48,7 +51,6 @@ class SocialPostMeta {
 		add_action( 'add_meta_boxes', array( $this, 'metaBox' ));
 		add_action( 'save_post', array($this, 'savePost' ));
 	}
-
 
 	/**
 	* Register the Meta Box

@@ -1,10 +1,13 @@
-<?php namespace SocialCurator\Entities\PostType\SocialPost;
+<?php 
+
+namespace SocialCurator\Entities\PostType\SocialPost;
 
 use SocialCurator\Config\SupportedSites;
 use SocialCurator\Helpers;
 use SocialCurator\Config\SettingsRepository;
 
-class SocialPostPresenter {
+class SocialPostPresenter 
+{
 
 	/**
 	* Supported Sites

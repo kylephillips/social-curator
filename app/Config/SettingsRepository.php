@@ -1,9 +1,12 @@
-<?php namespace SocialCurator\Config;
+<?php 
+
+namespace SocialCurator\Config;
 
 use SocialCurator\Config\SupportedSites;
 use SocialCurator\Helpers;
 
-class SettingsRepository {
+class SettingsRepository 
+{
 
 	/**
 	* Get the plugin version being used

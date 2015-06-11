@@ -1,8 +1,11 @@
-<?php namespace SocialCurator\Entities\PostType\SocialPost;
+<?php 
+
+namespace SocialCurator\Entities\PostType\SocialPost;
 
 use SocialCurator\Config\SupportedSites;
 
-class ContentFilter {
+class ContentFilter 
+{
 
 	/**
 	* Supported Sites

@@ -5,7 +5,8 @@ namespace SocialCurator\API;
 /**
 * Base class for API Classes
 */
-abstract class APIBase {
+abstract class APIBase 
+{
 
 	/**
 	* Shortcode Options

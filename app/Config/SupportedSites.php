@@ -1,11 +1,14 @@
-<?php namespace SocialCurator\Config;
+<?php 
+
+namespace SocialCurator\Config;
 
 /**
 * Configuration for Supported Sites
 * Each method sets array of keys required for site.
 * Required keys include name, api_endpoint, and settings fields
 */
-class SupportedSites {
+class SupportedSites 
+{
 
 	/**
 	* Supported Sites
@@ -42,7 +45,6 @@ class SupportedSites {
 		);
 	}
 
-
 	/**
 	* Add Twitter
 	*/
@@ -65,7 +67,6 @@ class SupportedSites {
 		);
 	}
 
-
 	/**
 	* Add Flickr
 	*/
@@ -83,7 +84,6 @@ class SupportedSites {
 		);
 	}
 
-
 	/**
 	* Add Youtube
 	*/
@@ -100,7 +100,6 @@ class SupportedSites {
 			)
 		);
 	}
-
 
 	/**
 	* Add Facebook

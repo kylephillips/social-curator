@@ -1,12 +1,14 @@
-<?php namespace SocialCurator\Config;
+<?php 
+
+namespace SocialCurator\Config;
 
 use SocialCurator\Config\SupportedSites;
-
 
 /**
 * Register the Plugin Settings
 */
-class RegisterSettings {
+class RegisterSettings 
+{
 
 	/**
 	* Supported Sites

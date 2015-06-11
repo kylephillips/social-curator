@@ -1,4 +1,6 @@
-<?php namespace SocialCurator\Entities\PostType\SocialPost;
+<?php 
+
+namespace SocialCurator\Entities\PostType\SocialPost;
 
 use SocialCurator\Config\SupportedSites;
 use SocialCurator\Entities\PostType\SocialPost\SocialPostPresenter;
@@ -6,7 +8,8 @@ use SocialCurator\Entities\PostType\SocialPost\SocialPostPresenter;
 /**
 * Change the default WP manage columns to include custom data
 */
-class SocialPostColumns {
+class SocialPostColumns 
+{
 
 	/**
 	* Supported Sites
@@ -56,7 +59,6 @@ class SocialPostColumns {
 		if ( $column == 'media' ) return $this->media($post_id);
 		if ( $column == 'moderate' ) return $this->moderate($post_id);
 	}
-
 
 	/**
 	* User Column Display
