@@ -4,22 +4,25 @@ namespace SocialCurator\Entities\Site\Youtube\Feed;
 
 use SocialCurator\Feed\FeedBase;
 use \GuzzleHttp\Client;
+use \GuzzleHttp\Subscriber\Oauth\Oauth1;
 
 /**
-* Fetch a Youtube Channel
+* Fetch the Search API Feed
 */
-class FetchChannel extends FeedBase 
+class FetchFeedSingle extends FeedBase 
 {
 
 	/**
-	* Channel Feed Item
+	* Video ID to Get
 	*/
-	protected $feed;
+	private $id;
 
-	public function __construct()
+	public function __construct($id)
 	{
 		parent::__construct();
 		$this->setCredentials();
+		$this->id = $id;
+		$this->search();
 	}
 
 	/**
@@ -31,34 +34,36 @@ class FetchChannel extends FeedBase
 	}
 
 	/**
-	* Connect to the channel API
-	* @param string $channel_id
+	* Connect to the search API
 	*/
-	public function getChannel($channel_id)
+	private function search()
 	{
-		if ( !$channel_id ) return; // Abort if a channel id isn't provided
+		if ( !$this->id ) return; // Abort if a search term isn't provided
 		$api_endpoint = $this->supported_sites->getKey('youtube', 'api_endpoint');
 		$client = new Client(['base_url' => $api_endpoint]);
 		try {
-			$response = $client->get('channels', [
+			$response = $client->get('videos', [
 				'query' => [
 					'part' => 'id,snippet',
-					'id' => $channel_id,
+					'id' => $this->id,
+					'maxResults' => 1,
 					'key' => $this->credentials['api_key']
 				]
 			]);
 			$feed = json_decode($response->getBody());
-			$this->feed = $feed->items;
+			if ( !isset($feed->items[0]) ){
+				throw new \Exception(__('Youtube video not found.', 'socialcurator'));
+			}
+			$this->feed = $feed->items[0];
 		} catch (\Exception $e){
-
-			return false;
+			throw new \Exception($e->getMessage());
 		}
 	}
 
 	/**
-	* Get the Feed Item
+	* Get the Feed
 	*/
-	public function getItem()
+	public function getFeed()
 	{
 		return $this->feed;
 	}

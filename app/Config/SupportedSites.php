@@ -94,7 +94,7 @@ class SupportedSites
 			'namespace' => 'Youtube',
 			'api_endpoint' => 'https://www.googleapis.com/youtube/v3/',
 			'icon_class' => 'social-curator-icon-youtube3',
-			'single_import' => false,
+			'single_import' => true,
 			'settings_fields' => array(
 				'api_key' => __('API Key', 'socialcurator')
 			)

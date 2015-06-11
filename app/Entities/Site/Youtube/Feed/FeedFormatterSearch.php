@@ -1,12 +1,15 @@
-<?php namespace SocialCurator\Entities\Site\Youtube\Feed;
+<?php 
+
+namespace SocialCurator\Entities\Site\Youtube\Feed;
 
 use SocialCurator\Config\SettingsRepository;
 use SocialCurator\Entities\Site\Youtube\Feed\FetchChannel;
 
 /**
-* Formats the Youtube Feed into an importable array
+* Formats the Youtube Search Feed into an importable array
 */
-class FeedFormatter {
+class FeedFormatterSearch 
+{
 
 	/**
 	* The Unformatted Feed
