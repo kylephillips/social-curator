@@ -12,6 +12,7 @@ var admin_scss = 'assets/scss/admin/*';
 var admin_css = 'assets/css/admin/';
 var admin_js_source = [
 	'assets/js/admin/source/avatar-update.js',
+	'assets/js/admin/source/alerts.js',
 	'assets/js/admin/source/modals.js',
 	'assets/js/admin/source/social-curator-admin.js'
 ]

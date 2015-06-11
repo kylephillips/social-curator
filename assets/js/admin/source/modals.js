@@ -11,12 +11,13 @@ jQuery(function($){
 		var plugin = this;
 		plugin.modal_id = "";
 
+		// Initialize
 		plugin.init = function()
 		{
-			console.log('initializing');
 			this.bindEvents();
 		}
 
+		// Bind Events
 		plugin.bindEvents = function()
 		{
 			$(document).on('click', '[data-social-curator-modal-open]', function(e){
@@ -37,11 +38,13 @@ jQuery(function($){
 			});
 		}
 
+		// Open the Modal
 		plugin.openModal = function()
 		{
 			$('[data-social-curator-modal="' + plugin.modal_id + '"]').addClass('open');
 		}
 
+		// Close the Modal
 		plugin.closeModals = function()
 		{
 			$('[data-social-curator-modal]').removeClass('open');
