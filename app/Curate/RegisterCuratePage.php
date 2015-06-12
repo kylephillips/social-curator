@@ -64,7 +64,7 @@ class RegisterCuratePage
 	private function loopPosts()
 	{
 		$args = array(
-			'post_status' => array('draft', 'pending'),
+			'post_status' => array('all'),
 			'offset' => 0,
 			'number' => 10
 		);

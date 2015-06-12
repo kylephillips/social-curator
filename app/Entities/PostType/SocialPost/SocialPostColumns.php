@@ -39,6 +39,10 @@ class SocialPostColumns
 	{
 		unset($columns['title']);
 		unset($columns['date']);
+		unset($columns['wpseo-title']);
+		unset($columns['wpseo-score']);
+		unset($columns['wpseo-metadesc']);
+		unset($columns['wpseo-focuskw']);
 		$columns['user'] = __('User', 'socialcurator');
 		$columns['content'] = __('Post', 'socialcurator');
 		$columns['media'] = __('Media', 'socialcurator');

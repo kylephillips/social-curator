@@ -56,7 +56,7 @@
 		<div class="field">
 			<select data-filter-status>
 				<option value="all"><?php _e('All Statuses', 'socialcurator'); ?></option>
-				<option value="pending" selected><?php _e('Unmoderated', 'socialcurator'); ?></option>
+				<option value="pending"><?php _e('Unmoderated', 'socialcurator'); ?></option>
 				<option value="publish"><?php _e('Approved', 'socialcurator'); ?></option>
 				<option value="trash"><?php _e('Trashed', 'socialcurator'); ?></option>
 			</select>
