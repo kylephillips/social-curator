@@ -57,8 +57,8 @@ class GetSocialPosts extends ListenerBase
 	private function setQueryParams()
 	{
 		if ( isset($_POST['posts']) ) $this->query_params['posts__in'] = $_POST['posts'];
-		if ( isset($_POST['status']) ) $this->query_params['post_status'] = $_POST['status'];
-		if ( isset($_POST['site']) ) $this->query_params['site'] = $_POST['site'];
+		if ( isset($_POST['status']) && $_POST['status'] !== 'all' ) $this->query_params['post_status'] = $_POST['status'];
+		if ( isset($_POST['site']) && $_POST['site'] !== 'all' ) $this->query_params['site'] = $_POST['site'];
 		if ( isset($_POST['offset']) ) $this->query_params['offset'] = intval($_POST['offset']);
 		if ( isset($_POST['number']) ) $this->query_params['number'] = intval($_POST['number']);
 	}
@@ -69,8 +69,7 @@ class GetSocialPosts extends ListenerBase
 	*/
 	private function getPosts()
 	{
-		$admin = ( isset($_POST['adminview']) ) ? true : false;
-		$this->posts = $this->social_post_repo->getPostsArray($this->query_params, $admin);
+		$this->posts = $this->social_post_repo->getPostsArray($this->query_params);
 	}
 
 	/**
@@ -82,7 +81,8 @@ class GetSocialPosts extends ListenerBase
 		return wp_send_json(array(
 			'status' => 'success', 
 			'posts' => $this->posts,
-			'unmoderated_count' => $this->social_post_repo->getUnmoderatedCount()
+			'unmoderated_count' => $this->social_post_repo->getUnmoderatedCount(),
+			'query_params' => $this->query_params
 		));
 	}
 

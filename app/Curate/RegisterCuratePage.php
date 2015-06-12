@@ -61,7 +61,9 @@ class RegisterCuratePage
 	private function loopPosts()
 	{
 		$args = array(
-			'post_status' => array('publish', 'draft', 'pending')
+			'post_status' => array('draft', 'pending'),
+			'offset' => 0,
+			'number' => 10
 		);
 		$posts = $this->social_post_repo->getPostsArray($args, true);
 		foreach($posts as $post) :

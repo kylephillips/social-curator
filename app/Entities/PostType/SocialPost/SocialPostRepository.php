@@ -72,7 +72,7 @@ class SocialPostRepository
 	* @param str|array Post Statuses
 	* @return Array of Posts for JSON response
 	*/
-	public function getPostsArray($query_params, $admin = false)
+	public function getPostsArray($query_params)
 	{
 		$args = array(
 			'post_type' => 'social-post',
@@ -85,6 +85,7 @@ class SocialPostRepository
 		
 		// Basic Params
 		if ( isset($query_params['post__in']) ) $args['post__in'] = $ids;
+		
 		$args['post_status'] = ( isset($query_params['post_status']) ) ? $query_params['post_status'] : 'publish';
 		if ( !is_user_logged_in() ) $args['post_status'] = 'publish';
 		
@@ -117,7 +118,7 @@ class SocialPostRepository
 			$posts[$c]['link'] = get_post_meta($id, 'social_curator_link', true);
 			$posts[$c]['thumbnail'] = $this->presenter->getThumbnailURL($id);
 			$posts[$c]['original_id'] = get_post_meta($id, 'social_curator_original_id', true);
-			if ( $admin && is_user_logged_in() ){
+			if ( is_user_logged_in() ){
 				$posts[$c]['status'] = get_post_status($id);
 				$posts[$c]['approved_by'] = get_post_meta($id, 'social_curator_approved_by', true);
 				$posts[$c]['approved_date'] = get_post_meta($id, 'social_curator_approved_date', true);

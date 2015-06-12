@@ -50,8 +50,8 @@ gulp.task('admin_js', function(){
 	return gulp.src(admin_js_source)
 		.pipe(concat('social-curator-admin.js'))
 		.pipe(gulp.dest(admin_js_compiled))
-		.pipe(uglify())
-		.pipe(gulp.dest(admin_js_compiled))
+		// .pipe(uglify())
+		// .pipe(gulp.dest(admin_js_compiled))
 });
 
 

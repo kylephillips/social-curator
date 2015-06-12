@@ -7,6 +7,11 @@ var modals = new SocialCuratorModal;
 var importingsite = ''; // For holding text of currently importing site
 var importingbutton = ''; // For holding currently active site import button
 
+var perpage = 10;
+var offset = perpage;
+
+var masonryContainer = $('.social-curator-post-grid');
+
 
 /**
 * --------------------------------------------------------------
@@ -14,25 +19,38 @@ var importingbutton = ''; // For holding currently active site import button
 * ---------------------------------------------------------------
 */
 $(document).ready(function(){
-	triggerMasonry(false);
+	triggerMasonry();
 });
 
 // Load Masonry
-function triggerMasonry(prepend)
+function triggerMasonry(posts, append)
 {	
-	var $masonry_container = $('.social-curator-post-grid').masonry({
+	$(masonryContainer).masonry({
 		itemSelector: '.social-curator-post-grid-single',
 		percentPosition: true ,
 		gutter: '.gutter-sizer'
 	});
-	$masonry_container.imagesLoaded(function(){
-		$masonry_container.masonry();
+	$(masonryContainer).imagesLoaded(function(){
+		$(masonryContainer).masonry();
 	});
-	if ( prepend ){
-		$masonry_container.prepend( prepend ).masonry( 'prepended', prepend );
+	if ( posts ){
+		if ( append ) return appendMasonry(posts);
+		prependMasonry(posts);
 	}
 }
 
+function appendMasonry(posts)
+{
+	setTimeout(function() {
+    	$(masonryContainer).append(posts).masonry('reload');
+    }, 500);
+}
+function prependMasonry(posts)
+{
+	setTimeout(function() {
+    	$(masonryContainer).prepend(posts).masonry('reload');
+    }, 500);
+}
 
 
 
@@ -131,7 +149,6 @@ function doSingleImport()
 			id: id
 		},
 		success: function(data){
-			console.log(data);
 			if ( data.status === 'success' ){
 				$('[data-social-curator-last-import]').text(data.import_date);
 				updateLastImportCount(data);
@@ -237,21 +254,27 @@ function getNewPosts(posts)
 /**
 * Append the new posts to the grid
 * @param posts array
+* @param append boolean
 */
-function appendPosts(posts)
+function appendPosts(posts, append)
 {
+	var append = ( append ) ? true : false;
+	var newposts = [];
 	for ( var i = 0; i < posts.length; i++ ){
-		appendSinglePost(posts[i]);
+		newposts[i] = buildSinglePost(posts[i]);
 	}
+	triggerMasonry(newposts, append);
 	resetPostsLoading();
 }
 
 /**
 * Append a single post to the grid
 * @param post object
+* @param append boolean
 */
-function appendSinglePost(post)
+function buildSinglePost(post)
 {
+
 	var newpost = $('[data-post-template]').find('.social-curator-post-grid-single').clone();
 
 	$(newpost).find('[data-icon-link]').html(post.icon_link);
@@ -273,17 +296,16 @@ function appendSinglePost(post)
 		$(newpost).find('[data-post-content]').html(html);
 	}
 
-	triggerMasonry(newpost);
-
 	if ( post.status === 'publish' ){
-		displayApproval(post);
+		displayApproval(post, $(newpost));
 	}
 
 	if ( post.status === 'trash' ){
-		displayTrashedButtons(post);
+		displayTrashedButtons(post, $(newpost));
 	}
 	
-	return;
+	// triggerMasonry(newpost);
+	return newpost[0];
 }
 
 /**
@@ -363,13 +385,13 @@ function addUnmoderated()
 /**
 * Hide the approval buttons and display delete/restore buttons
 */
-function displayTrashedButtons(post)
+function displayTrashedButtons(post, container)
 {
 	var html = '<div class="social-curator-status-buttons">';
 	html += '<a href="#" data-permanent-delete-post data-post-id="' + post.id + '" class="social-curator-trash"><i class="social-curator-icon-blocked"></i>' + social_curator_admin.permanently_delete + '</a>';
 	html += '<a href="#" data-restore-post data-post-id="' + post.id + '" class="social-curator-approve"><i class="social-curator-icon-redo"></i>' + social_curator_admin.restore + '</a>';
 
-	var postcontainer = $('[data-post-container-id=' + post.id + ']');
+	var postcontainer = ( container ) ? container : $('[data-post-container-id=' + post.id + ']');
 	$(postcontainer).find('.social-curator-status-buttons').remove();
 	$(postcontainer).append(html);
 }
@@ -407,14 +429,14 @@ function approveGridPost(id)
 /**
 * Hide the approval buttons and display the approval message
 */
-function displayApproval(data)
+function displayApproval(data, container)
 {
 	var html = '<div class="social-curator-alert-success">' + social_curator_admin.approved_by + ' ' + data.approved_by + ' ' + social_curator_admin.on + ' ' + data.approved_date;
 	if ( social_curator_admin.can_delete_posts === '1' ){
 		html += '<br><a href="#" data-trash-post data-post-id="' + data.id + '" class="unapprove-link">Unapprove and Trash</a>';
 	}
 	html += '</div>';
-	var postcontainer = $('[data-post-container-id=' + data.id + ']');
+	var postcontainer = (container) ? container : $('[data-post-container-id=' + data.id + ']');
 	$(postcontainer).find('.social-curator-status-buttons').remove();
 	$(postcontainer).append(html);
 	$(postcontainer).addClass('approved');
@@ -518,7 +540,8 @@ function filterPosts()
 			action: 'social_curator_get_posts',
 			status: $('[data-filter-status]').val(),
 			site : $('[data-filter-site]').val(),
-			adminview: true
+			offset : 0,
+			number : perpage
 		},
 		success: function(data){
 			appendPosts(data.posts);
@@ -557,7 +580,6 @@ function changeStatus(post_id, status, button)
 			status: status
 		},
 		success: function(data){
-			console.log(data);
 			$(button).attr('disabled', false).text(social_curator_admin.update);
 			if ( status === 'trash' ){
 				$(button).parents('tr').fadeOut('fast', function(){
@@ -602,6 +624,54 @@ function emptyTrash()
 			}
 		}
 	});
+}
+
+
+
+/**
+* ---------------------------------------------------------------
+* Load More Posts
+* ---------------------------------------------------------------
+*/
+$(document).on('click', '[data-social-curator-load-more]', function(e){
+	e.preventDefault();
+	loadMorePosts();
+});
+function loadMorePosts()
+{
+	loadMoreIndicator(true);
+	var status = ( $('[data-filter-status]').val() === 'all' ) ? null : $('[data-filter-status]').val();
+	var site = ( $('[data-filter-site]').val() === 'all' ) ? null : $('[data-filter-site]').val();
+
+	$.ajax({
+		url: ajaxurl,
+		type: 'POST',
+		data: {
+			nonce : social_curator_admin.social_curator_nonce,
+			action: 'social_curator_get_posts',
+			offset: offset,
+			number: perpage,
+			site: site,
+			status: status
+		},
+		success: function(data){
+			console.log(data);
+			offset = offset + perpage;
+			loadMoreIndicator(false);
+			if ( data.posts.length === 0 ){
+				$('[data-social-curator-load-more]').attr('disabled', 'disabled').text('No More Posts');
+			}
+			appendPosts(data.posts, true);
+		}
+	});
+}
+
+
+// Update the Load More Posts status
+function loadMoreIndicator(status)
+{
+	if ( status ) return $('[data-social-curator-grid-loading]').show();
+	return $('[data-social-curator-grid-loading]').hide()
 }
 
 

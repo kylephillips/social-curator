@@ -1,7 +1,7 @@
 <div class="wrap social-curator-curation-page">
 
 	<h2>
-		<?php _e('Social Curator Posts', 'socialcurator'); ?>
+		<?php _e('Social Curator', 'socialcurator'); ?>
 		<div class="social-curator-curation-loading-indicator" data-curation-loader>
 			<img src="<?php echo SocialCurator\Helpers::plugin_url(); ?>/assets/images/loading-admin.gif" />
 		</div>
@@ -55,15 +55,15 @@
 	<div class="social-curator-filter-grid">
 		<div class="field">
 			<select data-filter-status>
-				<option value=""><?php _e('All Statuses', 'socialcurator'); ?></option>
-				<option value="pending"><?php _e('Unmoderated', 'socialcurator'); ?></option>
+				<option value="all"><?php _e('All Statuses', 'socialcurator'); ?></option>
+				<option value="pending" selected><?php _e('Unmoderated', 'socialcurator'); ?></option>
 				<option value="publish"><?php _e('Approved', 'socialcurator'); ?></option>
 				<option value="trash"><?php _e('Trashed', 'socialcurator'); ?></option>
 			</select>
 		</div>
 		<div class="field">
 			<select data-filter-site>
-				<option value=""><?php _e('All Sites', 'socialcurator'); ?></option>
+				<option value="all"><?php _e('All Sites', 'socialcurator'); ?></option>
 				<?php 
 				foreach ( $this->settings_repo->getEnabledSites() as $site ){
 					$sitename = $this->supported_sites->getKey($site, 'name');
@@ -94,6 +94,13 @@
 		<?php $this->loopPosts(); ?>
 		<div class="gutter-sizer"></div>
 	</div><!-- .social-curator-post-grid -->
+
+	<div class="social-curator-post-grid-footer">
+		<div data-social-curator-grid-loading style="display:none;">
+			<img src="<?php echo SocialCurator\Helpers::plugin_url(); ?>/assets/images/loading-admin.gif" />
+		</div>
+		<button class="button button-primary" data-social-curator-load-more><?php _e('Load More', 'socialcurator'); ?></button>
+	</div>
 
 	
 	<!-- Template used for cloning / appending new posts -->
