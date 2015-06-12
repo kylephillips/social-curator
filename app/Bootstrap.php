@@ -20,6 +20,7 @@ class Bootstrap
 	*/
 	private function pluginInit()
 	{
+		new Entities\PostType\SocialPost\ContentFilter;
 		new Entities\PostType\SocialPost\RegisterSocialPost;
 		new Entities\PostType\SocialPost\SocialPostMeta;
 		new Config\RegisterSettings;
@@ -31,7 +32,6 @@ class Bootstrap
 		new Activation\Dependencies\AdminDependencies;
 		new Activation\Dependencies\PublicDependencies;
 		new Activation\RegisterSites\RegisterSites;
-		new Entities\PostType\SocialPost\ContentFilter;
 		new API\APIFactory;
 		new Jobs\RegisterIntervals;
 		new Jobs\RegisterJobs;

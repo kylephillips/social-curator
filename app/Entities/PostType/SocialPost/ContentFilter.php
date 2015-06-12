@@ -36,7 +36,7 @@ class ContentFilter
 	*/
 	private function parse($site, $content)
 	{
-		$parse_class = 'SocialCurator\Entities\Site\\' . $this->supported_sites->getKey($site, 'namespace') . '\Feed\Parser';
+		$parse_class = $this->supported_sites->getKey($site, 'namespace') . '\Feed\Parser';
 		if ( !class_exists($parse_class) ) return $content;
 		$parser = new $parse_class;
 		return $parser->parse($content);
