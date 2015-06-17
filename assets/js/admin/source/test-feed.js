@@ -52,7 +52,6 @@ var SocialCuratorTestFeed = function()
 				id: $('[data-feed-id]').val()
 			},
 			success: function(data){
-				console.log(data);
 				if ( data.status === 'success' ){
 					plugin.populateFeed(data.feed);
 				} else {

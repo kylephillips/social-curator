@@ -13,10 +13,12 @@
 			<h4>Feed Type</h4>
 			<p>
 				<label class="block-label"><input type="radio" data-feed-type name="feed-type" value="search" checked /><?php _e('Search', 'socialcurator'); ?></label>
+				<?php if ( $this->supported_sites->getKey($this->site_index, 'single_import') ) : ?>
 				<label class="block-label"><input type="radio" data-feed-type name="feed-type" value="single" /><?php _e('Single', 'socialcurator'); ?></label>
 				<span style="display:none;padding-top:10px;" data-feed-id-container>
 					<label style="margin-right:8px;"><?php _e('ID', 'socialcurator'); ?></label><input type="text" data-feed-id />
 				</span>
+				<?php endif; ?>
 			</p>
 		</div>
 	</div><!-- .options -->
