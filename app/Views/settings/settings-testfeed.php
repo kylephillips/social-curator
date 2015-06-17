@@ -3,14 +3,14 @@
 	<div class="social-curator-alert-error" data-test-feed-error style="display:none;"></div>
 	<div class="options">
 		<div class="formatting">
-			<h4>Formatting</h4>
+			<h4><?php _e('Formatting', 'socialcurator'); ?></h4>
 			<p>
 				<label class="block-label"><input type="radio" data-feed-format name="feed-format" value="formatted" checked /><?php _e('Import data', 'socialcurator'); ?></label>
 				<label class="block-label"><input type="radio" data-feed-format name="feed-format" value="unformatted" /><?php _e('All feed data', 'socialcurator'); ?></label>
 			</p>
 		</div>
 		<div class="type">
-			<h4>Feed Type</h4>
+			<h4><?php _e('Feed Type', 'socialcurator'); ?></h4>
 			<p>
 				<label class="block-label"><input type="radio" data-feed-type name="feed-type" value="search" checked /><?php _e('Search', 'socialcurator'); ?></label>
 				<?php if ( $this->supported_sites->getKey($this->site_index, 'single_import') ) : ?>

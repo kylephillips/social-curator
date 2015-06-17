@@ -85,23 +85,34 @@ class TestFeed extends ListenerBase
 	}
 
 	/**
-	* Fetch the Feed
+	* Setup the Feed Class
 	*/
-	private function fetchFeed()
+	private function newFeedClass()
 	{
 		if ( $this->feed_type == 'search' ){
-			$feed = new $this->feed_class;
-		} else {
-			if ( !$this->post_id ) return $this->sendError(__('A post ID is required for single feeds.', 'socialcurator'));
 			try {
-				$feed = ( $this->feed_format == 'unformatted' ) ? new $this->feed_class($this->post_id) : new $this->feed_class('single', $this->post_id);
+				$this->feed = new $this->feed_class;	
+			} catch ( \Exception $e ){
+				return $this->sendError($e->getMessage());
+			}
+			
+		} else {
+			try {
+				$this->feed = ( $this->feed_format == 'unformatted' ) ? new $this->feed_class($this->post_id) : new $this->feed_class('single', $this->post_id);
 			} catch ( \Exception $e ){
 				return $this->sendError($e->getMessage());
 			}
 		}
+	}
 
+	/**
+	* Fetch the Feed
+	*/
+	private function fetchFeed()
+	{
+		$this->newFeedClass();
 		try {
-			$this->feed = $feed->getFeed();
+			$this->feed = $this->feed->getFeed();
 		} catch ( \Exception $e ){
 			return $this->sendError($e->getMessage());
 		}
