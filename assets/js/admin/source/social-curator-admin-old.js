@@ -11,6 +11,7 @@ var perpage = 10;
 var offset = perpage;
 
 var masonryContainer = $('.social-curator-post-grid');
+var masonryItem = '.social-curator-post-grid-single';
 
 
 /**
@@ -26,7 +27,7 @@ $(document).ready(function(){
 function triggerMasonry(posts, append)
 {	
 	$(masonryContainer).masonry({
-		itemSelector: '.social-curator-post-grid-single',
+		itemSelector: masonryItem,
 		percentPosition: true ,
 		gutter: '.gutter-sizer'
 	});
@@ -337,9 +338,7 @@ function resetPostsLoading()
 $(document).on('click', '[data-trash-post]', function(e){
 	e.preventDefault();
 	trashPost($(this).attr('data-post-id'));
-	if ( !$(this).parents('.social-curator-post-grid-single').hasClass('approved') ){
-		subtractUnmoderated();
-	}
+	subtractUnmoderated();
 	$(this).parents('.social-curator-post-grid-single').fadeOut('fast', function(){
 		$('.social-curator-post-grid').masonry('remove', $(this));
 		triggerMasonry();
@@ -368,7 +367,7 @@ function trashPost(id)
 */
 function subtractUnmoderated()
 {
-	var count = parseInt($('[data-social-curator-unmoderated-count]').first().text());
+	var count = parseInt($('[data-social-curator-unmoderated-count]').text());
 	count = count - 1;
 	$('[data-social-curator-unmoderated-count]').text(count);
 }
@@ -378,7 +377,7 @@ function subtractUnmoderated()
 */
 function addUnmoderated()
 {
-	var count = parseInt($('[data-social-curator-unmoderated-count]').first().text());
+	var count = parseInt($('[data-social-curator-unmoderated-count]').text());
 	count = count + 1;
 	$('[data-social-curator-unmoderated-count]').text(count);
 }
@@ -422,7 +421,7 @@ function approveGridPost(id)
 		},
 		success: function(data){
 			displayApproval(data);
-			subtractUnmoderated();
+			addUnmoderated();
 			triggerMasonry();
 			loadingIndicator(false);
 		}
@@ -556,7 +555,7 @@ function filterPosts()
 
 /**
 * ---------------------------------------------------------------
-* Change the Moderation from the Manage Posts Screen (default post listing, not curation screen)
+* Change the Moderation from the Manage Posts Screen
 * ---------------------------------------------------------------
 */
 $(document).on('click', '[data-social-curator-moderate-select-button]', function(e){

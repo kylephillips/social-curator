@@ -570,7 +570,9 @@ function resetPostsLoading()
 $(document).on('click', '[data-trash-post]', function(e){
 	e.preventDefault();
 	trashPost($(this).attr('data-post-id'));
-	subtractUnmoderated();
+	if ( !$(this).parents('.social-curator-post-grid-single').hasClass('approved') ){
+		subtractUnmoderated();
+	}
 	$(this).parents('.social-curator-post-grid-single').fadeOut('fast', function(){
 		$('.social-curator-post-grid').masonry('remove', $(this));
 		triggerMasonry();
@@ -599,7 +601,7 @@ function trashPost(id)
 */
 function subtractUnmoderated()
 {
-	var count = parseInt($('[data-social-curator-unmoderated-count]').text());
+	var count = parseInt($('[data-social-curator-unmoderated-count]').first().text());
 	count = count - 1;
 	$('[data-social-curator-unmoderated-count]').text(count);
 }
@@ -609,7 +611,7 @@ function subtractUnmoderated()
 */
 function addUnmoderated()
 {
-	var count = parseInt($('[data-social-curator-unmoderated-count]').text());
+	var count = parseInt($('[data-social-curator-unmoderated-count]').first().text());
 	count = count + 1;
 	$('[data-social-curator-unmoderated-count]').text(count);
 }
@@ -653,7 +655,7 @@ function approveGridPost(id)
 		},
 		success: function(data){
 			displayApproval(data);
-			addUnmoderated();
+			subtractUnmoderated();
 			triggerMasonry();
 			loadingIndicator(false);
 		}
@@ -787,7 +789,7 @@ function filterPosts()
 
 /**
 * ---------------------------------------------------------------
-* Change the Moderation from the Manage Posts Screen
+* Change the Moderation from the Manage Posts Screen (default post listing, not curation screen)
 * ---------------------------------------------------------------
 */
 $(document).on('click', '[data-social-curator-moderate-select-button]', function(e){
