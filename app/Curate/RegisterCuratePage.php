@@ -89,7 +89,7 @@ class RegisterCuratePage
 	{
 		foreach ( $this->supported_sites->getSites() as $key => $site ){
 			if ( !isset($site['help_modal_id']) || !$site['help_modal_id'] ) continue;
-			include(Helpers::site_view($key, 'id-help-modal'));
+			include(Helpers::site_view($site['name'], 'id-help-modal'));
 		}
 	}
 
