@@ -93,7 +93,11 @@ class TestFeed extends ListenerBase
 			$feed = new $this->feed_class;
 		} else {
 			if ( !$this->post_id ) return $this->sendError(__('A post ID is required for single feeds.', 'socialcurator'));
-			$feed = ( $this->feed_format == 'unformatted' ) ? new $this->feed_class($this->post_id) : new $this->feed_class('single', $this->post_id);
+			try {
+				$feed = ( $this->feed_format == 'unformatted' ) ? new $this->feed_class($this->post_id) : new $this->feed_class('single', $this->post_id);
+			} catch ( \Exception $e ){
+				return $this->sendError($e->getMessage());
+			}
 		}
 
 		try {
