@@ -546,6 +546,7 @@ function filterPosts()
 			number : perpage
 		},
 		success: function(data){
+			$('[data-social-curator-load-more]').attr('disabled', false).text('Load More');
 			appendPosts(data.posts);
 		}
 	});
@@ -657,7 +658,6 @@ function loadMorePosts()
 			status: status
 		},
 		success: function(data){
-			console.log(data);
 			offset = offset + perpage;
 			loadMoreIndicator(false);
 			if ( data.posts.length === 0 ){
