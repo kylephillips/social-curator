@@ -48,7 +48,9 @@ class FetchFeedSearch extends FeedBase
 	*/
 	private function search()
 	{
-		if ( !$this->search_term ) return; // Abort if a search term isn't provided
+		if ( !$this->search_term ) {
+			throw new \Exception(__('A search term is required.', 'SocialCurator'));
+		}
 		$api_endpoint = $this->supported_sites->getKey('instagram', 'api_endpoint');
 		$client = new Client(['base_url' => $api_endpoint]);
 		try {

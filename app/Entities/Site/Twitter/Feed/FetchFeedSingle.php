@@ -41,7 +41,9 @@ class FetchFeedSingle extends FeedBase
 	*/
 	private function search()
 	{
-		if ( !$this->id ) return; // Abort if an ID isn't provided
+		if ( !$this->id ) {
+			throw new \Exception(__('An ID is required.', 'SocialCurator'));
+		}
 		$api_endpoint = $this->supported_sites->getKey('twitter', 'api_endpoint');
 		$client = new Client(['base_url' => $api_endpoint]);
 		$oauth = new Oauth1([
