@@ -16,6 +16,7 @@ use SocialCurator\Listeners\DeletePost;
 use SocialCurator\Listeners\UpdateStatus;
 use SocialCurator\Listeners\EmptyTrash;
 use SocialCurator\Listeners\ClearLogs;
+use SocialCurator\Listeners\TestFeed;
 
 /**
 * Register the Admin events
@@ -62,6 +63,9 @@ class RegisterAdminEvents
 
 		// Clear the Logs
 		add_action( 'wp_ajax_social_curator_clear_logs', array($this, 'logsWereCleared' ));
+
+		// Get a Test feed
+		add_action( 'wp_ajax_social_curator_test_feed', array($this, 'testFeedRequested' ));
 	}
 
 	/**
@@ -169,6 +173,14 @@ class RegisterAdminEvents
 	public function logsWereCleared()
 	{
 		new ClearLogs;
+	}
+
+	/**
+	* A request was made for a test feed
+	*/
+	public function testFeedRequested()
+	{
+		new TestFeed;
 	}
 
 }

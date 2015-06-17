@@ -16,6 +16,7 @@ var admin_js_source = [
 	'assets/js/admin/source/alerts.js',
 	'assets/js/admin/source/modals.js',
 	'assets/js/admin/source/dropdowns.js',
+	'assets/js/admin/source/test-feed.js',
 	'assets/js/admin/source/social-curator-admin.js'
 ]
 var admin_js_compiled = 'assets/js/admin/';
@@ -50,8 +51,8 @@ gulp.task('admin_js', function(){
 	return gulp.src(admin_js_source)
 		.pipe(concat('social-curator-admin.js'))
 		.pipe(gulp.dest(admin_js_compiled))
-		// .pipe(uglify())
-		// .pipe(gulp.dest(admin_js_compiled))
+		.pipe(uglify())
+		.pipe(gulp.dest(admin_js_compiled))
 });
 
 

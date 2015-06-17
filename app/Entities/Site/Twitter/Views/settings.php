@@ -35,4 +35,5 @@ $search_term = $this->settings_repo->getSiteSetting($this->site_index, 'search_t
 		</li>
 	</ul>
 </div>
+
 <?php submit_button(); ?>

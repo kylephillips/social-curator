@@ -12,6 +12,7 @@
 		<?php 
 			if ( isset($this->site['name']) ){
 				include(SocialCurator\Helpers::site_view($this->site['name'], 'settings')); 	
+				include(SocialCurator\Helpers::view('settings/settings-testfeed'));
 			} else {
 				$tab = ( isset($_GET['tab']) ) ? $_GET['tab'] : 'general';
 				include(SocialCurator\Helpers::view('settings/settings-' . $tab));

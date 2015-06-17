@@ -111,3 +111,44 @@
 	position: relative;
 	top: -10px;
 }
+
+
+// Test Feed 
+.social-curator-test-feed {
+	background-color: $white;
+	@include wptable;
+	padding: 10px;
+	.options {
+		@include clearfix;
+	}
+	.block-label {
+		display: block;
+		margin-bottom: 8px;
+	}
+	h4 {
+		margin: 0;
+	}
+	.formatting {
+		float: left;
+		width: 45%;
+	}
+	.type {
+		float: right;
+		width: 45%;
+	}
+}
+
+.social-curator-test-feed-results {
+	background-color: darken($white, 6%);
+	margin-top: 20px;
+	overflow: auto;
+	width: 100%;
+	padding: 15px;
+	box-sizing: border-box;
+	&.loading {
+		height: 60px;
+		background: url('../../images/loading-admin.gif'), darken($white, 6%);
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+}

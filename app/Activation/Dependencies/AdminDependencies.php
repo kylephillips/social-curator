@@ -70,7 +70,9 @@ class AdminDependencies extends Dependencies
 			'updating' => __('Updating', 'socialcurator'),
 			'update' => __('Update', 'socialcurator'),
 			'choose_image' => __('Choose Image', 'socialcurator'),
-			'unapprove_and_trash' => __('Unapprove and Trash', 'socialcurator')
+			'unapprove_and_trash' => __('Unapprove and Trash', 'socialcurator'),
+			'fetching_feed' => __('Fetching Feed', 'socialcurator'),
+			'test_feed' => __('Test Feed', 'socialcurator')
 		);
 		return $data;
 	}
