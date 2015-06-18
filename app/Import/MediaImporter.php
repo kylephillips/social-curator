@@ -7,7 +7,6 @@ namespace SocialCurator\Import;
 */
 class MediaImporter 
 {
-
 	/**
 	* Import the Image to the Library
 	* @return int attachment id
@@ -15,8 +14,10 @@ class MediaImporter
 	function runImport($image_url)
 	{
 		$tmp = download_url( $image_url );
+		$name = strtok($image_url, '?');
+
 		$file_array = array(
-			'name' => basename( $image_url ),
+			'name' => basename( $name ),
 			'tmp_name' => $tmp
 		);
 

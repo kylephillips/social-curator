@@ -18,7 +18,7 @@ class AvatarImporter
 	{
 		$file = $this->fetchImage($image_url);
 
-		$extension = pathinfo( basename($image_url) , PATHINFO_EXTENSION);
+		$extension = pathinfo( strtok($image_url, '?') , PATHINFO_EXTENSION);
 		$uploads = wp_upload_dir();
 		$upload_directory = $uploads['basedir'] . '/' . $directory;
 		if (!file_exists($upload_directory)) wp_mkdir_p($upload_directory);
