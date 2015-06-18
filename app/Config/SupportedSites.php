@@ -93,7 +93,7 @@ class SupportedSites
 	protected function youtube()
 	{
 		$this->sites['youtube'] = array(
-			'name' => 'YouTube',
+			'name' => 'Youtube',
 			'namespace' => 'SocialCurator\Entities\Site\Youtube',
 			'api_endpoint' => 'https://www.googleapis.com/youtube/v3/',
 			'icon_class' => 'social-curator-icon-youtube3',
