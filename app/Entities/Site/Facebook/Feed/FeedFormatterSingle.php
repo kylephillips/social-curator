@@ -5,9 +5,9 @@ namespace SocialCurator\Entities\Site\Facebook\Feed;
 use SocialCurator\Config\SettingsRepository;
 
 /**
-* Formats the Facebook Feed into an importable array
+* Formats a Single Facebook Post
 */
-class FeedFormatter 
+class FeedFormatterSingle 
 {
 
 	/**
@@ -37,21 +37,18 @@ class FeedFormatter
 	*/
 	public function format($unformatted_feed)
 	{
-		$this->unformatted_feed = $unformatted_feed->data;
-		
-		foreach($this->unformatted_feed as $key => $item){
-			$this->formatted_feed[$key]['type'] = 'fbpost';
-			$this->formatted_feed[$key]['id'] = $this->postID($item->id);
-			$this->formatted_feed[$key]['date'] = date('U', strtotime($item->created_time));
-			$this->formatted_feed[$key]['content'] = $this->formatContent($item);
-			$this->formatted_feed[$key]['user_id'] = strval($item->from->id);
-			$this->formatted_feed[$key]['screen_name'] = $item->from->name;
-			$this->formatted_feed[$key]['profile_image'] = $this->getImageUrl($item->from->id);
-			$this->formatted_feed[$key]['image'] = ( $item->type == 'photo' ) ? $this->getImageUrl($item->object_id) : null;
-			$this->formatted_feed[$key]['video_url'] = null;
-			$this->formatted_feed[$key]['link'] = ( isset($item->link) ) ? $item->link : 'http://facebook.com/profile.php?id=' . $item->from->id;
-			$this->formatted_feed[$key]['profile_url'] = 'http://facebook.com/profile.php?id=' . $item->from->id;
-		}
+		$item = $unformatted_feed;
+		$this->formatted_feed['type'] = 'fbpost';
+		$this->formatted_feed['id'] = $item->id;
+		$this->formatted_feed['date'] = date('U', strtotime($item->created_time));
+		$this->formatted_feed['content'] = $this->formatContent($item);
+		$this->formatted_feed['user_id'] = strval($item->from->id);
+		$this->formatted_feed['screen_name'] = $item->from->name;
+		$this->formatted_feed['profile_image'] = $this->getImageUrl($item->from->id);
+		$this->formatted_feed['image'] = ( isset($item->images) ) ? $item->images[0]->source : null;
+		$this->formatted_feed['video_url'] = null;
+		$this->formatted_feed['link'] = ( isset($item->link) ) ? $item->link : 'http://facebook.com/profile.php?id=' . $item->from->id;
+		$this->formatted_feed['profile_url'] = 'http://facebook.com/profile.php?id=' . $item->from->id;
 		return $this->formatted_feed;
 	}
 
@@ -74,15 +71,6 @@ class FeedFormatter
 			$content .= '<div class="name">' . $item->name . '</div>';
 		}
 		return $content;
-	}
-
-	/**
-	* Get the Post ID
-	* Removes the user id from the id
-	*/
-	private function postID($id)
-	{
-		return str_replace($this->settings_repo->getSiteSetting('facebook', 'page_id') . '_', '', $id);
 	}
 
 	/**

@@ -7,13 +7,19 @@ use \GuzzleHttp\Client;
 use \GuzzleHttp\Subscriber\Oauth\Oauth1;
 
 /**
-* Fetch the API Feed
+* Fetch a Single Facebook Post
 */
-class FetchFeed extends FeedBase 
+class FetchFeedSingle extends FeedBase 
 {
-	public function __construct()
+	/**
+	* ID of the post to get
+	*/
+	private $id;
+
+	public function __construct($id)
 	{
 		parent::__construct();
+		$this->id = $id;
 		$this->setCredentials();
 		$this->queryFeed();
 	}
@@ -35,7 +41,7 @@ class FetchFeed extends FeedBase
 		$api_endpoint = $this->supported_sites->getKey('facebook', 'api_endpoint');		
 		$client = new Client(['base_url' => $api_endpoint]);
 		try {
-			$response = $client->get($this->credentials['page_id'] . '/feed', [
+			$response = $client->get($this->id, [
 				'query' => [
 					'access_token' => $this->credentials['app_token']
 				]

@@ -20,7 +20,7 @@ class SupportedSites
 	{
 		$this->twitter();
 		$this->instagram();
-		//$this->facebook();
+		$this->facebook();
 		$this->flickr();
 		$this->youtube();
 	}
@@ -113,12 +113,12 @@ class SupportedSites
 		$this->sites['facebook'] = array(
 			'name' => 'Facebook',
 			'namespace' => 'SocialCurator\Entities\Site\Facebook',
-			'api_endpoint' => 'https://www.googleapis.com/youtube/v3/',
+			'api_endpoint' => 'https://graph.facebook.com/v2.3',
 			'icon_class' => 'social-curator-icon-facebook',
-			'single_import' => false,
+			'single_import' => true,
 			'settings_fields' => array(
-				'app_id' => __('APP ID', 'socialcurator'),
-				'app_secrent' => __('APP Secret', 'socialcurator'),
+				'page_id' => __('Page ID', 'socialcurator'),
+				'app_token' => __('App Token', 'socialcurator'),
 			)
 		);
 	}

@@ -10,6 +10,7 @@ class Bootstrap
 
 	public function __construct()
 	{
+		session_start();
 		$this->pluginInit();
 		add_action( 'init', array($this, 'wordpressInit') );
 		add_filter( 'plugin_action_links_' . 'social-curator/social-curator.php', array($this, 'settingsLink' ) );

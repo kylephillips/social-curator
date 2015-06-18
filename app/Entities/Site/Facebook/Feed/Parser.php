@@ -1,4 +1,4 @@
-<?php namespace SocialCurator\Entities\Site\Twitter\Feed;
+<?php namespace SocialCurator\Entities\Site\Facebook\Feed;
 
 use SocialCurator\Feed\ParserInterface;
 use SocialCurator\Feed\ParserBase;
@@ -7,9 +7,8 @@ class Parser extends ParserBase implements ParserInterface {
 
 	public function parse($content)
 	{
-		$content = $this->parseLinks($content);
-		$content = $this->parseHashtags($content);
-		$content = $this->parseMentions($content);
+		// $content = $this->parseHashtags($content);
+		// $content = $this->parseMentions($content);
 		return $content;
 	}
 
@@ -19,9 +18,10 @@ class Parser extends ParserBase implements ParserInterface {
 	*/
 	private function parseHashtags($content)
 	{
+		//screentendo?source=feed_text&story_id=882286641808020
 		$content = preg_replace(
 			'/\s+#(\w+)/',
-			' <a href="http://twitter.com/hashtag/$1?src=hash">#$1</a>',
+			'<a href="https://www.facebook.com/hashtag/$1?source=feed_text">#$1</a>',
 		$content);
 		return $content;
 	}
