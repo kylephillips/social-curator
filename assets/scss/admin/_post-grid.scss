@@ -60,18 +60,22 @@
 	.social-curator-post-content {
 		overflow: hidden;
 		font-family: "Helvetica", "Arial", sans-serif; // Overriding Open Sans for foreign languagees
-		.message {
+		div.message {
 			margin-bottom: 15px;
+			border: 0;
+			padding: 0;
+			background: transparent;
+			border-radius: 0;
 		}
-		.caption {
+		div.caption {
 			background-color: darken($white, 6%);
 			padding: 10px;
 		}
-		.caption-name {
+		div.caption-name {
 			font-weight: bold;
 			margin-bottom: 5px;
 		}
-		.caption-link {
+		div.caption-link {
 			padding-top: 5px;
 		}
 	}
