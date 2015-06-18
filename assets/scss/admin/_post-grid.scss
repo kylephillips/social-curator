@@ -60,6 +60,20 @@
 	.social-curator-post-content {
 		overflow: hidden;
 		font-family: "Helvetica", "Arial", sans-serif; // Overriding Open Sans for foreign languagees
+		.message {
+			margin-bottom: 15px;
+		}
+		.caption {
+			background-color: darken($white, 6%);
+			padding: 10px;
+		}
+		.caption-name {
+			font-weight: bold;
+			margin-bottom: 5px;
+		}
+		.caption-link {
+			padding-top: 5px;
+		}
 	}
 
 	.unapprove-link {
