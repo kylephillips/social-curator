@@ -17,6 +17,7 @@
 		transition: all 200ms ease;
 		border: 0;
 		cursor: pointer;
+		padding: 0;
 		&:disabled {
 			opacity: .3;
 		}
@@ -27,7 +28,6 @@
 	i {
 		position: absolute;
 		width: 36px;
-		height: 36px;
 		line-height: 36px;
 		display: block;
 		top: 0;
