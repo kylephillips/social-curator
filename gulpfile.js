@@ -11,6 +11,7 @@ var uglify = require('gulp-uglify');
 var admin_scss = 'assets/scss/admin/*';
 var admin_css = 'assets/css/admin/';
 var admin_js_source = [
+	'assets/js/admin/source/bulk-import.js',
 	'assets/js/admin/source/logs.js',
 	'assets/js/admin/source/avatar-update.js',
 	'assets/js/admin/source/alerts.js',
