@@ -14,9 +14,3 @@ $search_term = $this->settings_repo->getSiteSetting($this->site_index, 'search_t
 	</ul>
 </div>
 <?php submit_button(); ?>
-<?php
-
-$feed = new SocialCurator\Entities\Site\Reddit\Feed\FetchFeedSearch;
-$formatter = new SocialCurator\Entities\Site\Reddit\Feed\FeedFormatterSearch;
-
-var_dump($formatter->format($feed->getFeed()));

@@ -31,7 +31,7 @@ class FeedFormatterSearch
 			$this->formatted_feed[$key]['type'] = 'reddit';
 			$this->formatted_feed[$key]['id'] = strval($item->data->id);
 			$this->formatted_feed[$key]['date'] = date('U', $item->data->created);
-			$this->formatted_feed[$key]['content'] = $item->data->title . ': ' . $item->data->selftext;
+			$this->formatted_feed[$key]['content'] = $this->content($item);
 			$this->formatted_feed[$key]['user_id'] = $item->data->author;
 			$this->formatted_feed[$key]['screen_name'] = $item->data->author;
 			$this->formatted_feed[$key]['image'] = ( isset($item->data->preview) ) ? $item->data->preview->images[0]->source->url : null;
@@ -41,6 +41,13 @@ class FeedFormatterSearch
 			$this->formatted_feed[$key]['profile_image'] = ( isset($item->data->thumbnail ) ) ? $item->data->thumbnail : '';
 		}
 		return $this->formatted_feed;
+	}
+
+	private function content($item)
+	{
+		$content = $item->data->title;
+		if ( isset($item->data->selftext) && $item->data->selftext !== "" ) $content .= ': ' . $item->data->selftext;
+		return $content;
 	}
 
 }

@@ -1,8 +1,8 @@
-<?php namespace SocialCurator\Entities\Site\Youtube;
+<?php namespace SocialCurator\Entities\Site\Reddit;
 
 
 /**
-* Register Youtube as a Supported Site
+* Register Reddit as a Supported Site
 */
 class Registration {
 
