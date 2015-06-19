@@ -21,7 +21,7 @@ class FeedFormatterSingle
 		if ( !$item ) return;
 		$this->formatted_feed['type'] = $item->type;
 		$this->formatted_feed['id'] = $item->id;
-		$this->formatted_feed['date'] = date('U', strtotime($item->created_time));
+		$this->formatted_feed['date'] = date('U', intval($item->created_time));
 		$this->formatted_feed['content'] = $item->caption->text;
 		$this->formatted_feed['user_id'] = $item->user->id;
 		$this->formatted_feed['screen_name'] = $item->user->username;
