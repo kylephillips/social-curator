@@ -337,6 +337,7 @@ function resetPostsLoading()
 $(document).on('click', '[data-trash-post]', function(e){
 	e.preventDefault();
 	trashPost($(this).attr('data-post-id'));
+	$(this).attr('disabled', 'disabled');
 	if ( !$(this).parents('.social-curator-post-grid-single').hasClass('approved') ){
 		subtractUnmoderated();
 	}
@@ -390,8 +391,8 @@ function addUnmoderated()
 function displayTrashedButtons(post, container)
 {
 	var html = '<div class="social-curator-status-buttons">';
-	html += '<a href="#" data-permanent-delete-post data-post-id="' + post.id + '" class="social-curator-trash"><i class="social-curator-icon-blocked"></i>' + social_curator_admin.permanently_delete + '</a>';
-	html += '<a href="#" data-restore-post data-post-id="' + post.id + '" class="social-curator-approve"><i class="social-curator-icon-redo"></i>' + social_curator_admin.restore + '</a>';
+	html += '<button data-permanent-delete-post data-post-id="' + post.id + '" class="social-curator-trash"><i class="social-curator-icon-blocked"></i>' + social_curator_admin.permanently_delete + '</button>';
+	html += '<button data-restore-post data-post-id="' + post.id + '" class="social-curator-approve"><i class="social-curator-icon-redo"></i>' + social_curator_admin.restore + '</button>';
 
 	var postcontainer = ( container ) ? container : $('[data-post-container-id=' + post.id + ']');
 	$(postcontainer).find('.social-curator-status-buttons').remove();
@@ -407,6 +408,7 @@ function displayTrashedButtons(post, container)
 */
 $(document).on('click', '[data-approve-post]', function(e){
 	e.preventDefault();
+	$(this).attr('disabled', 'disabled');
 	approveGridPost($(this).attr('data-post-id'));
 });
 function approveGridPost(id)
@@ -454,6 +456,7 @@ function displayApproval(data, container)
 */
 $(document).on('click', '[data-restore-post]', function(e){
 	e.preventDefault();
+	$(this).attr('disabled', 'disabled');
 	var id = $(this).attr('data-post-id');
 	restoreGridPost(id);
 });
@@ -484,6 +487,7 @@ function restoreGridPost(id)
 */
 $(document).on('click', '[data-permanent-delete-post]', function(e){
 	e.preventDefault();
+	$(this).attr('disabled', 'disabled');
 	var id = $(this).attr('data-post-id');
 	deletePost(id);
 });

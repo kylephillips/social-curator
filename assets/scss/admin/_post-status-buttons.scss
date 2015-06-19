@@ -4,7 +4,7 @@
 
 .social-curator-status-buttons {
 	@include clearfix;
-	a {
+	button {
 		float: left;
 		width: 50%;
 		display: block;
@@ -13,9 +13,13 @@
 		color: $white;
 		font-size: 16px;
 		text-decoration: none;
-		height: 36px;
 		line-height: 36px;
 		transition: all 200ms ease;
+		border: 0;
+		cursor: pointer;
+		&:disabled {
+			opacity: .3;
+		}
 		&:hover {
 			transition: all 200ms ease;
 		}

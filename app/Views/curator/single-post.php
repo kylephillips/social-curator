@@ -35,8 +35,8 @@
 	</div>
 	<?php else : ?>
 	<div class="social-curator-status-buttons">
-		<a href="#" data-trash-post data-post-id="<?php echo $post['id']; ?>" class="social-curator-trash"><i class="social-curator-icon-bin2"></i><?php _e('Trash', 'socialcurator'); ?></a>
-		<a href="#" data-approve-post data-post-id="<?php echo $post['id']; ?>" class="social-curator-approve"><?php _e('Approve', 'socialcurator'); ?><i class="social-curator-icon-checkmark"></i></a>
+		<button data-trash-post data-post-id="<?php echo $post['id']; ?>" class="social-curator-trash"><i class="social-curator-icon-bin2"></i><?php _e('Trash', 'socialcurator'); ?></button>
+		<button data-approve-post data-post-id="<?php echo $post['id']; ?>" class="social-curator-approve"><?php _e('Approve', 'socialcurator'); ?><i class="social-curator-icon-checkmark"></i></button>
 	</div>
 	<?php endif; ?>
 </div><!-- .social-curator-post -->
