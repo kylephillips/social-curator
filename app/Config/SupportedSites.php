@@ -23,6 +23,7 @@ class SupportedSites
 		$this->facebook();
 		$this->flickr();
 		$this->youtube();
+		$this->reddit();
 	}
 
 	/**
@@ -119,6 +120,22 @@ class SupportedSites
 			'settings_fields' => array(
 				'page_id' => __('Page ID', 'socialcurator'),
 				'app_token' => __('App Token', 'socialcurator'),
+			)
+		);
+	}
+
+	/**
+	* Add Reddit
+	*/
+	protected function reddit()
+	{
+		$this->sites['reddit'] = array(
+			'name' => 'Reddit',
+			'namespace' => 'SocialCurator\Entities\Site\Reddit',
+			'api_endpoint' => 'http://www.reddit.com/',
+			'icon_class' => 'social-curator-icon-reddit',
+			'single_import' => false,
+			'settings_fields' => array(
 			)
 		);
 	}
