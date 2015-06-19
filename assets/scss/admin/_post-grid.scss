@@ -94,3 +94,11 @@
 		padding: 20px 0;
 	}
 } // footer
+
+@media (max-width: 767px)
+{
+	.social-curator-post-grid-single {
+		float: none;
+		width: 100%;
+	}
+}

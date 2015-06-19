@@ -57,3 +57,35 @@
 		}
 	}
 }
+
+@media (max-width: 767px)
+{
+	.social-curator-run-import {
+		.social-curator-dropdown {
+			float: none;
+			width: 100%;
+			top: 0px;
+			margin-bottom: 10px;
+			&.one {
+				z-index: 2;
+			}
+			&.two {
+				z-index: 1;
+			}
+			.button {
+				display: block;
+			}
+		}
+		.toggle-button i {
+			position: relative;
+			top: 0px;
+			float: right;
+		}
+	}
+
+	.social-curator-filter-grid .field {
+		float: none;
+		width: 100%;
+		margin: 0 0 8px 0;
+	}
+}

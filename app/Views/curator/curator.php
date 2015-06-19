@@ -9,7 +9,7 @@
 	
 	<div class="social-curator-run-import social-curator-alert">
 		<p>
-			<div class="social-curator-dropdown">
+			<div class="social-curator-dropdown one">
 				<a href="#" data-toggle="social-curator-dropdown" class="button toggle-button"><?php _e('Run an Import', 'socialcurator'); ?><i class="dashicons dashicons-arrow-down"></i></a>
 				<div class="social-curator-dropdown-content">
 					<ul>
@@ -28,7 +28,7 @@
 			</div><!-- .dropdown -->
 
 			<!-- Single Importer -->
-			<div class="social-curator-dropdown" style="margin-right:8px;">
+			<div class="social-curator-dropdown two" style="margin-right:8px;">
 				<a href="#" data-toggle="social-curator-dropdown" class="button toggle-button"><?php _e('Import Single Post', 'socialcurator'); ?><i class="dashicons dashicons-arrow-down"></i>
 				</a>
 				<div class="social-curator-dropdown-content social-curator-single-import">
