@@ -17,6 +17,7 @@ use SocialCurator\Listeners\UpdateStatus;
 use SocialCurator\Listeners\EmptyTrash;
 use SocialCurator\Listeners\ClearLogs;
 use SocialCurator\Listeners\TestFeed;
+use SocialCurator\Listeners\BulkImport;
 
 /**
 * Register the Admin events
@@ -66,6 +67,9 @@ class RegisterAdminEvents
 
 		// Get a Test feed
 		add_action( 'wp_ajax_social_curator_test_feed', array($this, 'testFeedRequested' ));
+
+		// Run a Bulk Import
+		add_action( 'wp_ajax_social_curator_bulk_import', array($this, 'bulkImportRun' ));
 	}
 
 	/**
@@ -181,6 +185,14 @@ class RegisterAdminEvents
 	public function testFeedRequested()
 	{
 		new TestFeed;
+	}
+
+	/**
+	* A bulk import was run
+	*/
+	public function bulkImportRun()
+	{
+		new BulkImport;
 	}
 
 }
