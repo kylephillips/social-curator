@@ -132,7 +132,7 @@ class PostImporter
 	private function saveAvatar()
 	{
 		if ( is_null($this->post_data['profile_image'] )) return; 
-		$avatar_image = $this->avatar_importer->run('social-curator/avatars', $this->post_data['profile_image'], $this->post_data['screen_name']);
+		$avatar_image = $this->avatar_importer->run('social-curator/avatars', $this->post_data['profile_image'], $this->post_data['screen_name'], $this->post_id);
 		add_post_meta($this->post_id, 'social_curator_avatar', $avatar_image);
 	}
 
@@ -142,7 +142,7 @@ class PostImporter
 	private function saveThumbnail()
 	{
 		if ( !$this->post_data['image'] ) return;
-		$attachment_id = $this->media_importer->runImport($this->post_data['image']);
+		$attachment_id = $this->media_importer->runImport($this->post_data['image'], $this->post_id);
 		add_post_meta($this->post_id, '_thumbnail_id', $attachment_id);
 	}
 
