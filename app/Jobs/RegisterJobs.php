@@ -22,7 +22,7 @@ class RegisterJobs
 	public function scheduleJobs()
 	{
 		if ( !wp_next_scheduled( 'import_social_posts' ) ) {
-			wp_schedule_event( time(), 'everyminute', 'import_social_posts' );
+			wp_schedule_event( time(), 'everyfiveminutes', 'import_social_posts' );
 		}
 	}
 

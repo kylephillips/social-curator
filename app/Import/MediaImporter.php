@@ -40,20 +40,20 @@ class MediaImporter
 			'tmp_name' => $tmp
 		);
 
-		$this->logError(__('Image could not be downloaded.', 'socialcurator'));
-
 		// Check for download errors
 		if ( is_wp_error( $tmp ) ) {
 			@unlink( $file_array[ 'tmp_name' ] );
-			$this->logError(__('Image could not be downloaded.', 'socialcurator'));
+			$this->logError($tmp->get_error_messages( ));
 			return $tmp;
 		}
 
-		$id = media_handle_sideload( $file_array, 0 );
+		$id = media_handle_sideload( $file_array, $post_id );
+
 		// Check for handle sideload errors.
 		if ( is_wp_error( $id ) ) {
 			@unlink( $file_array['tmp_name'] );
-			$this->logError(__('Image could not be sideloaded.', 'socialcurator'));
+
+			$this->logError($id->get_error_messages( ));
 			return $id;
 		}
 		return $id;
