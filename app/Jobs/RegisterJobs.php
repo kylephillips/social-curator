@@ -12,8 +12,10 @@ class RegisterJobs
 
 	public function __construct()
 	{
-		add_action('init', array($this, 'scheduleJobs'));
 		add_action('import_social_posts', array($this, 'importPosts'));
+		global $social_curator_file;
+		register_activation_hook($social_curator_file, array($this, 'scheduleJobs'));
+		register_deactivation_hook($social_curator_file, array($this, 'removeJobs'));
 	}
 
 	/**
@@ -21,8 +23,8 @@ class RegisterJobs
 	*/
 	public function scheduleJobs()
 	{
-		if ( !wp_next_scheduled( 'import_social_posts' ) ) {
-			wp_schedule_event( time(), 'everyfiveminutes', 'import_social_posts' );
+		if ( !wp_next_scheduled('import_social_posts') ){
+			wp_schedule_event( time(), 'everyminute', 'import_social_posts' );
 		}
 	}
 
@@ -32,6 +34,14 @@ class RegisterJobs
 	public function importPosts()
 	{
 		new ImportPosts;
+	}
+
+	/**
+	* Remove the WP Cron Jobs
+	*/
+	public function removeJobs()
+	{
+		wp_clear_scheduled_hook('import_social_posts');
 	}
 
 }
