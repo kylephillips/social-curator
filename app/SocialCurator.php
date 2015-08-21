@@ -11,6 +11,12 @@ class SocialCurator
 		global $social_curator_version;
 		$social_curator_version = '1.0';
 
-		$app = new SocialCurator\Bootstrap;
+		global $social_curator_directory;
+		$social_curator_directory = dirname(dirname(__FILE__));
+
+		global $social_curator_file;
+		$social_curator_file = $social_curator_directory . '/social-curator.php';
+
+		$app = new SocialCurator\SocialCuratorBootstrap;
 	}
 }

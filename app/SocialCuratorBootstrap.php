@@ -5,7 +5,7 @@ namespace SocialCurator;
 /**
 * Primary Plugin Bootstrap
 */
-class Bootstrap 
+class SocialCuratorBootstrap 
 {
 
 	public function __construct()
@@ -21,6 +21,8 @@ class Bootstrap
 	*/
 	private function pluginInit()
 	{
+		new Jobs\RegisterIntervals;
+		new Jobs\RegisterJobs;
 		new Entities\PostType\SocialPost\ContentFilter;
 		new Entities\PostType\SocialPost\RegisterSocialPost;
 		new Entities\PostType\SocialPost\SocialPostMeta;
@@ -34,8 +36,6 @@ class Bootstrap
 		new Activation\Dependencies\PublicDependencies;
 		new Activation\RegisterSites\RegisterSites;
 		new API\APIFactory;
-		new Jobs\RegisterIntervals;
-		new Jobs\RegisterJobs;
 	}
 
 	/**
