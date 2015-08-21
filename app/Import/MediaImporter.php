@@ -30,6 +30,11 @@ class MediaImporter
 	*/
 	public function runImport($image_url, $post_id = null)
 	{
+
+		require_once(ABSPATH . 'wp-admin/includes/file.php');
+		require_once(ABSPATH . 'wp-admin/includes/image.php');
+		require_once(ABSPATH . 'wp-admin/includes/media.php');
+
 		$this->post_id = $post_id;
 
 		$tmp = download_url( $image_url );
@@ -41,21 +46,21 @@ class MediaImporter
 		);
 
 		// Check for download errors
-		if ( is_wp_error( $tmp ) ) {
-			@unlink( $file_array[ 'tmp_name' ] );
-			$this->logError($tmp->get_error_messages( ));
-			return $tmp;
-		}
+		// if ( is_wp_error( $tmp ) ) {
+		// 	@unlink( $file_array[ 'tmp_name' ] );
+		// 	$this->logError($tmp->get_error_messages( ));
+		// 	return $tmp;
+		// }
 
 		$id = media_handle_sideload( $file_array, $post_id );
 
 		// Check for handle sideload errors.
-		if ( is_wp_error( $id ) ) {
-			@unlink( $file_array['tmp_name'] );
+		// if ( is_wp_error( $id ) ) {
+		// 	@unlink( $file_array['tmp_name'] );
 
-			$this->logError($id->get_error_messages( ));
-			return $id;
-		}
+		// 	$this->logError($id->get_error_messages( ));
+		// 	return $id;
+		// }
 		return $id;
 	}
 
