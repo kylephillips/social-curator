@@ -6,20 +6,32 @@ var notify = require('gulp-notify');
 var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var gutil = require('gulp-util');
 
 // Paths – Admin
 var admin_scss = 'assets/scss/admin/*';
 var admin_css = 'assets/css/admin/';
 var admin_js_source = [
 	'assets/js/admin/source/imagesloaded.js',
-	'assets/js/admin/source/bulk-import.js',
-	'assets/js/admin/source/logs.js',
-	'assets/js/admin/source/avatar-update.js',
-	'assets/js/admin/source/alerts.js',
-	'assets/js/admin/source/modals.js',
-	'assets/js/admin/source/dropdowns.js',
-	'assets/js/admin/source/test-feed.js',
-	'assets/js/admin/source/social-curator-admin.js'
+	'assets/js/admin/source/socialcurator-admin-formatter.js',
+	'assets/js/admin/source/socialcurator-admin-bulkimport.js',
+	'assets/js/admin/source/socialcurator-admin-dropdowns.js',
+	'assets/js/admin/source/socialcurator-admin-logs.js',
+	'assets/js/admin/source/socialcurator-admin-avatar.js',
+	'assets/js/admin/source/socialcurator-admin-feedtest.js',
+	'assets/js/admin/source/socialcurator-admin-modals.js',
+	'assets/js/admin/source/socialcurator-admin-alerts.js',
+	'assets/js/admin/source/socialcurator-admin-masonry.js',
+	'assets/js/admin/source/socialcurator-admin-grid-loadmore.js',
+	'assets/js/admin/source/socialcurator-admin-grid-import.js',
+	'assets/js/admin/source/socialcurator-admin-grid-trash.js',
+	'assets/js/admin/source/socialcurator-admin-grid-approve.js',
+	'assets/js/admin/source/socialcurator-admin-grid-trashpost.js',
+	'assets/js/admin/source/socialcurator-admin-grid-filter.js',
+	'assets/js/admin/source/socialcurator-admin-grid.js',
+	'assets/js/admin/source/socialcurator-admin-emptytrash.js',
+	'assets/js/admin/source/socialcurator-admin-postcolumns.js',
+	'assets/js/admin/source/socialcurator-admin-factory.js'
 ]
 var admin_js_compiled = 'assets/js/admin/';
 
@@ -53,7 +65,7 @@ gulp.task('admin_js', function(){
 	return gulp.src(admin_js_source)
 		.pipe(concat('social-curator-admin.js'))
 		.pipe(gulp.dest(admin_js_compiled))
-		.pipe(uglify())
+		.pipe(uglify().on('error', gutil.log))
 		.pipe(gulp.dest(admin_js_compiled))
 });
 

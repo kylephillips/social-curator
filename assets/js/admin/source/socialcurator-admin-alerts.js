@@ -1,14 +1,13 @@
-jQuery(document).ready(function(){
-	var alerts = new SocialCuratorAlert;
-});
+var SocialCurator = SocialCurator || {};
 
 /**
 * Close an Alert
 */
-var SocialCuratorAlert = function()
+SocialCurator.Alerts = function()
 {
 	var plugin = this;
 	var $ = jQuery;
+	
 	plugin.button = '[data-dismiss="alert"]';
 	plugin.el = "";
 

@@ -1,8 +1,9 @@
-jQuery(document).ready(function(){
-	var testfeed = new SocialCuratorTestFeed;
-});
+var SocialCurator = SocialCurator || {};
 
-var SocialCuratorTestFeed = function()
+/**
+* Test Feed functionality under plugin settings
+*/
+SocialCurator.FeedTest = function()
 {
 	var plugin = this;
 	var $ = jQuery;
@@ -11,8 +12,6 @@ var SocialCuratorTestFeed = function()
 	plugin.feedContainer = '[data-test-feed-results]';
 	plugin.site = '';
 	plugin.feedType = 'search';
-	plugin.loadingText = social_curator_admin.fetching_feed;
-	plugin.buttonText = social_curator_admin.test_feed;
 	plugin.errorDiv = '[data-test-feed-error]';
 
 	// Initialize
@@ -52,7 +51,6 @@ var SocialCuratorTestFeed = function()
 				id: $('[data-feed-id]').val()
 			},
 			success: function(data){
-				console.log(data);
 				if ( data.status === 'success' ){
 					plugin.populateFeed(data.feed);
 				} else {
@@ -77,11 +75,11 @@ var SocialCuratorTestFeed = function()
 		if ( loading ){
 			$(plugin.errorDiv).hide();
 			$(plugin.feedContainer).empty().addClass('loading');
-			$(plugin.loadButton).attr('disabled', 'disabled').text(plugin.loadingText);
+			$(plugin.loadButton).attr('disabled', 'disabled').text(SocialCurator.localizedText.fetchingFeed);
 			return;
 		}
 		$(plugin.feedContainer).removeClass('loading');
-		$(plugin.loadButton).attr('disabled', false).text(plugin.buttonText);
+		$(plugin.loadButton).attr('disabled', false).text(SocialCurator.localizedText.testFeed);
 	}
 
 	return plugin.init();

@@ -60,6 +60,7 @@ class AdminDependencies extends Dependencies
 			'social_curator_nonce' => wp_create_nonce( 'social-curator-nonce' ),
 			'can_delete_posts' => ( current_user_can('edit_others_posts') ) ? true : false,
 			'run_import' => __('Run Import', 'socialcurator'),
+			'import' => __('Import', 'socialcurator'),
 			'import_all' => __('Import All', 'socialcurator'),
 			'importing' => __('Importing', 'socialcurator'),
 			'approved_by' => __('Approved by', 'socialcurator'),

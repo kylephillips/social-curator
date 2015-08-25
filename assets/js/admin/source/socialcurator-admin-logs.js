@@ -1,4 +1,9 @@
-var SocialCuratorLogs = function()
+var SocialCurator = SocialCurator || {};
+
+/**
+* Log Admin Screen
+*/
+SocialCurator.Logs = function()
 {
 	var plugin = this;
 	var $ = jQuery;

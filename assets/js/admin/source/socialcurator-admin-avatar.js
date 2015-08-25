@@ -1,15 +1,13 @@
-jQuery(document).ready(function(){
-	var avatarUpdater = new SocialCuratorAvatarUpdater;
-});
-
+var SocialCurator = SocialCurator || {};
 
 /**
 * Settings Page - Change the Default Avatar
 */
-var SocialCuratorAvatarUpdater = function()
+SocialCurator.Avatar = function()
 {
 	var plugin = this;
 	var $ = jQuery;
+	
 	plugin.button = '[data-choose-avatar-image]';
 
 	plugin.init = function()

@@ -1,4 +1,9 @@
-var SocialCuratorModal = function()
+var SocialCurator = SocialCurator || {};
+
+/**
+* Modal Windows
+*/
+SocialCurator.Modals = function()
 {
 	var plugin = this;
 	var $ = jQuery;
@@ -28,6 +33,10 @@ var SocialCuratorModal = function()
 			if ( $(e.target).parents('.social-curator-modal-content').length === 0 ){
 				plugin.closeModals();
 			}
+		});
+		$(document).on('change', '[data-social-curator-single-import-site]', function(){
+			var value = $(this).val();
+			$('[data-id-help-modal]').attr('data-social-curator-modal-open', 'id-help-' + value);
 		});
 	}
 

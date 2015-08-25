@@ -1,7 +1,12 @@
-var SocialCuratorDropdown = function()
+var SocialCurator = SocialCurator || {};
+/**
+* Dropdowns
+*/
+SocialCurator.Dropdowns = function()
 {
 	var plugin = this;
 	var $ = jQuery;
+	
 	plugin.toggleButton = '[data-toggle="social-curator-dropdown"]';
 	plugin.currentDropdown = "";
 

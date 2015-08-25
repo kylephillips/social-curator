@@ -1,12 +1,9 @@
-jQuery(document).ready(function(){
-	var bulkImport = new SocialCuratorBulkImport;
-});
-
+var SocialCurator = SocialCurator || {};
 
 /**
-* Bulk Import Page 
+* Bulk Import Page under settings
 */
-var SocialCuratorBulkImport = function()
+SocialCurator.BulkImport = function()
 {
 	var plugin = this;
 	var $ = jQuery;
