@@ -3,7 +3,7 @@
 Plugin Name: Social Curator
 Plugin URI: https://github.com/kylephillips/social-curator
 Description: Import social feeds as post, with curator functionality.
-Version: 0.0.1
+Version: 1.0.1
 Author: Kyle Phillips
 Author URI: https://github.com/kylephillips
 Text Domain: socialcurator
