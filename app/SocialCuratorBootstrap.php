@@ -27,6 +27,7 @@ class SocialCuratorBootstrap
 		new Entities\PostType\SocialPost\RegisterSocialPost;
 		new Entities\PostType\SocialPost\SocialPostMeta;
 		new Config\RegisterSettings;
+		new Curate\RegisterCurateAdminBar;
 		new Curate\RegisterCuratePage;
 		new Config\Settings;
 		new Events\RegisterAdminEvents;
