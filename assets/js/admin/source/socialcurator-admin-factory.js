@@ -47,7 +47,8 @@ SocialCurator.formActions = {
 	restorePost : 'social_curator_restore_post',
 	deletePost : 'social_curator_delete_post',
 	approvePost : 'social_curator_approve_post',
-	updateStatus : 'social_update_post_status'
+	updateStatus : 'social_update_post_status',
+	bulkImport : 'social_curator_bulk_import'
 }
 
 SocialCurator.dropdowns = new SocialCurator.Dropdowns;

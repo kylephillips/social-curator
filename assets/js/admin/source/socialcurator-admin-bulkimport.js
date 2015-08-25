@@ -32,8 +32,8 @@ SocialCurator.BulkImport = function()
 			url: ajaxurl,
 			type: 'POST',
 			data: {
-				nonce : social_curator_admin.social_curator_nonce,
-				action : 'social_curator_bulk_import',
+				nonce : SocialCurator.jsData.nonce,
+				action : SocialCurator.formActions.bulkImport,
 				site : $(plugin.site).val(),
 				post_ids : $(plugin.post_ids).val()
 			},
