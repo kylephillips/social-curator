@@ -24,12 +24,14 @@ SocialCurator.Masonry = function()
 			if ( append ) return plugin.appendMasonry(posts);
 			plugin.prependMasonry(posts);
 		}
+		$('button').blur();
 	}
 
 	plugin.appendMasonry = function(posts)
 	{
 		setTimeout(function() {
 			$(SocialCurator.selectors.masonryContainer).append(posts).masonry('reload');
+			$('button').blur();
 		}, 500);
 	}
 
@@ -37,6 +39,7 @@ SocialCurator.Masonry = function()
 	{
 		setTimeout(function() {
 			$(SocialCurator.selectors.masonryContainer).prepend(posts).masonry('reload');
+			$('button').blur();
 		}, 500);
 	}
 
