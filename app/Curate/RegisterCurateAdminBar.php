@@ -23,7 +23,8 @@ class RegisterCurateAdminBar
 	{
 		if ( !current_user_can('edit_posts') ) return;
 		$unmoderated_count = $this->social_post_repo->getUnmoderatedCount();
-		$title = __('Curate', 'socialcurator') . ' <span class="ab-label" data-social-curator-unmoderated-count>(' . $unmoderated_count . ')</span>';
+		$title = __('Curate', 'socialcurator');
+		if ( $unmoderated_count > 0 ) $title .= ' <span class="ab-label" data-social-curator-unmoderated-count>(' . $unmoderated_count . ')</span>';
 		$args = array(
 			'id'	=> 'social_curator',
 			'title' => $title,
