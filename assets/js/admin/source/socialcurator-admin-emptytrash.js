@@ -8,6 +8,8 @@ SocialCurator.EmptyTrash = function()
 	var plugin = this;
 	var $ = jQuery;
 
+	plugin.modals = new SocialCurator.Modals;
+
 	plugin.selectors = {
 		trashButton : '[data-empty-social-trash]',
 		trashCount : '[data-trash-count]'
@@ -22,16 +24,14 @@ SocialCurator.EmptyTrash = function()
 	{
 		$(document).on('click', plugin.selectors.trashButton, function(e){
 			e.preventDefault();
-			if ( window.confirm('Are you sure you want to empty the trash?') ){
-				$(this).attr('disabled', 'disabled');
-				plugin.emptyTrash();
-			}
+			plugin.emptyTrash();
 		});
 	}
 
 	plugin.emptyTrash = function()
 	{
 		SocialCurator.toggleLoading(true);
+		plugin.modals.closeModals();
 		$.ajax({
 			url: ajaxurl,
 			type: 'POST',

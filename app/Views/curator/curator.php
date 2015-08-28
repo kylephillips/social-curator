@@ -75,7 +75,7 @@
 		<button class="button" data-filter-grid><?php _e('Filter', 'socialcurator'); ?></button>
 
 		<?php if ( current_user_can('delete_others_posts') ) : ?>
-			<button class="button pull-right" data-empty-social-trash><?php _e('Empty Trash', 'socialcurator'); ?> (<span data-trash-count><?php echo $this->social_post_repo->trashCount(); ?></span>)</button>
+			<button class="button pull-right" data-social-curator-modal-open="empty-trash-confiramtion"><?php _e('Empty Trash', 'socialcurator'); ?> (<span data-trash-count><?php echo $this->social_post_repo->trashCount(); ?></span>)</button>
 		<?php endif; ?>
 
 	</div><!-- .social-curator-filter-grid -->
@@ -110,5 +110,6 @@
 
 	<!-- Help Modals -->
 	<?php $this->helpModals(); ?>
+	<?php include(SocialCurator\Helpers::view('curator/trash-confirm-modal')); ?>
 
 </div><!-- .wrap -->
