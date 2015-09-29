@@ -2,6 +2,7 @@
 settings_fields( 'social-curator-site-' . $this->site_index); 
 $fieldname = 'social_curator_site_' . $this->site_index;
 $search_term = $this->settings_repo->getSiteSetting($this->site_index, 'search_term');
+$user_term = $this->settings_repo->getSiteSetting($this->site_index, 'user_term');
 ?>
 
 <h3 class="social-curator-settings-header"><i class="social-curator-icon-twitter"></i> <?php _e('Twitter Settings', 'socialcurator'); ?></h3>
@@ -27,7 +28,7 @@ $search_term = $this->settings_repo->getSiteSetting($this->site_index, 'search_t
 <div class="social-curator-site-settings">
 	<ul class="fields">
 		<li>
-			<label><?php _e('Search Term', 'socialcurator'); ?></label>
+			<label><?php _e('Search Term', 'socialcurator'); ?> (<a href="https://dev.twitter.com/rest/public/search" target="_blank"><?php _e('Search Reference', 'socialcurator'); ?></a>)</label>
 			<input type="text" name="<?php echo $fieldname; ?>[search_term]" value="<?php if ( $search_term ) echo $search_term; ?>" />
 		</li>
 		<li>
