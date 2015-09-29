@@ -31,7 +31,7 @@ class Feed
 	* Formatted Feed
 	* @var array
 	*/
-	private $formatted_feed;
+	private $formatted_feed = array();
 
 	/**
 	* Type of Feed to fetch
@@ -56,9 +56,13 @@ class Feed
 	*/
 	private function search()
 	{
-		$this->unformatted_feed = new FetchFeedSearch;
-		$this->feed_formatter = new FeedFormatterSearch;
-		$this->format();
+		try {
+			$this->unformatted_feed = new FetchFeedSearch;
+			$this->feed_formatter = new FeedFormatterSearch;
+			$this->format();
+		} catch ( \Exception $e ){
+
+		}
 		$this->user();
 	}
 
