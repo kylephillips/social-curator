@@ -68,7 +68,7 @@ $search_term = $this->settings_repo->getSiteSetting($this->site_index, 'search_t
 <div class="social-curator-site-settings">
 	<ul class="fields">
 		<li>
-			<label><?php _e('Search Term', 'socialcurator'); ?></label>
+			<label><?php _e('Tag (without #)', 'socialcurator'); ?></label>
 			<input type="text" name="<?php echo $fieldname; ?>[search_term]" value="<?php if ( $search_term ) echo $search_term; ?>" />
 		</li>
 	</ul>
