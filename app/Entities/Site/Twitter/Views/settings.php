@@ -37,4 +37,13 @@ $user_term = $this->settings_repo->getSiteSetting($this->site_index, 'user_term'
 	</ul>
 </div>
 
+<div class="social-curator-site-settings">
+	<ul class="fields">
+		<li>
+			<label><?php _e('User Feed', 'socialcurator'); ?><br>(<?php _e('User name only, do not include @. Leave this blank to only use search term.', 'socialcurator'); ?>)</label>
+			<input type="text" name="<?php echo $fieldname; ?>[user_term]" value="<?php if ( $user_term ) echo $user_term; ?>" />
+		</li>
+	</ul>
+</div>
+
 <?php submit_button(); ?>

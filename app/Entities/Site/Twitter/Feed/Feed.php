@@ -6,6 +6,8 @@ use SocialCurator\Entities\Site\Twitter\Feed\FetchFeedSearch;
 use SocialCurator\Entities\Site\Twitter\Feed\FeedFormatterSearch;
 use SocialCurator\Entities\Site\Twitter\Feed\FetchFeedSingle;
 use SocialCurator\Entities\Site\Twitter\Feed\FeedFormatterSingle;
+use SocialCurator\Entities\Site\Twitter\Feed\FetchFeedUser;
+use SocialCurator\Entities\Site\Twitter\Feed\FeedFormatterUser;
 
 /**
 * Formatted Feed, ready for import
@@ -57,6 +59,7 @@ class Feed
 		$this->unformatted_feed = new FetchFeedSearch;
 		$this->feed_formatter = new FeedFormatterSearch;
 		$this->format();
+		$this->user();
 	}
 
 	/**
@@ -67,6 +70,19 @@ class Feed
 		$this->unformatted_feed = new FetchFeedSingle($this->query);
 		$this->feed_formatter = new FeedFormatterSingle;
 		$this->format();
+	}
+
+	/**
+	* Fetch a User's Timeline and add it to the search results
+	*/
+	private function user()
+	{
+		try {
+			$user_feed = new FetchFeedUser;
+			$user_feed_formatter = new FeedFormatterUser;
+			$this->formatted_feed = array_merge($this->formatted_feed, $user_feed_formatter->format($user_feed->getFeed()));
+		} catch ( \Exception $e ){
+		}
 	}
 
 	/**
