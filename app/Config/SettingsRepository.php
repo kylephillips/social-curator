@@ -141,7 +141,9 @@ class SettingsRepository
 	{
 		$option = get_option('social_curator_admin_menu');
 		if ( $setting == 'title' && !isset($option['title']) ) return "Curator";
+		if ( $setting == 'title' && $option['title'] == "" ) return "Curator";
 		if ( $setting == 'icon_class' && !isset($option['icon_class']) ) return "dashicons-share";
+		if ( $setting == 'icon_class' && $option['icon_class'] == "" ) return "dashicons-share";
 		return $option[$setting];
 	}
 
