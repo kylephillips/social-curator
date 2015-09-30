@@ -44,7 +44,8 @@ class RegisterCuratePage
 	*/
 	public function registerMenu()
 	{
-		$title = 'Curator';
+		$title = $this->settings_repo->menuSetting('title');
+		$icon_class = $this->settings_repo->menuSetting('icon_class');
 		$unmoderated_count = $this->social_post_repo->getUnmoderatedCount();
 		if ( $unmoderated_count > 0 ) $title .= '<span class="update-plugins"><span class="plugin-count" data-social-curator-unmoderated-count>' . $unmoderated_count . '</span></span>';
 		add_menu_page( 

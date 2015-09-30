@@ -32,6 +32,7 @@ class RegisterSettings
 		register_setting( 'social-curator-general', 'social_curator_enabled_sites' );
 		register_setting( 'social-curator-general', 'social_curator_import_status' );
 		register_setting( 'social-curator-general', 'social_curator_fallback_avatar' );
+		register_setting( 'social-curator-general', 'social_curator_admin_menu' );
 		register_setting( 'social-curator-notifications', 'social_curator_notification_emails' );
 		register_setting( 'social-curator-notifications', 'social_curator_notification_from' );
 		register_setting( 'social-curator-notifications', 'social_curator_notification_from_email' );

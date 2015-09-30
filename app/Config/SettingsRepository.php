@@ -134,4 +134,15 @@ class SettingsRepository
 		return '<img src="' . $option . '" />';
 	}
 
+	/**
+	* Get admin menu option
+	*/
+	public function menuSetting($setting = 'title')
+	{
+		$option = get_option('social_curator_admin_menu');
+		if ( $setting == 'title' && !isset($option['title']) ) return "Curator";
+		if ( $setting == 'icon_class' && !isset($option['icon_class']) ) return "dashicons-share";
+		return $option[$setting];
+	}
+
 }

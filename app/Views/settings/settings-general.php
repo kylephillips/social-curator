@@ -22,6 +22,16 @@
 		<option value="pending" <?php if ( $this->settings_repo->importStatus() == 'pending' ) echo 'selected'; ?> ><?php _e('Pending Review', 'socialcurator'); ?></option>
 		<option value="publish" <?php if ( $this->settings_repo->importStatus() == 'publish' ) echo 'selected'; ?>><?php _e('Published', 'socialcurator'); ?></option>	
 	</select>
+
+	<p>
+		<label><?php _e('Curator Menu Name', 'socialcurator'); ?></label>
+		<input type="text" name="social_curator_admin_menu[title]" value="<?php echo $this->settings_repo->menuSetting('title'); ?>" />
+	</p>
+
+	<p>
+		<label><?php _e('Curator Menu Icon Class', 'socialcurator'); ?></label>
+		<input type="text" name="social_curator_admin_menu[icon_class]" value="<?php echo $this->settings_repo->menuSetting('icon_class'); ?>" />
+	</p>
 </div>
 
 <div class="social-curator-settings-fallback-avatar">
@@ -38,4 +48,6 @@
 		<input type="text" data-fallback-avatar-field name="social_curator_fallback_avatar" value="<?php echo get_option('social_curator_fallback_avatar'); ?>" style="display:none;" />
 	</div>
 </div>
+
+
 <?php submit_button(); ?>
