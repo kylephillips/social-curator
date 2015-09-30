@@ -54,7 +54,7 @@ class RegisterCuratePage
 			'edit_posts', 
 			'social-curator', 
 			array($this, 'view'), 
-			'dashicons-share', 
+			$icon_class, 
 			'59.2'
 		);
 	}
