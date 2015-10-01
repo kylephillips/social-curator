@@ -144,6 +144,8 @@ class SettingsRepository
 		if ( $setting == 'title' && $option['title'] == "" ) return "Curator";
 		if ( $setting == 'icon_class' && !isset($option['icon_class']) ) return "dashicons-share";
 		if ( $setting == 'icon_class' && $option['icon_class'] == "" ) return "dashicons-share";
+		if ( $setting == 'page_title' && !isset($option['page_title']) ) return "Social Curator";
+		if ( $setting == 'page_title' && $option['page_title'] == "" ) return "Social Curator";
 		return $option[$setting];
 	}
 

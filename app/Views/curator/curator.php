@@ -1,7 +1,7 @@
 <div class="wrap social-curator-curation-page">
 
 	<h2>
-		<?php _e('Social Curator', 'socialcurator'); ?>
+		<?php echo $this->settings_repo->menuSetting('page_title'); ?>
 		<div class="social-curator-curation-loading-indicator" data-curation-loader>
 			<img src="<?php echo SocialCurator\Helpers::plugin_url(); ?>/assets/images/loading-admin.gif" />
 		</div>

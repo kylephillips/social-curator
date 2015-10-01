@@ -32,6 +32,11 @@
 		<label><?php _e('Curator Menu Icon Class', 'socialcurator'); ?></label>
 		<input type="text" name="social_curator_admin_menu[icon_class]" value="<?php echo $this->settings_repo->menuSetting('icon_class'); ?>" />
 	</p>
+
+	<p>
+		<label><?php _e('Curate Page Name', 'socialcurator'); ?></label>
+		<input type="text" name="social_curator_admin_menu[page_title]" value="<?php echo $this->settings_repo->menuSetting('page_title'); ?>" />
+	</p>
 </div>
 
 <div class="social-curator-settings-fallback-avatar">
