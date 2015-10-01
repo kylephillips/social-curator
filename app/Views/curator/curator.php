@@ -1,3 +1,6 @@
+<?php
+$enabled_sites = $this->settings_repo->getEnabledSites();
+?>
 <div class="wrap social-curator-curation-page">
 
 	<h2>
@@ -14,7 +17,7 @@
 				<div class="social-curator-dropdown-content">
 					<ul>
 						<?php
-							foreach ( $this->settings_repo->getEnabledSites() as $site ){
+							foreach ( $enabled_sites as $site ){
 								$sitename = $this->supported_sites->getKey($site, 'name');
 								$out = '<li><button data-import-site="' . $site . '" class="site-button">' . __('Import', 'socialcurator') . ' ' . $sitename . '</button></li>';
 								echo $out;
@@ -35,6 +38,7 @@
 					<select data-social-curator-single-import-site>
 						<?php
 							foreach ( $this->supported_sites->singleImportSites() as $site => $name ){
+								if ( !in_array($site, $enabled_sites) ) continue;
 								echo '<option value="' . $site . '">' . $name . '</option>';
 							}
 						?>
