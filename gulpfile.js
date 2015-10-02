@@ -31,6 +31,7 @@ var admin_js_source = [
 	'assets/js/admin/source/socialcurator-admin-grid.js',
 	'assets/js/admin/source/socialcurator-admin-emptytrash.js',
 	'assets/js/admin/source/socialcurator-admin-postcolumns.js',
+	'assets/js/admin/source/socialcurator-admin-settings.js',
 	'assets/js/admin/source/socialcurator-admin-factory.js'
 ]
 var admin_js_compiled = 'assets/js/admin/';

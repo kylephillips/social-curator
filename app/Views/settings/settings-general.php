@@ -22,15 +22,36 @@
 		<option value="pending" <?php if ( $this->settings_repo->importStatus() == 'pending' ) echo 'selected'; ?> ><?php _e('Pending Review', 'socialcurator'); ?></option>
 		<option value="publish" <?php if ( $this->settings_repo->importStatus() == 'publish' ) echo 'selected'; ?>><?php _e('Published', 'socialcurator'); ?></option>	
 	</select>
+</div>
 
+<div class="social-curator-site-settings">
+	<h4 style="margin:0 0 8px 0;"><?php _e('Admin Display', 'socialcurator'); ?></h4>
 	<p>
+		<label>
+			<input type="checkbox" name="social_curator_admin_menu[show_sidebar_menu]" value="1" data-show-sidebar-menu <?php if ( $this->settings_repo->displayMenu('show_sidebar_menu') ) echo ' checked'; ?> />
+			<?php _e('Show Admin Menu Curator Item', 'socialcurator'); ?>
+		</label>
+	</p>
+	<p data-sidebar-menu-option style="padding-left:24px;">
 		<label><?php _e('Curator Menu Name', 'socialcurator'); ?></label>
 		<input type="text" name="social_curator_admin_menu[title]" value="<?php echo $this->settings_repo->menuSetting('title'); ?>" />
 	</p>
 
-	<p>
+	<p data-sidebar-menu-option style="padding-left:24px;">
 		<label><?php _e('Curator Menu Icon Class', 'socialcurator'); ?></label>
 		<input type="text" name="social_curator_admin_menu[icon_class]" value="<?php echo $this->settings_repo->menuSetting('icon_class'); ?>" />
+	</p>
+
+	<p>
+		<label>
+			<input type="checkbox" name="social_curator_admin_menu[show_adminbar_menu]" value="1" data-show-adminbar-menu <?php if ( $this->settings_repo->displayMenu('show_adminbar_menu') ) echo ' checked'; ?> />
+			<?php _e('Show Top Admin Bar Item', 'socialcurator'); ?>
+		</label>
+	</p>
+
+	<p data-adminbar-menu-option style="padding-left:24px;">
+		<label><?php _e('Admin Bar Title', 'socialcurator'); ?></label>
+		<input type="text" name="social_curator_admin_menu[adminbar_title]" value="<?php echo $this->settings_repo->menuSetting('adminbar_title'); ?>" />
 	</p>
 
 	<p>

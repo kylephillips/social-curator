@@ -88,4 +88,5 @@ SocialCurator.Factory = function()
 	plugin.grid = new SocialCurator.Grid;
 	plugin.emptyTrash = new SocialCurator.EmptyTrash;
 	plugin.postColumns = new SocialCurator.PostColumns;
+	plugin.settings = new SocialCurator.Settings;
 }

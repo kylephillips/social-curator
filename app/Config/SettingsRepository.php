@@ -146,7 +146,19 @@ class SettingsRepository
 		if ( $setting == 'icon_class' && $option['icon_class'] == "" ) return "dashicons-share";
 		if ( $setting == 'page_title' && !isset($option['page_title']) ) return "Social Curator";
 		if ( $setting == 'page_title' && $option['page_title'] == "" ) return "Social Curator";
+		if ( $setting == 'adminbar_title' && !isset($option['adminbar_title']) ) return "Curator";
+		if ( $setting == 'adminbar_title' && $option['adminbar_title'] == "" ) return "Curator";
 		return $option[$setting];
 	}
 
+	/**
+	* Display the Admin Menu?
+	* @return boolean
+	* @param string - show_sidebar_menu|show_adminbar_menu
+	*/
+	public function displayMenu($menu = 'show_sidebar_menu')
+	{
+		$option = get_option('social_curator_admin_menu');
+		return ( isset($option[$menu]) && $option[$menu] == '1' ) ? true : false;
+	}
 }

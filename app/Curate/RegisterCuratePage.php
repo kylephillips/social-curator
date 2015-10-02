@@ -44,6 +44,7 @@ class RegisterCuratePage
 	*/
 	public function registerMenu()
 	{
+		if ( !$this->settings_repo->displayMenu('show_sidebar_menu') ) return;
 		$title = $this->settings_repo->menuSetting('title');
 		$icon_class = $this->settings_repo->menuSetting('icon_class');
 		$unmoderated_count = $this->social_post_repo->getUnmoderatedCount();
