@@ -154,7 +154,7 @@ class SettingsRepository
 	/**
 	* Display the Admin Menu?
 	* @return boolean
-	* @param string - show_sidebar_menu|show_adminbar_menu
+	* @param string - show_sidebar_menu|show_adminbar_menu|show_posttype
 	*/
 	public function displayMenu($menu = 'show_sidebar_menu')
 	{

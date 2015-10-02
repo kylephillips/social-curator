@@ -55,6 +55,13 @@
 	</p>
 
 	<p>
+		<label>
+			<input type="checkbox" name="social_curator_admin_menu[show_posttype]" value="1" <?php if ( $this->settings_repo->displayMenu('show_posttype') ) echo ' checked'; ?> />
+			<?php _e('Show Post Type Item', 'socialcurator'); ?>
+		</label>
+	</p>
+
+	<p>
 		<label><?php _e('Curate Page Name', 'socialcurator'); ?></label>
 		<input type="text" name="social_curator_admin_menu[page_title]" value="<?php echo $this->settings_repo->menuSetting('page_title'); ?>" />
 	</p>
