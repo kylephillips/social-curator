@@ -62,6 +62,7 @@ class GetSocialPosts extends ListenerBase
 		if ( isset($_POST['site']) && $_POST['site'] !== 'all' ) $this->query_params['site'] = $_POST['site'];
 		if ( isset($_POST['offset']) ) $this->query_params['offset'] = intval($_POST['offset']);
 		if ( isset($_POST['number']) ) $this->query_params['number'] = intval($_POST['number']);
+		if ( isset($_POST['thumbnailsonly']) ) $this->query_params['thumbnailsonly'] = $_POST['thumbnailsonly'];
 	}
 
 	/**

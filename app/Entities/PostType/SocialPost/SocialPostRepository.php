@@ -100,6 +100,11 @@ class SocialPostRepository
 			$args['offset'] = $query_params['offset'];
 		}
 
+		// Only Posts with Thumbnails
+		if ( isset($query_params['thumbnailsonly']) ){
+			if ( $query_params['thumbnailsonly'] !== 'false') $args['meta_query'] = array(array('key' => '_thumbnail_id'));
+		}
+
 		$pq = new \WP_Query(apply_filters('social_curator_posts', $args));
 		$posts = array();
 		if ( $pq->have_posts() ) : $c = 0; while ( $pq->have_posts() ) : $pq->the_post();
