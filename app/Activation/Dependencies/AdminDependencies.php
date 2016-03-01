@@ -35,6 +35,8 @@ class AdminDependencies extends Dependencies
 	*/
 	public function scripts()
 	{
+		$screen = get_current_screen();
+		if ( $screen->id !== 'toplevel_page_social-curator' && $screen->id !== 'settings_page_social-curator-settings' ) return;
 		wp_enqueue_script('thickbox');
 		wp_enqueue_style('thickbox');
 		wp_enqueue_script('jquery-masonry');

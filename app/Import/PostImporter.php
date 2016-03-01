@@ -98,11 +98,15 @@ class PostImporter
 			if ( $this->isTrashed() ) return false;
 		}
 		$status = $this->settings_repo->importStatus();
+		
+		$pieces = explode(" ", $this->post_data['content']);
+		$title = implode(" ", array_splice($pieces, 0, 10));
+		
 		$imported = array(
 			'post_type' => 'social-post',
 			'post_content' => $this->post_data['content'],
 			'post_status' => $status,
-			'post_title' => $this->site . ' - ' . $this->post_data['id'],
+			'post_title' => $this->site . ' - ' . $title,
 			'post_date' => date('Y-m-d H:i:s', intval($this->post_data['date'])),
 			'post_date_gmt' => date('Y-m-d H:i:s', intval($this->post_data['date'])),
 		);
