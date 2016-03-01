@@ -91,9 +91,9 @@ class SocialPostPresenter
 	* Get the Post thumbnail URL
 	* @param int $post_id
 	*/
-	public function getThumbnailURL($post_id)
+	public function getThumbnailURL($post_id, $size = 'full')
 	{
-		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post_id), 'full' );
+		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id($post_id), $size );
 		return $thumb['0'];
 	}
 

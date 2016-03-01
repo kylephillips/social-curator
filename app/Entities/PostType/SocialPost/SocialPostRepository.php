@@ -106,6 +106,8 @@ class SocialPostRepository
 		}
 
 		$pq = new \WP_Query(apply_filters('social_curator_posts', $args));
+		$thumbnail_size = ( isset($query_params['thumbnailsize']) ) ? $query_params['thumbnailsize'] : 'full';
+
 		$posts = array();
 		if ( $pq->have_posts() ) : $c = 0; while ( $pq->have_posts() ) : $pq->the_post();
 			$id = get_the_id();
@@ -121,7 +123,7 @@ class SocialPostRepository
 			$posts[$c]['video_url'] = get_post_meta($id, 'social_curator_video_url', true);
 			$posts[$c]['type'] = get_post_meta($id, 'social_curator_type', true);
 			$posts[$c]['link'] = get_post_meta($id, 'social_curator_link', true);
-			$posts[$c]['thumbnail'] = $this->presenter->getThumbnailURL($id);
+			$posts[$c]['thumbnail'] = $this->presenter->getThumbnailURL($id, $thumbnail_size);
 			$posts[$c]['original_id'] = get_post_meta($id, 'social_curator_original_id', true);
 			if ( is_user_logged_in() ){
 				$posts[$c]['status'] = get_post_status($id);
